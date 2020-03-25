@@ -14,6 +14,8 @@ use OM\OddsMatrix\SEPC\Connector\Annotation\QueryParam;
  */
 class SDQLUnsubscribeRequest {
 
+    use SubscriptionIdentifiableTrait;
+
     /**
      * @var string
      *
@@ -23,16 +25,6 @@ class SDQLUnsubscribeRequest {
      * @QueryParam("subscriptionSpecificationName")
      */
     private $_subscriptionSpecificationName;
-
-    /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("subscriptionId")
-     * @Serializer\XmlAttribute()
-     * @QueryParam("subscriptionId")
-     */
-    private $_subscriptionId;
 
     /**
      * SDQLUnsubscribeRequest constructor.
