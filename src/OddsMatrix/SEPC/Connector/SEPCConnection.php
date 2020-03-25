@@ -6,75 +6,46 @@ namespace OM\OddsMatrix\SEPC\Connector;
 
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\Enum\Routes;
-use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLUnsubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
-use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLSubscribeResponse;
-use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLUnsubscribeResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
 
 class SEPCConnection
 {
     /**
-     * @var SEPCCredentials
-     */
-    private $_credentials;
-
-    /**
-     * @var string
-     * TODO read from a yaml config file
-     */
-    private $_host = 'http://sept.oddsmatrix.com';
-
-    /**
-     * @var int
-     * TODO read from a yaml config file
-     */
-    private $_port = 8081;
-
-    /**
      * @var QueryParamSerializer
      */
     private $_queryParamSerializer;
 
+    /**
+     * @var SerializerInterface
+     */
     private $_xmlSerializer;
 
-    private $_subscriptionId;
+    /**
+     * @var SEPCConnectionStateInterface
+     */
+    private $_connectionState;
 
     /**
      * SEPCConnection constructor.
-     * @param SEPCCredentials $_credentials
+     * @param SEPCConnectionStateInterface $_connectionState
      */
-    public function __construct(SEPCCredentials $_credentials)
+    public function __construct(SEPCConnectionStateInterface $_connectionState)
     {
-        $this->_credentials = $_credentials;
+        $this->_connectionState = $_connectionState;
         $this->_queryParamSerializer = new QueryParamSerializer();
         $this->_xmlSerializer = SerializerBuilder::create()
             ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
             ->build();
     }
 
-    public function connect() {
-        $request = new SDQLSubscribeRequest($this->_credentials->getSubscriptionSpecificationName());
-        $url = $this->_host . ':' . $this->_port . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
-
-        echo "URL: $url\n";
-        $responseData = gzdecode(file_get_contents($url));
-        echo "Response data: $responseData \n";
-
-        /** @var SDQLResponse $response */
-        $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
-        echo "Deserialized\n";
-        echo $this->_xmlSerializer->serialize($response, 'xml');
-
-        $this->_subscriptionId = $response->getSubscribeResponse()->getSubscriptionId();
-    }
-
     public function disconnect() {
         echo "\nDisconnect\n";
-        $request = new SDQLUnsubscribeRequest($this->_credentials->getSubscriptionSpecificationName(), $this->_subscriptionId);
-        $url = $this->_host . ':' . $this->_port . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
+        $request = new SDQLUnsubscribeRequest($this->_connectionState->getSubscriptionSpecificationName(), $this->_connectionState->getSubscriptionId());
+        $url = $this->_connectionState->getHost() . ':' . $this->_connectionState->getPort() . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
 
         echo 'URL:' . $url . "\n";
 
