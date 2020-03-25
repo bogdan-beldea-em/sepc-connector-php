@@ -57,7 +57,7 @@ class SEPCPullConnector
     public function connect(string $host, int $port): SEPCConnection
     {
         $request = new SDQLSubscribeRequest($this->_credentials->getSubscriptionSpecificationName());
-        $url = $this->_host . ':' . $this->_port . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
+        $url = $host . ':' . $port . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
 
         echo "URL: $url\n";
         $responseData = gzdecode(file_get_contents($url));

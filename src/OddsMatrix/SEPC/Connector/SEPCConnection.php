@@ -30,6 +30,11 @@ class SEPCConnection
     private $_connectionState;
 
     /**
+     * @var function($newState)
+     */
+    private $_onStateChanged;
+
+    /**
      * SEPCConnection constructor.
      * @param SEPCConnectionStateInterface $_connectionState
      */
@@ -56,5 +61,10 @@ class SEPCConnection
         /** @var SDQLResponse $response */
         $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
         echo "Deserialised:\n" . $this->_xmlSerializer->serialize($response, 'xml') . "\n";
+    }
+
+    public function setOnStateChanged($callback) {
+        $this->_onStateChanged = $callback;
+        $callback($this->_connectionState);
     }
 }
