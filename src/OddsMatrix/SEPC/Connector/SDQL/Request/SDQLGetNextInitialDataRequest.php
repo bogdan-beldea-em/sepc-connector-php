@@ -4,7 +4,6 @@
 namespace OM\OddsMatrix\SEPC\Connector\SDQL\Request;
 
 use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Annotation\QueryParam;
 use RequestType;
 
 /**
@@ -19,12 +18,11 @@ class SDQLGetNextInitialDataRequest
     use SubscriptionIdentifiableTrait;
 
     /**
+     * SDQLGetNextInitialDataRequest constructor.
      * @param string $subscriptionId
-     * @return SDQLGetNextInitialDataRequest
      */
-    public function setSubscriptionId(string $subscriptionId): SDQLGetNextInitialDataRequest
+    public function __construct(string $subscriptionId)
     {
         $this->_subscriptionId = $subscriptionId;
-        return $this;
     }
 }

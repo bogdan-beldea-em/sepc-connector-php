@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SDQL\Response;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData;
 
 /**
  * Class SDQLResponse
@@ -28,6 +29,14 @@ class SDQLResponse
      * @Serializer\SerializedName("UnsubscribeResponse")
      */
     private $_unsubscribeResponse;
+
+    /**
+     * @var SDQLInitialDataResponse
+     *
+     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLInitialDataResponse")
+     * @Serializer\SerializedName("GetNextInitialDataResponse")
+     */
+    private $initialData;
 
     /**
      * @var SDQLError
@@ -59,5 +68,13 @@ class SDQLResponse
     public function getError(): SDQLError
     {
         return $this->_error;
+    }
+
+    /**
+     * @return SDQLInitialDataResponse
+     */
+    public function getInitialData(): SDQLInitialDataResponse
+    {
+        return $this->initialData;
     }
 }
