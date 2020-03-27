@@ -126,114 +126,162 @@ class EntitiesContainer
     private $_eventTypes;
 
     /**
-     * @return Sport[]
+     * @var EventPart[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventPart>")
+     * @Serializer\XmlList(inline=true, entry=""EventPart")
      */
-    public function getSports(): array
-    {
-        return $this->_sports;
-    }
+    private $_eventParts;
 
     /**
-     * @return Location[]
+     * @var EventStatus[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventStatus>")
+     * @Serializer\XmlList()
      */
-    public function getLocations(): array
-    {
-        return $this->_locations;
-    }
+    private $_eventStatuses;
 
     /**
-     * @return LocationRelationType[]
+     * @var EventCategory[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventCategory>")
+     * @Serializer\XmlList()
      */
-    public function getLocationRelationTypes(): array
-    {
-        return $this->_locationRelationTypes;
-    }
+    private $_eventCategories;
 
     /**
-     * @return LocationType[]
+     * @var EventTemplate[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventTemplate>")
+     * @Serializer\XmlList()
      */
-    public function getLocationTypes(): array
-    {
-        return $this->_locationTypes;
-    }
+    private $_eventTemplates;
 
     /**
-     * @return Currency[]
+     * @var Event[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Event>")
+     * @Serializer\XmlList()
      */
-    public function getCurrencies(): array
-    {
-        return $this->_currencies;
-    }
+    private $_events;
 
     /**
-     * @return LocationRelation[]
+     * @var EventPartDefaultUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventPartDefaultUsage>")
+     * @Serializer\XmlList()
      */
-    public function getLocationRelations(): array
-    {
-        return $this->_locationRelations;
-    }
+    private $_eventPartDefaultUsages;
 
     /**
-     * @return ScoringUnit[]
+     * @var EntityProperty[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EntityProperty>")
+     * @Serializer\XmlList()
      */
-    public function getScoringUnits(): array
-    {
-        return $this->_scoringUnits;
-    }
+    private $_entityProperties;
 
     /**
-     * @return BettingType[]
+     * @var EventParticipantRelation[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantRelation>")
+     * @Serializer\XmlList()
      */
-    public function getBettingTypes(): array
-    {
-        return $this->_bettingTypes;
-    }
+    private $_eventParticipantRelations;
 
     /**
-     * @return Provider[]
+     * @var Source[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Source>")
+     * @Serializer\XmlList()
      */
-    public function getProviders(): array
-    {
-        return $this->_providers;
-    }
+    private $_sources;
 
     /**
-     * @return ParticipantRole[]
+     * @var ParticipantRelationType[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantRelationType>")
+     * @Serializer\XmlList()
      */
-    public function getParticipantRoles(): array
-    {
-        return $this->_participantRoles;
-    }
+    private $_participantRelationTypes;
 
     /**
-     * @return Participant[]
+     * @var ParticipantRelation[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantRelation>")
+     * @Serializer\XmlList()
      */
-    public function getParticipants(): array
-    {
-        return $this->_participants;
-    }
+    private $_participantRelations;
 
     /**
-     * @return ParticipantType[]
+     * @var ProviderEventRelation[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ProviderEventRelation>")
+     * @Serializer\XmlList()
      */
-    public function getParticipantTypes(): array
-    {
-        return $this->_participantTypes;
-    }
+    private $_providerEventRelations;
 
     /**
-     * @return EventType[]
+     * @var StreamingProvider[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\StreamingProvider>")
+     * @Serializer\XmlList()
      */
-    public function getEventTypes(): array
-    {
-        return $this->_eventTypes;
-    }
+    private $_streamingProviders;
 
     /**
-     * @return ParticipantUsage[]
+     * @var StreamingProviderEventRelation[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\StreamingProviderEventRelation>")
+     * @Serializer\XmlList()
      */
-    public function getParticipantUsages(): array
-    {
-        return $this->_participantUsages;
-    }
+    private $_streamingProviderEventRelations;
+
+    /**
+     * @var OutcomeStatus[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeStatus>")
+     * @Serializer\XmlList()
+     */
+    private $_outcomeStatuses;
+
+    /**
+     * @var OutcomeType[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeType>")
+     * @Serializer\XmlList()
+     */
+    private $_outcomeTypes;
+
+    /**
+     * @var OutcomeTypeBettingTypeRelation[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeTypeBettingTypeRelation>")
+     * @Serializer\XmlList()
+     */
+    private $_outcomeTypeBettingRelations;
+
+    /**
+     * @var BettingOfferStatus[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\BettingOfferStatus>")
+     * @Serializer\XmlList()
+     */
+    private $_bettingOfferStatuses;
+
+    /**
+     * @var BettingTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\BettingTypeUsage>")
+     * @Serializer\XmlList()
+     */
+    private $_bettingTypeUsages;
+
+    /**
+     * @var OutcomeTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeTypeUsage>")
+     * @Serializer\XmlList()
+     */
+    private $_outcomeTypeUsages;
 }

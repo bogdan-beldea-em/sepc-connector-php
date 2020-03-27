@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ParticipantRole
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
      * @var bool
@@ -25,27 +25,10 @@ class ParticipantRole
     private $_isPrimary;
 
     /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("description")
-     * @Serializer\XmlAttribute()
-     */
-    private $_description;
-
-    /**
      * @return bool
      */
     public function isPrimary(): bool
     {
         return $this->_isPrimary;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->_description;
     }
 }

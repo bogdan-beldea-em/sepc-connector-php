@@ -83,7 +83,7 @@ class SEPCConnection
                 $responseData = gzdecode(file_get_contents($url));
                 echo "Response data: $responseData \n";
 
-                $file = fopen("request_dump_$i.xml", "w");
+                $file = fopen("../resources_extra/request_dump_$i.xml", "w");
                 fwrite($file, $responseData);
                 fflush($file);
                 fclose($file);
@@ -95,7 +95,7 @@ class SEPCConnection
                 } catch (\Exception $e) {
                     echo "L1 Error\n";
                     var_dump($e);
-                    $file = fopen("error_l1_$i.xml", "w");
+                    $file = fopen("resources_extra/error_l1_$i.xml", "w");
                     fwrite($file, $responseData);
                     fflush($file);
                     fclose($file);

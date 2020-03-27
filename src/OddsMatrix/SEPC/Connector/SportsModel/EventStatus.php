@@ -6,12 +6,12 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class BettingType
+ * Class EventStatus
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  *
- * @Serializer\XmlRoot(name="BettingType")
+ * @Serializer\XmlRoot(name="EventStatus")
  */
-class BettingType
+class EventStatus
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 }

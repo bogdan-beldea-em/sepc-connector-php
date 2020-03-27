@@ -13,22 +13,5 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ScoringUnit
 {
-    use IdentifiableModelTrait, NamedTrait, VersionedTrait;
-
-    /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("description")
-     * @Serializer\XmlAttribute()
-     */
-    private $_description;
-
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->_description;
-    }
+    use IdentifiableModelTrait, NamedTrait, VersionedTrait, DescribedTrait;
 }
