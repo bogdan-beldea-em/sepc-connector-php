@@ -79,15 +79,6 @@ class OutcomeType
     private $_hasParamParticipantId1;
 
     /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramParticipantId1Description")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramParticipantId1Description;
-
-    /**
     * @var bool
     *
     * @Serializer\Type("bool")
@@ -178,13 +169,13 @@ class OutcomeType
     private $_hasParamScoringUnitId1;
 
     /**
-    * @var bool
+    * @var string
     *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("paramParticipant1MustHaveRole")
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramParticipantId1Description")
     * @Serializer\XmlAttribute()
     */
-    private $_paramParticipant1MustHaveRole;
+    private $_paramParticipantId1Description;
 
     /**
     * @var string
@@ -217,6 +208,15 @@ class OutcomeType
     * @var string
     *
     * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramParticipantId2Description")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipantId2Description;
+
+    /**
+    * @var string
+    *
+    * @Serializer\Type("string")
     * @Serializer\SerializedName("paramFloat2Description")
     * @Serializer\XmlAttribute()
     */
@@ -226,10 +226,10 @@ class OutcomeType
     * @var string
     *
     * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramParticipantId2Description")
+    * @Serializer\SerializedName("paramFloat3Description")
     * @Serializer\XmlAttribute()
     */
-    private $_paramParticipantId2Description;
+    private $_paramFloat3Description;
 
     /**
     * @var string
@@ -241,13 +241,13 @@ class OutcomeType
     private $_paramParticipantId3Description;
 
     /**
-    * @var string
+    * @var int
     *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramFloat3Description")
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("paramParticipant1MustHaveRoleId")
     * @Serializer\XmlAttribute()
     */
-    private $_paramFloat3Description;
+    private $_paramParticipant1MustHaveRoleId;
 
     /**
     * @var string
@@ -312,14 +312,6 @@ class OutcomeType
     public function isHasParamParticipantId1(): bool
     {
         return $this->_hasParamParticipantId1;
-    }
-
-    /**
-     * @return string
-     */
-    public function getParamParticipantId1Description(): string
-    {
-        return $this->_paramParticipantId1Description;
     }
 
     /**
@@ -403,11 +395,11 @@ class OutcomeType
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isParamParticipant1MustHaveRole(): bool
+    public function getParamParticipantId1Description(): string
     {
-        return $this->_paramParticipant1MustHaveRole;
+        return $this->_paramParticipantId1Description;
     }
 
     /**
@@ -437,14 +429,6 @@ class OutcomeType
     /**
      * @return string
      */
-    public function getParamFloat2Description(): string
-    {
-        return $this->_paramFloat2Description;
-    }
-
-    /**
-     * @return string
-     */
     public function getParamParticipantId2Description(): string
     {
         return $this->_paramParticipantId2Description;
@@ -453,9 +437,9 @@ class OutcomeType
     /**
      * @return string
      */
-    public function getParamParticipantId3Description(): string
+    public function getParamFloat2Description(): string
     {
-        return $this->_paramParticipantId3Description;
+        return $this->_paramFloat2Description;
     }
 
     /**
@@ -469,8 +453,25 @@ class OutcomeType
     /**
      * @return string
      */
+    public function getParamParticipantId3Description(): string
+    {
+        return $this->_paramParticipantId3Description;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParamParticipant1MustHaveRoleId(): int
+    {
+        return $this->_paramParticipant1MustHaveRoleId;
+    }
+
+    /**
+     * @return string
+     */
     public function getParamEventPartId1Description(): string
     {
         return $this->_paramEventPartId1Description;
     }
+
 }

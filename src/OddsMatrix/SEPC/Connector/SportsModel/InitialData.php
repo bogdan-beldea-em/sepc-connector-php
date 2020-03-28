@@ -44,6 +44,7 @@ class InitialData
      * @var EntitiesContainer
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\EntitiesContainer")
+     * @Serializer\SerializedName("entities")
      * @Serializer\XmlElement()
      */
     private $entities;

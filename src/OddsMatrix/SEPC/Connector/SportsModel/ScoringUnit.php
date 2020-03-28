@@ -13,5 +13,6 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ScoringUnit
 {
-    use IdentifiableModelTrait, NamedTrait, VersionedTrait, DescribedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
+
 }

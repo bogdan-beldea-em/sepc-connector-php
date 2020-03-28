@@ -82,4 +82,5 @@ class BettingTypeUsage
     {
         return $this->_eventPartId;
     }
+
 }

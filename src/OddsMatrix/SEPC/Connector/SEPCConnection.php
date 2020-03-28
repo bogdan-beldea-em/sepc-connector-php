@@ -81,17 +81,22 @@ class SEPCConnection
         for ($i = 0; $i < 1000; $i++) {
             try {
                 $responseData = gzdecode(file_get_contents($url));
-                echo "Response data: $responseData \n";
+//                echo "Response data: $responseData \n";
 
+                echo "Received: $i\n";
                 $file = fopen("../resources_extra/request_dump_$i.xml", "w");
                 fwrite($file, $responseData);
                 fflush($file);
                 fclose($file);
 
                 try {
+                    /** @var SDQLResponse $response */
                     $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
-                    $reserialized = $this->_xmlSerializer->serialize($response, 'xml');
-                    echo "Response: $reserialized\n";
+                    if ($response->getInitialData()->getInitialData()->isDumpComplete()) {
+                        break;
+                    }
+//                    $reserialized = $this->_xmlSerializer->serialize($response, 'xml');
+//                    echo "Response: $reserialized\n";
                 } catch (\Exception $e) {
                     echo "L1 Error\n";
                     var_dump($e);

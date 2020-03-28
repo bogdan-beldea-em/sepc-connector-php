@@ -36,7 +36,7 @@ class Source
     /**
     * @var \DateTime
     *
-    * @Serializer\Type("\DateTime")
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("lastCollectedTime")
     * @Serializer\XmlAttribute()
     */
@@ -45,7 +45,7 @@ class Source
     /**
     * @var \DateTime
     *
-    * @Serializer\Type("\DateTime")
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("lastUpdatedTime")
     * @Serializer\XmlAttribute()
     */
@@ -82,4 +82,5 @@ class Source
     {
         return $this->_lastUpdatedTime;
     }
+
 }

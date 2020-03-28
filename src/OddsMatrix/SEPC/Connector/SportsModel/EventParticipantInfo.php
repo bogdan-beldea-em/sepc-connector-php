@@ -6,14 +6,23 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class EventParticipantRelation
+ * Class EventParticipantInfo
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  *
- * @Serializer\XmlRoot(name="EventParticipantRelation")
+ * @Serializer\XmlRoot(name="EventParticipantInfo")
  */
-class EventParticipantRelation
+class EventParticipantInfo
 {
     use IdentifiableModelTrait, VersionedTrait;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("typeId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_typeId;
 
     /**
     * @var int
@@ -23,6 +32,24 @@ class EventParticipantRelation
     * @Serializer\XmlAttribute()
     */
     private $_eventId;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("providerId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_providerId;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("statusId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_statusId;
 
     /**
     * @var int
@@ -43,22 +70,12 @@ class EventParticipantRelation
     private $_participantId;
 
     /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("participantRoleId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_participantRoleId;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("parentParticipantId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_parentParticipantId;
+     * @return int
+     */
+    public function getTypeId(): int
+    {
+        return $this->_typeId;
+    }
 
     /**
      * @return int
@@ -66,6 +83,22 @@ class EventParticipantRelation
     public function getEventId(): int
     {
         return $this->_eventId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProviderId(): int
+    {
+        return $this->_providerId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusId(): int
+    {
+        return $this->_statusId;
     }
 
     /**
@@ -82,22 +115,6 @@ class EventParticipantRelation
     public function getParticipantId(): int
     {
         return $this->_participantId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getParticipantRoleId(): int
-    {
-        return $this->_participantRoleId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getParentParticipantId(): int
-    {
-        return $this->_parentParticipantId;
     }
 
 }

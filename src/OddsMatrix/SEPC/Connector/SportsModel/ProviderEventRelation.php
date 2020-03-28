@@ -36,7 +36,7 @@ class ProviderEventRelation
     /**
     * @var \DateTime
     *
-    * @Serializer\Type("\DateTime")
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("startTime")
     * @Serializer\XmlAttribute()
     */
@@ -45,7 +45,7 @@ class ProviderEventRelation
     /**
     * @var \DateTime
     *
-    * @Serializer\Type("\DateTime")
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("endTime")
     * @Serializer\XmlAttribute()
     */
@@ -133,4 +133,5 @@ class ProviderEventRelation
     {
         return $this->_offersLiveTV;
     }
+
 }

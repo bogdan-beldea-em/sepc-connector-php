@@ -16,12 +16,12 @@ class EventCategory
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("sportId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("sportId")
+    * @Serializer\XmlAttribute()
+    */
     private $_sportId;
 
     /**
@@ -31,4 +31,5 @@ class EventCategory
     {
         return $this->_sportId;
     }
+
 }

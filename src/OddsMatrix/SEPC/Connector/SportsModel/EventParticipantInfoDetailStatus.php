@@ -6,12 +6,12 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class ParticipantRole
+ * Class EventParticipantInfoDetailStatus
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  *
- * @Serializer\XmlRoot(name="ParticipantRole")
+ * @Serializer\XmlRoot(name="EventParticipantInfoDetailStatus")
  */
-class ParticipantRole
+class EventParticipantInfoDetailStatus
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
@@ -19,17 +19,17 @@ class ParticipantRole
     * @var bool
     *
     * @Serializer\Type("bool")
-    * @Serializer\SerializedName("isPrimary")
+    * @Serializer\SerializedName("isAvailable")
     * @Serializer\XmlAttribute()
     */
-    private $_isPrimary;
+    private $_isAvailable;
 
     /**
      * @return bool
      */
-    public function isPrimary(): bool
+    public function isAvailable(): bool
     {
-        return $this->_isPrimary;
+        return $this->_isAvailable;
     }
 
 }

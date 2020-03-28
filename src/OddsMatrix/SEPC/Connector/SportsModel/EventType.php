@@ -14,4 +14,5 @@ use JMS\Serializer\Annotation as Serializer;
 class EventType
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+
 }

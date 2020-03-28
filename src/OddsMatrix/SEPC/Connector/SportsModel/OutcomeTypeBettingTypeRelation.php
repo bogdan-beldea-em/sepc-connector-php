@@ -48,4 +48,5 @@ class OutcomeTypeBettingTypeRelation
     {
         return $this->_bettingTypeId;
     }
+
 }

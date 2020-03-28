@@ -3,7 +3,6 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-
 use JMS\Serializer\Annotation as Serializer;
 
 /**
@@ -17,75 +16,75 @@ class Provider
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("locationId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("locationId")
+    * @Serializer\XmlAttribute()
+    */
     private $_locationId;
 
     /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("url")
-     * @Serializer\XmlAttribute()
-     */
+    * @var string
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("url")
+    * @Serializer\XmlAttribute()
+    */
     private $_url;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isBookmaker")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isBookmaker")
+    * @Serializer\XmlAttribute()
+    */
     private $_isBookmaker;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isBettingExchange")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isBettingExchange")
+    * @Serializer\XmlAttribute()
+    */
     private $_isBettingExchange;
 
     /**
-     * @var float
-     *
-     * @Serializer\Type("float")
-     * @Serializer\SerializedName("bettingCommissionVACs")
-     * @Serializer\XmlAttribute()
-     */
+    * @var string
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("bettingCommissionVACs")
+    * @Serializer\XmlAttribute()
+    */
     private $_bettingCommissionVACs;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isLiveOddsApproved")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isLiveOddsApproved")
+    * @Serializer\XmlAttribute()
+    */
     private $_isLiveOddsApproved;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isNewsSource")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isNewsSource")
+    * @Serializer\XmlAttribute()
+    */
     private $_isNewsSource;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isEnabled")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isEnabled")
+    * @Serializer\XmlAttribute()
+    */
     private $_isEnabled;
 
     /**
@@ -121,9 +120,9 @@ class Provider
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getBettingCommissionVACs(): float
+    public function getBettingCommissionVACs(): string
     {
         return $this->_bettingCommissionVACs;
     }
@@ -151,4 +150,5 @@ class Provider
     {
         return $this->_isEnabled;
     }
+
 }

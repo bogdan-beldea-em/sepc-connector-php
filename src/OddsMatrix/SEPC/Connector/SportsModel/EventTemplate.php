@@ -16,12 +16,12 @@ class EventTemplate
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("eventTypeId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("eventTypeId")
+    * @Serializer\XmlAttribute()
+    */
     private $_eventTypeId;
 
     /**
@@ -116,4 +116,5 @@ class EventTemplate
     {
         return $this->_url;
     }
+
 }

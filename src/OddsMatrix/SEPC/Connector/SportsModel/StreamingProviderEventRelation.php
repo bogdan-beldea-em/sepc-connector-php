@@ -54,6 +54,14 @@ class StreamingProviderEventRelation
     /**
      * @return int
      */
+    public function getStreamingProviderId(): int
+    {
+        return $this->_streamingProviderId;
+    }
+
+    /**
+     * @return int
+     */
     public function getEventId(): int
     {
         return $this->_eventId;
@@ -75,11 +83,4 @@ class StreamingProviderEventRelation
         return $this->_language;
     }
 
-    /**
-     * @return int
-     */
-    public function getStreamingProviderId(): int
-    {
-        return $this->_streamingProviderId;
-    }
 }

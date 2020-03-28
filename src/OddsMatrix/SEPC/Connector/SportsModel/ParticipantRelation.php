@@ -52,6 +52,15 @@ class ParticipantRelation
     private $_paramParticipantRoleId;
 
     /**
+    * @var \DateTime
+    *
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+    * @Serializer\SerializedName("startTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_startTime;
+
+    /**
      * @return int
      */
     public function getTypeId(): int
@@ -82,4 +91,13 @@ class ParticipantRelation
     {
         return $this->_paramParticipantRoleId;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartTime(): \DateTime
+    {
+        return $this->_startTime;
+    }
+
 }

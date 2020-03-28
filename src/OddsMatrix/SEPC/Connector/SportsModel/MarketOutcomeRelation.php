@@ -6,12 +6,12 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class ParticipantUsage
+ * Class MarketOutcomeRelation
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  *
- * @Serializer\XmlRoot(name="ParticipantUsage")
+ * @Serializer\XmlRoot(name="MarketOutcomeRelation")
  */
-class ParticipantUsage
+class MarketOutcomeRelation
 {
     use IdentifiableModelTrait, VersionedTrait;
 
@@ -19,34 +19,34 @@ class ParticipantUsage
     * @var int
     *
     * @Serializer\Type("int")
-    * @Serializer\SerializedName("participantId")
+    * @Serializer\SerializedName("marketId")
     * @Serializer\XmlAttribute()
     */
-    private $_participantId;
+    private $_marketId;
 
     /**
     * @var int
     *
     * @Serializer\Type("int")
-    * @Serializer\SerializedName("sportId")
+    * @Serializer\SerializedName("outcomeId")
     * @Serializer\XmlAttribute()
     */
-    private $_sportId;
+    private $_outcomeId;
 
     /**
      * @return int
      */
-    public function getParticipantId(): int
+    public function getMarketId(): int
     {
-        return $this->_participantId;
+        return $this->_marketId;
     }
 
     /**
      * @return int
      */
-    public function getSportId(): int
+    public function getOutcomeId(): int
     {
-        return $this->_sportId;
+        return $this->_outcomeId;
     }
 
 }

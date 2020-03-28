@@ -63,7 +63,7 @@ class Event
     /**
     * @var \DateTime
     *
-    * @Serializer\Type("\DateTime")
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("startTime")
     * @Serializer\XmlAttribute()
     */
@@ -72,7 +72,7 @@ class Event
     /**
     * @var \DateTime
     *
-    * @Serializer\Type("\DateTime")
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("endTime")
     * @Serializer\XmlAttribute()
     */
@@ -122,6 +122,51 @@ class Event
     * @Serializer\XmlAttribute()
     */
     private $_rootPartId;
+
+    /**
+    * @var string
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("url")
+    * @Serializer\XmlAttribute()
+    */
+    private $_url;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("popularity")
+    * @Serializer\XmlAttribute()
+    */
+    private $_popularity;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("parentId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_parentId;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("parentPartId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_parentPartId;
+
+    /**
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("currentPartId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_currentPartId;
 
     /**
      * @return int
@@ -218,4 +263,45 @@ class Event
     {
         return $this->_rootPartId;
     }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->_url;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPopularity(): int
+    {
+        return $this->_popularity;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParentId(): int
+    {
+        return $this->_parentId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParentPartId(): int
+    {
+        return $this->_parentPartId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCurrentPartId(): int
+    {
+        return $this->_currentPartId;
+    }
+
 }

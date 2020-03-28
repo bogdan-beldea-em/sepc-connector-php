@@ -6,12 +6,12 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class ParticipantRelationType
+ * Class EntityPropertyType
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  *
- * @Serializer\XmlRoot(name="ParticipantRelationType")
+ * @Serializer\XmlRoot(name="EntityPropertyType")
  */
-class ParticipantRelationType
+class EntityPropertyType
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 

@@ -6,30 +6,30 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class LocationType
+ * Class EventActionStatus
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  *
- * @Serializer\XmlRoot(name="LocationType")
+ * @Serializer\XmlRoot(name="EventActionStatus")
  */
-class LocationType
+class EventActionStatus
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
     * @var bool
     *
     * @Serializer\Type("bool")
-    * @Serializer\SerializedName("hasCode")
+    * @Serializer\SerializedName("isAvailable")
     * @Serializer\XmlAttribute()
     */
-    private $_hasCode;
+    private $_isAvailable;
 
     /**
      * @return bool
      */
-    public function isHasCode(): bool
+    public function isAvailable(): bool
     {
-        return $this->_hasCode;
+        return $this->_isAvailable;
     }
 
 }

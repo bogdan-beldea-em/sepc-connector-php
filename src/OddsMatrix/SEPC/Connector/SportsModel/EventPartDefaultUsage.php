@@ -37,19 +37,19 @@ class EventPartDefaultUsage
     * @var int
     *
     * @Serializer\Type("int")
-    * @Serializer\SerializedName("rootPartId")
+    * @Serializer\SerializedName("sportId")
     * @Serializer\XmlAttribute()
     */
-    private $_rootPartId;
+    private $_sportId;
 
     /**
     * @var int
     *
     * @Serializer\Type("int")
-    * @Serializer\SerializedName("sportId")
+    * @Serializer\SerializedName("rootPartId")
     * @Serializer\XmlAttribute()
     */
-    private $_sportId;
+    private $_rootPartId;
 
     /**
      * @return int
@@ -70,16 +70,17 @@ class EventPartDefaultUsage
     /**
      * @return int
      */
-    public function getRootPartId(): int
+    public function getSportId(): int
     {
-        return $this->_rootPartId;
+        return $this->_sportId;
     }
 
     /**
      * @return int
      */
-    public function getSportId(): int
+    public function getRootPartId(): int
     {
-        return $this->_sportId;
+        return $this->_rootPartId;
     }
+
 }

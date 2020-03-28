@@ -16,39 +16,31 @@ class EventPart
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("parentId")
-     * @Serializer\XmlAttribute()
-     */
-    private $_parentId;
-
-    /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("orderNum")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("orderNum")
+    * @Serializer\XmlAttribute()
+    */
     private $_orderNum;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isDrawPossible")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isDrawPossible")
+    * @Serializer\XmlAttribute()
+    */
     private $_isDrawPossible;
 
     /**
-     * @return int
-     */
-    public function getParentId(): int
-    {
-        return $this->_parentId;
-    }
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("parentId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_parentId;
 
     /**
      * @return int
@@ -65,4 +57,13 @@ class EventPart
     {
         return $this->_isDrawPossible;
     }
+
+    /**
+     * @return int
+     */
+    public function getParentId(): int
+    {
+        return $this->_parentId;
+    }
+
 }

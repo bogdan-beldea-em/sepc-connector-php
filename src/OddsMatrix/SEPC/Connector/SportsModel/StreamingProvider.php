@@ -31,4 +31,5 @@ class StreamingProvider
     {
         return $this->_urlTemplate;
     }
+
 }

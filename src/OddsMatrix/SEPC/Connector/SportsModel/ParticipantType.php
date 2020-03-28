@@ -16,39 +16,48 @@ class ParticipantType
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isIndividual")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isIndividual")
+    * @Serializer\XmlAttribute()
+    */
     private $_isIndividual;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("hasName")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasName")
+    * @Serializer\XmlAttribute()
+    */
     private $_hasName;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("hasLastName")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasFirstName")
+    * @Serializer\XmlAttribute()
+    */
+    private $_hasFirstName;
+
+    /**
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasLastName")
+    * @Serializer\XmlAttribute()
+    */
     private $_hasLastName;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")ParticipantRole
-     * @Serializer\SerializedName("hasShortName")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasShortName")
+    * @Serializer\XmlAttribute()
+    */
     private $_hasShortName;
 
     /**
@@ -70,6 +79,14 @@ class ParticipantType
     /**
      * @return bool
      */
+    public function isHasFirstName(): bool
+    {
+        return $this->_hasFirstName;
+    }
+
+    /**
+     * @return bool
+     */
     public function isHasLastName(): bool
     {
         return $this->_hasLastName;
@@ -82,4 +99,5 @@ class ParticipantType
     {
         return $this->_hasShortName;
     }
+
 }

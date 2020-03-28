@@ -10,6 +10,12 @@ $responseData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><sdql><SubscribeRespo
 $xmlSerialiser = SerializerBuilder::create()
     ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
     ->build();
-$deserialisedObj = $xmlSerialiser->deserialize($responseData, \OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse::class, 'xml');
+
+$top = 919;
+for ($i = 0; $i <= $top; $i++) {
+    echo "Deserializing $i of $top\n";
+    $fileContents = file_get_contents("../resources_extra/request_dump_$i.xml");
+    $deserialisedObj = $xmlSerialiser->deserialize($fileContents, \OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse::class, 'xml');
+}
 
 echo $xmlSerialiser->serialize($deserialisedObj, 'xml');

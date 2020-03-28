@@ -31,4 +31,5 @@ class BettingOfferStatus
     {
         return $this->_isAvailable;
     }
+
 }

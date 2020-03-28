@@ -16,30 +16,30 @@ class LocationRelation
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("typeId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("typeId")
+    * @Serializer\XmlAttribute()
+    */
     private $_typeId;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("fromLocationId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("fromLocationId")
+    * @Serializer\XmlAttribute()
+    */
     private $_fromLocationId;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("toLocationId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("toLocationId")
+    * @Serializer\XmlAttribute()
+    */
     private $_toLocationId;
 
     /**
@@ -65,4 +65,5 @@ class LocationRelation
     {
         return $this->_toLocationId;
     }
+
 }

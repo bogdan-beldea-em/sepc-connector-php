@@ -99,4 +99,5 @@ class OutcomeTypeUsage
     {
         return $this->_scoringUnitId;
     }
+
 }

@@ -13,5 +13,6 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class LocationRelationType
 {
-    use IdentifiableModelTrait, NamedTrait, VersionedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+
 }

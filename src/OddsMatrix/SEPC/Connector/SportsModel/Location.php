@@ -13,33 +13,33 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Location
 {
-    use IdentifiableModelTrait, NamedTrait, VersionedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("typeId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("typeId")
+    * @Serializer\XmlAttribute()
+    */
     private $_typeId;
 
     /**
-     * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("code")
-     * @Serializer\XmlAttribute()
-     */
+    * @var string
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("code")
+    * @Serializer\XmlAttribute()
+    */
     private $_code;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("isHistoric")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isHistoric")
+    * @Serializer\XmlAttribute()
+    */
     private $_isHistoric;
 
     /**
@@ -65,4 +65,5 @@ class Location
     {
         return $this->_isHistoric;
     }
+
 }

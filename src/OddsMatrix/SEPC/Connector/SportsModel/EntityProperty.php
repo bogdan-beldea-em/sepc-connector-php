@@ -48,4 +48,5 @@ class EntityProperty
     {
         return $this->_entityTypeId;
     }
+
 }
