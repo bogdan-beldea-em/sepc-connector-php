@@ -34,7 +34,9 @@ class UpdateData
     /**
      * @var \DateTime
      *
-     * @Serializer\Type("DateTime<>")
+     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+     * @Serializer\SerializedName("createdTime")
+     * @Serializer\XmlAttribute()
      */
     private $_createdTime;
 
@@ -52,22 +54,6 @@ class UpdateData
     public function getBatchId(): int
     {
         return $this->_batchId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getBatchesLeft(): int
-    {
-        return $this->_batchesLeft;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDumpComplete(): bool
-    {
-        return $this->_dumpComplete;
     }
 
     /**
