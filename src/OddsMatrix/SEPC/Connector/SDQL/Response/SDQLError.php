@@ -18,6 +18,7 @@ class SDQLError
      *
      * @Serializer\Type("int")
      * @Serializer\SerializedName("code")
+     * @Serializer\XmlAttribute()
      */
     private $_code;
 
@@ -26,6 +27,7 @@ class SDQLError
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("message")
+     * @Serializer\XmlAttribute()
      */
     private $_message;
 }

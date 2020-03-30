@@ -41,8 +41,8 @@ class SDQLResponse
     /**
      * @var SDQLUpdateDataResponse
      *
-     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SDQL\Response\UpdateData>")
-     * @Serializer\SerializedName("UpdateData")
+     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLUpdateDataResponse")
+     * @Serializer\SerializedName("GetNextUpdateDataResponse")
      */
     private $_updateData;
 

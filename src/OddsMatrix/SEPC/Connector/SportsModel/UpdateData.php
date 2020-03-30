@@ -43,14 +43,6 @@ class UpdateData
     private $_createdTime;
 
     /**
-     * @var EntitiesContainer
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\EntitiesContainer")
-     * @Serializer\XmlElement()
-     */
-    private $entities;
-
-    /**
      * @return int
      */
     public function getBatchId(): int
