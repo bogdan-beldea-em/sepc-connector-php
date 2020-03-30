@@ -2,14 +2,8 @@
 
 require_once __DIR__ . "/../src/autoload_manual.php";
 
-use JMS\Serializer\Naming\CamelCaseNamingStrategy;
-use JMS\Serializer\SerializerBuilder;
-use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
 
-
-$serializer = SerializerBuilder::create()
-    ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
-    ->build();
+$serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
 $file = fopen("../resources_extra/request_dump_1867.xml", "r");
 $fileContents = fread($file, 1000000000);

@@ -4,7 +4,8 @@
   "type": "library",
   "require": {
     "jms/serializer": "^3.6",
-    "ext-zlib": "*"
+    "ext-zlib": "*",
+    "ext-simplexml": "*"
   },
   "authors": [
     {

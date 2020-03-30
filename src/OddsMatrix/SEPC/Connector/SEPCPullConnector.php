@@ -10,6 +10,7 @@ use OM\OddsMatrix\SEPC\Connector\Enum\Routes;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
+use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
 
 class SEPCPullConnector
 {
@@ -38,9 +39,7 @@ class SEPCPullConnector
         $this->_connectionState = $connectionState;
         $this->_credentials = $_credentials;
         $this->_queryParamSerializer = new QueryParamSerializer();
-        $this->_xmlSerializer = SerializerBuilder::create()
-            ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
-            ->build();
+        $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
     }
 
     public function connect(string $host, int $port): SEPCConnection

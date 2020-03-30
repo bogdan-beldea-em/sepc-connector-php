@@ -1,8 +1,6 @@
 <?php
 
 use JMS\Serializer\Annotation as Serializer;
-use JMS\Serializer\Naming\CamelCaseNamingStrategy;
-use JMS\Serializer\SerializerBuilder;
 use OM\OddsMatrix\SEPC\Connector\SEPCConnectionStateInterface;
 
 require_once __DIR__ . "/../src/autoload_manual.php";
@@ -177,9 +175,7 @@ class PersistableConnection implements SEPCConnectionStateInterface {
     }
 }
 
-$serializer = SerializerBuilder::create()
-    ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
-    ->build();
+$serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
 const connectionStatePath = "../resources_extra/connection_state.xml";
 
@@ -206,9 +202,7 @@ $connection->setOnStateChanged(function (SEPCConnectionStateInterface $newState)
     echo "New state\n";
     var_dump($newState);
 
-    $serializer = SerializerBuilder::create()
-        ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
-        ->build();
+    $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
     try {
         $connectionStateData = $serializer->serialize($newState, 'xml');
