@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class StreamingProviderEventRelation
 {
-    use IdentifiableModelTrait, VersionedTrait;
+    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
 
     /**
     * @var int

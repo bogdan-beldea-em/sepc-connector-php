@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Outcome
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait, TypedTrait, UpdateTimeTrait;
 
     /**
     * @var int

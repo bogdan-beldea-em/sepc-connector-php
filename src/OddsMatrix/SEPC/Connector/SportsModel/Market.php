@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Market
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait, UpdateTimeTrait, TypedTrait;
 
     /**
     * @var int

@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ProviderEntityMapping
 {
-    use IdentifiableModelTrait, VersionedTrait;
+    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
 
     /**
     * @var int

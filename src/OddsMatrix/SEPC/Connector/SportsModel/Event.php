@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Event
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+    use IdentifiableModelTrait, VersionedTrait, NamedTrait, TypedTrait, UpdateTimeTrait;
 
     /**
     * @var int
