@@ -13,6 +13,8 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class UpdateData
 {
+    use EntitiesTrait;
+
     /**
      * @var int
      *
@@ -54,13 +56,5 @@ class UpdateData
     public function getBatchId(): int
     {
         return $this->_batchId;
-    }
-
-    /**
-     * @return EntitiesContainer
-     */
-    public function getEntities(): EntitiesContainer
-    {
-        return $this->entities;
     }
 }

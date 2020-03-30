@@ -27,6 +27,11 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     private $_port;
 
     /**
+     * @var bool
+     */
+    private $_initialDataDumpComplete;
+
+    /**
      * @return string
      */
     public function getSubscriptionId(): string
@@ -96,5 +101,21 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     {
         $this->_port = $port;
         return $this;
+    }
+
+    /**
+     * @param bool $initialDataDumpComplete
+     */
+    public function setInitialDataDumpComplete(bool $initialDataDumpComplete): void
+    {
+        $this->_initialDataDumpComplete = $initialDataDumpComplete;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInitialDataDumpComplete(): bool
+    {
+        return $this->_initialDataDumpComplete;
     }
 }

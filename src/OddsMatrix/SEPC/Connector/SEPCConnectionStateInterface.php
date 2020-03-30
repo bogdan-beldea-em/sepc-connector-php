@@ -49,4 +49,8 @@ interface SEPCConnectionStateInterface
      * @return string
      */
     public function getHost(): string;
+
+    public function isInitialDataDumpComplete(): bool;
+
+    public function setInitialDataDumpComplete(bool $initialDataComplete);
 }

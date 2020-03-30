@@ -29,24 +29,13 @@ class SEPCPullConnector
     private $_xmlSerializer;
 
     /**
-     * @var
+     * @var SEPCConnectionStateInterface
      */
-    private $_connectionStateClass;
+    private $_connectionState;
 
-    public function __construct(SEPCCredentials $_credentials, string $connectionStateClass = null)
+    public function __construct(SEPCCredentials $_credentials, SEPCConnectionStateInterface $connectionState = null)
     {
-        if (null != $connectionStateClass) {
-            $reflectionClass = new \ReflectionClass($connectionStateClass);
-            $connectionStateInterfaceName = array_filter($reflectionClass->getInterfaceNames(), function ($interfaceName) {
-                return strcmp($interfaceName, SEPCConnectionStateInterface::class);
-            });
-
-            if (count($connectionStateInterfaceName) <= 0) {
-                throw new \Exception("Connection state class should implement OM\OddsMatrix\SEPC\Connector");
-            }
-
-            $this->_connectionStateClass = $connectionStateClass;
-        }
+        $this->_connectionState = $connectionState;
         $this->_credentials = $_credentials;
         $this->_queryParamSerializer = new QueryParamSerializer();
         $this->_xmlSerializer = SerializerBuilder::create()
@@ -71,20 +60,16 @@ class SEPCPullConnector
         $subscriptionId = $response->getSubscribeResponse()->getSubscriptionId();
 
         /** @var SEPCConnectionStateInterface $connectionState */
-        $connectionState = null;
-        if (null != $this->_connectionStateClass) {
-            $reflectionClass = new \ReflectionClass($this->_connectionStateClass);
-            $connectionState = $reflectionClass->newInstance();
-        } else {
-            $connectionState = new SEPCBasicConnectionState();
+        if (null == $this->_connectionState) {
+            $this->_connectionState = new SEPCBasicConnectionState();
         }
 
-        $connectionState
+        $this->_connectionState
             ->setSubscriptionId($subscriptionId)
             ->setSubscriptionSpecificationName($this->_credentials->getSubscriptionSpecificationName())
             ->setHost($host)
             ->setPort($port);
 
-        return new SEPCConnection($connectionState);
+        return new SEPCConnection($this->_connectionState);
     }
 }
