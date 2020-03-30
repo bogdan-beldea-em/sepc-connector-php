@@ -36,7 +36,15 @@ class SDQLResponse
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLInitialDataResponse")
      * @Serializer\SerializedName("GetNextInitialDataResponse")
      */
-    private $initialData;
+    private $_initialData;
+
+    /**
+     * @var SDQLUpdateDataResponse
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SDQL\Response\UpdateData>")
+     * @Serializer\SerializedName("UpdateData")
+     */
+    private $_updateData;
 
     /**
      * @var SDQLError
@@ -75,6 +83,14 @@ class SDQLResponse
      */
     public function getInitialData(): SDQLInitialDataResponse
     {
-        return $this->initialData;
+        return $this->_initialData;
+    }
+
+    /**
+     * @return SDQLUpdateDataResponse
+     */
+    public function getUpdateData(): SDQLUpdateDataResponse
+    {
+        return $this->_updateData;
     }
 }

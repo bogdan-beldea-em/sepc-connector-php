@@ -18,13 +18,13 @@ class SDQLGetNextUpdateDataRequest
 {
     use SubscriptionIdentifiableTrait;
 
+
     /**
+     * SDQLGetNextUpdateDataRequest constructor.
      * @param string $subscriptionId
-     * @return SDQLGetNextUpdateDataRequest
      */
-    public function setSubscriptionId(string $subscriptionId): SDQLGetNextUpdateDataRequest
+    public function __construct(string $subscriptionId)
     {
         $this->_subscriptionId = $subscriptionId;
-        return $this;
     }
 }

@@ -9,6 +9,7 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\Enum\Routes;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLGetNextInitialDataRequest;
+use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLGetNextUpdateDataRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLUnsubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
@@ -82,8 +83,8 @@ class SEPCConnection
             try {
                 $responseData = gzdecode(file_get_contents($url));
 //                echo "Response data: $responseData \n";
+                echo "Request $i\n";
 
-                echo "Received: $i\n";
                 $file = fopen("../resources_extra/request_dump_$i.xml", "w");
                 fwrite($file, $responseData);
                 fflush($file);
@@ -92,23 +93,47 @@ class SEPCConnection
                 try {
                     /** @var SDQLResponse $response */
                     $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+                    $reserialized = $this->_xmlSerializer->serialize($response, 'xml');
+//                    echo "Response: $reserialized\n";
+                    $file2 = fopen("../resources_extra/request_reser_$i.xml", "w");
+                    fwrite($file2, $reserialized);
+                    fflush($file2);
+                    fclose($file2);
                     if ($response->getInitialData()->getInitialData()->isDumpComplete()) {
                         break;
                     }
-//                    $reserialized = $this->_xmlSerializer->serialize($response, 'xml');
-//                    echo "Response: $reserialized\n";
                 } catch (\Exception $e) {
                     echo "L1 Error\n";
-                    var_dump($e);
-                    $file = fopen("resources_extra/error_l1_$i.xml", "w");
+                    $file = fopen("../resources_extra/error_l1_$i.xml", "w");
+                    fwrite($file, print_r($e, true));
+                    fwrite($file, "\n\n\n\n");
                     fwrite($file, $responseData);
                     fflush($file);
                     fclose($file);
                 }
             } catch (\Exception $e2) {
                 Echo "L2 error:\n";
-                var_dump($e2);
+                $file = fopen("../resources_extra/error_l2_$i.log", "w");
+                fwrite($file, print_r($e, true));
+                fflush($file);
+                fclose($file);
             }
         }
+    }
+
+    public function getNextUpdate(int $i) {
+        $request = new SDQLGetNextUpdateDataRequest($this->_connectionState->getSubscriptionId());
+        $url = $this->_connectionState->getHost() . ':' . $this->_connectionState->getPort() . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
+
+        echo "URL: $url \n";
+
+        $responseData = gzdecode(file_get_contents($url));
+//                echo "Response data: $responseData \n";
+        echo "Request $i\n";
+
+        $file = fopen("../resources_extra/request_dump_$i.xml", "w");
+        fwrite($file, $responseData);
+        fflush($file);
+        fclose($file);
     }
 }
