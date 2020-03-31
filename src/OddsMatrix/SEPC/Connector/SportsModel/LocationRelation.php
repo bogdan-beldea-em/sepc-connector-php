@@ -16,7 +16,7 @@ class LocationRelation
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,7 +25,7 @@ class LocationRelation
     private $_typeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("fromLocationId")
@@ -34,7 +34,7 @@ class LocationRelation
     private $_fromLocationId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("toLocationId")
@@ -43,25 +43,25 @@ class LocationRelation
     private $_toLocationId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getFromLocationId(): int
+    public function getFromLocationId(): ?int
     {
         return $this->_fromLocationId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getToLocationId(): int
+    public function getToLocationId(): ?int
     {
         return $this->_toLocationId;
     }

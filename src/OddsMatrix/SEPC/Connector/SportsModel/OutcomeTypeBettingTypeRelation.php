@@ -16,7 +16,7 @@ class OutcomeTypeBettingTypeRelation
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("outcomeTypeId")
@@ -25,7 +25,7 @@ class OutcomeTypeBettingTypeRelation
     private $_outcomeTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("bettingTypeId")
@@ -34,17 +34,17 @@ class OutcomeTypeBettingTypeRelation
     private $_bettingTypeId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOutcomeTypeId(): int
+    public function getOutcomeTypeId(): ?int
     {
         return $this->_outcomeTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getBettingTypeId(): int
+    public function getBettingTypeId(): ?int
     {
         return $this->_bettingTypeId;
     }

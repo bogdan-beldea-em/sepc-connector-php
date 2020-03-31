@@ -16,7 +16,7 @@ class ParticipantRelation
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,7 +25,7 @@ class ParticipantRelation
     private $_typeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("fromParticipantId")
@@ -34,7 +34,7 @@ class ParticipantRelation
     private $_fromParticipantId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("toParticipantId")
@@ -43,7 +43,7 @@ class ParticipantRelation
     private $_toParticipantId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramParticipantRoleId")
@@ -52,7 +52,7 @@ class ParticipantRelation
     private $_paramParticipantRoleId;
 
     /**
-    * @var \DateTime
+    * @var \DateTime|null
     *
     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("startTime")
@@ -61,41 +61,41 @@ class ParticipantRelation
     private $_startTime;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getFromParticipantId(): int
+    public function getFromParticipantId(): ?int
     {
         return $this->_fromParticipantId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getToParticipantId(): int
+    public function getToParticipantId(): ?int
     {
         return $this->_toParticipantId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParamParticipantRoleId(): int
+    public function getParamParticipantRoleId(): ?int
     {
         return $this->_paramParticipantRoleId;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getStartTime(): \DateTime
+    public function getStartTime(): ?\DateTime
     {
         return $this->_startTime;
     }

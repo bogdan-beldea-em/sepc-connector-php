@@ -13,71 +13,57 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class InitialData
 {
+    use ;
+
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("batchId")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("batchId")
+    * @Serializer\XmlAttribute()
+    */
     private $_batchId;
 
     /**
-     * @var int
-     *
-     * @Serializer\Type("int")
-     * @Serializer\SerializedName("batchesLeft")
-     * @Serializer\XmlAttribute()
-     */
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("batchesLeft")
+    * @Serializer\XmlAttribute()
+    */
     private $_batchesLeft;
 
     /**
-     * @var bool
-     *
-     * @Serializer\Type("bool")
-     * @Serializer\SerializedName("dumpComplete")
-     * @Serializer\XmlAttribute()
-     */
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("dumpComplete")
+    * @Serializer\XmlAttribute()
+    */
     private $_dumpComplete;
 
     /**
-     * @var EntitiesContainer
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\EntitiesContainer")
-     * @Serializer\SerializedName("entities")
-     * @Serializer\XmlElement()
+     * @return int|null
      */
-    private $entities;
-
-    /**
-     * @return int
-     */
-    public function getBatchId(): int
+    public function getBatchId(): ?int
     {
         return $this->_batchId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getBatchesLeft(): int
+    public function getBatchesLeft(): ?int
     {
         return $this->_batchesLeft;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isDumpComplete(): bool
+    public function isDumpComplete(): ?bool
     {
         return $this->_dumpComplete;
     }
 
-    /**
-     * @return EntitiesContainer
-     */
-    public function getEntities(): EntitiesContainer
-    {
-        return $this->entities;
-    }
 }

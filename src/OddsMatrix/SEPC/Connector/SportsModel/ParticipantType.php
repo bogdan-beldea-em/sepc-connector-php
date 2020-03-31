@@ -16,7 +16,7 @@ class ParticipantType
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isIndividual")
@@ -25,7 +25,7 @@ class ParticipantType
     private $_isIndividual;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasName")
@@ -34,7 +34,7 @@ class ParticipantType
     private $_hasName;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasFirstName")
@@ -43,7 +43,7 @@ class ParticipantType
     private $_hasFirstName;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasLastName")
@@ -52,7 +52,7 @@ class ParticipantType
     private $_hasLastName;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasShortName")
@@ -61,41 +61,41 @@ class ParticipantType
     private $_hasShortName;
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isIndividual(): bool
+    public function isIndividual(): ?bool
     {
         return $this->_isIndividual;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasName(): bool
+    public function isHasName(): ?bool
     {
         return $this->_hasName;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasFirstName(): bool
+    public function isHasFirstName(): ?bool
     {
         return $this->_hasFirstName;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasLastName(): bool
+    public function isHasLastName(): ?bool
     {
         return $this->_hasLastName;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasShortName(): bool
+    public function isHasShortName(): ?bool
     {
         return $this->_hasShortName;
     }

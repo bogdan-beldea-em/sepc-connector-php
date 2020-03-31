@@ -16,7 +16,7 @@ class StreamingProvider
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("urlTemplate")
@@ -25,9 +25,9 @@ class StreamingProvider
     private $_urlTemplate;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUrlTemplate(): string
+    public function getUrlTemplate(): ?string
     {
         return $this->_urlTemplate;
     }

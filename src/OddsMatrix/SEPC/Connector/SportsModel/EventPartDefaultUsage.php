@@ -16,7 +16,7 @@ class EventPartDefaultUsage
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("parentEventId")
@@ -25,7 +25,7 @@ class EventPartDefaultUsage
     private $_parentEventId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventTypeId")
@@ -34,7 +34,7 @@ class EventPartDefaultUsage
     private $_eventTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("sportId")
@@ -43,7 +43,7 @@ class EventPartDefaultUsage
     private $_sportId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("rootPartId")
@@ -52,33 +52,33 @@ class EventPartDefaultUsage
     private $_rootPartId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParentEventId(): int
+    public function getParentEventId(): ?int
     {
         return $this->_parentEventId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventTypeId(): int
+    public function getEventTypeId(): ?int
     {
         return $this->_eventTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSportId(): int
+    public function getSportId(): ?int
     {
         return $this->_sportId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRootPartId(): int
+    public function getRootPartId(): ?int
     {
         return $this->_rootPartId;
     }

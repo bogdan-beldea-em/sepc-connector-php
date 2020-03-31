@@ -16,7 +16,7 @@ class EntityProperty
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,7 +25,7 @@ class EntityProperty
     private $_typeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("entityTypeId")
@@ -34,17 +34,17 @@ class EntityProperty
     private $_entityTypeId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEntityTypeId(): int
+    public function getEntityTypeId(): ?int
     {
         return $this->_entityTypeId;
     }

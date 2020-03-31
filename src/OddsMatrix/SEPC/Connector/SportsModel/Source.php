@@ -13,28 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Source
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("collectorId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_collectorId;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("providerId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_providerId;
-
-    /**
-    * @var \DateTime
+    * @var \DateTime|null
     *
     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("lastCollectedTime")
@@ -43,7 +25,7 @@ class Source
     private $_lastCollectedTime;
 
     /**
-    * @var \DateTime
+    * @var \DateTime|null
     *
     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("lastUpdatedTime")
@@ -52,35 +34,53 @@ class Source
     private $_lastUpdatedTime;
 
     /**
-     * @return int
-     */
-    public function getCollectorId(): int
-    {
-        return $this->_collectorId;
-    }
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("collectorId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_collectorId;
 
     /**
-     * @return int
-     */
-    public function getProviderId(): int
-    {
-        return $this->_providerId;
-    }
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("providerId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_providerId;
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastCollectedTime(): \DateTime
+    public function getLastCollectedTime(): ?\DateTime
     {
         return $this->_lastCollectedTime;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastUpdatedTime(): \DateTime
+    public function getLastUpdatedTime(): ?\DateTime
     {
         return $this->_lastUpdatedTime;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCollectorId(): ?int
+    {
+        return $this->_collectorId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getProviderId(): ?int
+    {
+        return $this->_providerId;
     }
 
 }

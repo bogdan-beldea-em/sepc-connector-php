@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class StreamingProviderEventRelation
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("streamingProviderId")
@@ -25,7 +25,7 @@ class StreamingProviderEventRelation
     private $_streamingProviderId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventId")
@@ -34,7 +34,7 @@ class StreamingProviderEventRelation
     private $_eventId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("channel")
@@ -43,7 +43,7 @@ class StreamingProviderEventRelation
     private $_channel;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("language")
@@ -52,33 +52,33 @@ class StreamingProviderEventRelation
     private $_language;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getStreamingProviderId(): int
+    public function getStreamingProviderId(): ?int
     {
         return $this->_streamingProviderId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->_eventId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getChannel(): string
+    public function getChannel(): ?string
     {
         return $this->_channel;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLanguage(): string
+    public function getLanguage(): ?string
     {
         return $this->_language;
     }

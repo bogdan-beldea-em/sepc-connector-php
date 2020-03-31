@@ -16,7 +16,7 @@ class Provider
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("locationId")
@@ -25,7 +25,7 @@ class Provider
     private $_locationId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("url")
@@ -34,7 +34,7 @@ class Provider
     private $_url;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isBookmaker")
@@ -43,7 +43,7 @@ class Provider
     private $_isBookmaker;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isBettingExchange")
@@ -52,16 +52,16 @@ class Provider
     private $_isBettingExchange;
 
     /**
-    * @var string
+    * @var float|null
     *
-    * @Serializer\Type("string")
+    * @Serializer\Type("float")
     * @Serializer\SerializedName("bettingCommissionVACs")
     * @Serializer\XmlAttribute()
     */
     private $_bettingCommissionVACs;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isLiveOddsApproved")
@@ -70,7 +70,7 @@ class Provider
     private $_isLiveOddsApproved;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isNewsSource")
@@ -79,7 +79,7 @@ class Provider
     private $_isNewsSource;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isEnabled")
@@ -88,65 +88,65 @@ class Provider
     private $_isEnabled;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLocationId(): int
+    public function getLocationId(): ?int
     {
         return $this->_locationId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->_url;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isBookmaker(): bool
+    public function isBookmaker(): ?bool
     {
         return $this->_isBookmaker;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isBettingExchange(): bool
+    public function isBettingExchange(): ?bool
     {
         return $this->_isBettingExchange;
     }
 
     /**
-     * @return string
+     * @return float|null
      */
-    public function getBettingCommissionVACs(): string
+    public function getBettingCommissionVACs(): ?float
     {
         return $this->_bettingCommissionVACs;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isLiveOddsApproved(): bool
+    public function isLiveOddsApproved(): ?bool
     {
         return $this->_isLiveOddsApproved;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isNewsSource(): bool
+    public function isNewsSource(): ?bool
     {
         return $this->_isNewsSource;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isEnabled(): bool
+    public function isEnabled(): ?bool
     {
         return $this->_isEnabled;
     }

@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class EventParticipantRelation
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventId")
@@ -25,7 +25,7 @@ class EventParticipantRelation
     private $_eventId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -34,7 +34,7 @@ class EventParticipantRelation
     private $_eventPartId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("participantId")
@@ -43,7 +43,7 @@ class EventParticipantRelation
     private $_participantId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("participantRoleId")
@@ -52,7 +52,7 @@ class EventParticipantRelation
     private $_participantRoleId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("parentParticipantId")
@@ -61,41 +61,41 @@ class EventParticipantRelation
     private $_parentParticipantId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->_eventId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParticipantId(): int
+    public function getParticipantId(): ?int
     {
         return $this->_participantId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParticipantRoleId(): int
+    public function getParticipantRoleId(): ?int
     {
         return $this->_participantRoleId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParentParticipantId(): int
+    public function getParentParticipantId(): ?int
     {
         return $this->_parentParticipantId;
     }

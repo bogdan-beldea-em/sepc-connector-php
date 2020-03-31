@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ProviderEventRelation
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("providerId")
@@ -25,7 +25,7 @@ class ProviderEventRelation
     private $_providerId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventId")
@@ -34,25 +34,16 @@ class ProviderEventRelation
     private $_eventId;
 
     /**
-    * @var \DateTime
+    * @var string|null
     *
-    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+    * @Serializer\Type("string")
     * @Serializer\SerializedName("startTime")
     * @Serializer\XmlAttribute()
     */
     private $_startTime;
 
     /**
-    * @var \DateTime
-    *
-    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
-    * @Serializer\SerializedName("endTime")
-    * @Serializer\XmlAttribute()
-    */
-    private $_endTime;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("timeQualityRank")
@@ -61,7 +52,7 @@ class ProviderEventRelation
     private $_timeQualityRank;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("offersLiveOdds")
@@ -70,7 +61,7 @@ class ProviderEventRelation
     private $_offersLiveOdds;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("offersLiveTV")
@@ -79,59 +70,68 @@ class ProviderEventRelation
     private $_offersLiveTV;
 
     /**
-     * @return int
+    * @var \DateTime|null
+    *
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+    * @Serializer\SerializedName("endTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_endTime;
+
+    /**
+     * @return int|null
      */
-    public function getProviderId(): int
+    public function getProviderId(): ?int
     {
         return $this->_providerId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->_eventId;
     }
 
     /**
-     * @return \DateTime
+     * @return string|null
      */
-    public function getStartTime(): \DateTime
+    public function getStartTime(): ?string
     {
         return $this->_startTime;
     }
 
     /**
-     * @return \DateTime
+     * @return int|null
      */
-    public function getEndTime(): \DateTime
-    {
-        return $this->_endTime;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTimeQualityRank(): int
+    public function getTimeQualityRank(): ?int
     {
         return $this->_timeQualityRank;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isOffersLiveOdds(): bool
+    public function isOffersLiveOdds(): ?bool
     {
         return $this->_offersLiveOdds;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isOffersLiveTV(): bool
+    public function isOffersLiveTV(): ?bool
     {
         return $this->_offersLiveTV;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getEndTime(): ?\DateTime
+    {
+        return $this->_endTime;
     }
 
 }

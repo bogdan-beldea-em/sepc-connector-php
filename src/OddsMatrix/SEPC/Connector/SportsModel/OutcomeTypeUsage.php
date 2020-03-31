@@ -16,7 +16,7 @@ class OutcomeTypeUsage
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("outcomeTypeId")
@@ -25,7 +25,7 @@ class OutcomeTypeUsage
     private $_outcomeTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventTypeId")
@@ -34,7 +34,7 @@ class OutcomeTypeUsage
     private $_eventTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -43,7 +43,7 @@ class OutcomeTypeUsage
     private $_eventPartId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("sportId")
@@ -52,7 +52,7 @@ class OutcomeTypeUsage
     private $_sportId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("scoringUnitId")
@@ -61,41 +61,41 @@ class OutcomeTypeUsage
     private $_scoringUnitId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOutcomeTypeId(): int
+    public function getOutcomeTypeId(): ?int
     {
         return $this->_outcomeTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventTypeId(): int
+    public function getEventTypeId(): ?int
     {
         return $this->_eventTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSportId(): int
+    public function getSportId(): ?int
     {
         return $this->_sportId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getScoringUnitId(): int
+    public function getScoringUnitId(): ?int
     {
         return $this->_scoringUnitId;
     }

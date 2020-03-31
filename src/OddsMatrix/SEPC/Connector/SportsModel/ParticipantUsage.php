@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ParticipantUsage
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("participantId")
@@ -25,7 +25,7 @@ class ParticipantUsage
     private $_participantId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("sportId")
@@ -34,17 +34,17 @@ class ParticipantUsage
     private $_sportId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParticipantId(): int
+    public function getParticipantId(): ?int
     {
         return $this->_participantId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSportId(): int
+    public function getSportId(): ?int
     {
         return $this->_sportId;
     }

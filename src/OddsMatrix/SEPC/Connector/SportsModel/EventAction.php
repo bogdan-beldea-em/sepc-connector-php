@@ -13,37 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class EventAction
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("typeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_typeId;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventId;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("providerId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_providerId;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("statusId")
@@ -52,7 +25,34 @@ class EventAction
     private $_statusId;
 
     /**
-    * @var int
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("typeId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_typeId;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("eventId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_eventId;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("providerId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_providerId;
+
+    /**
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -61,94 +61,60 @@ class EventAction
     private $_eventPartId;
 
     /**
-    * @var string
+    * @var float|null
     *
-    * @Serializer\Type("string")
+    * @Serializer\Type("float")
     * @Serializer\SerializedName("paramFloat1")
     * @Serializer\XmlAttribute()
     */
     private $_paramFloat1;
 
     /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("paramParticipantId1")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramParticipantId1;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("paramParticipantId2")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramParticipantId2;
-
-    /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
-    {
-        return $this->_typeId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEventId(): int
-    {
-        return $this->_eventId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getProviderId(): int
-    {
-        return $this->_providerId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStatusId(): int
+    public function getStatusId(): ?int
     {
         return $this->_statusId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getTypeId(): ?int
+    {
+        return $this->_typeId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEventId(): ?int
+    {
+        return $this->_eventId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getProviderId(): ?int
+    {
+        return $this->_providerId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }
 
     /**
-     * @return string
+     * @return float|null
      */
-    public function getParamFloat1(): string
+    public function getParamFloat1(): ?float
     {
         return $this->_paramFloat1;
-    }
-
-    /**
-     * @return int
-     */
-    public function getParamParticipantId1(): int
-    {
-        return $this->_paramParticipantId1;
-    }
-
-    /**
-     * @return int
-     */
-    public function getParamParticipantId2(): int
-    {
-        return $this->_paramParticipantId2;
     }
 
 }

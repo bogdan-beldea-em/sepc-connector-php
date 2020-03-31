@@ -16,7 +16,7 @@ class Sport
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("parentId")
@@ -25,9 +25,9 @@ class Sport
     private $_parentId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParentId(): int
+    public function getParentId(): ?int
     {
         return $this->_parentId;
     }

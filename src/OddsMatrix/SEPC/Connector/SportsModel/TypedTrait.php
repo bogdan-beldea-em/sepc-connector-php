@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as Serializer;
 trait TypedTrait
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("type")
@@ -20,7 +20,7 @@ trait TypedTrait
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->_type;
     }

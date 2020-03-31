@@ -16,7 +16,7 @@ class EventInfoType
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamFloat1")
@@ -25,7 +25,7 @@ class EventInfoType
     private $_hasParamFloat1;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramFloat1Description")
@@ -34,7 +34,7 @@ class EventInfoType
     private $_paramFloat1Description;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamFloat2")
@@ -43,7 +43,7 @@ class EventInfoType
     private $_hasParamFloat2;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramFloat2Description")
@@ -52,7 +52,7 @@ class EventInfoType
     private $_paramFloat2Description;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamParticipantId1")
@@ -61,7 +61,7 @@ class EventInfoType
     private $_hasParamParticipantId1;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramParticipantId1Description")
@@ -70,7 +70,7 @@ class EventInfoType
     private $_paramParticipantId1Description;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamParticipantId2")
@@ -79,7 +79,7 @@ class EventInfoType
     private $_hasParamParticipantId2;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramParticipantId2Description")
@@ -88,7 +88,7 @@ class EventInfoType
     private $_paramParticipantId2Description;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamEventPartId1")
@@ -97,7 +97,7 @@ class EventInfoType
     private $_hasParamEventPartId1;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamString1")
@@ -106,7 +106,7 @@ class EventInfoType
     private $_hasParamString1;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamBoolean1")
@@ -115,7 +115,7 @@ class EventInfoType
     private $_hasParamBoolean1;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamEventStatusId1")
@@ -124,7 +124,7 @@ class EventInfoType
     private $_hasParamEventStatusId1;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamTime1")
@@ -133,7 +133,7 @@ class EventInfoType
     private $_hasParamTime1;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("paramParticipantIdsMustBeOrdered")
@@ -142,7 +142,7 @@ class EventInfoType
     private $_paramParticipantIdsMustBeOrdered;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamScoringUnitId1")
@@ -151,7 +151,7 @@ class EventInfoType
     private $_hasParamScoringUnitId1;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramString1Description")
@@ -160,7 +160,7 @@ class EventInfoType
     private $_paramString1Description;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramString1PossibleValues")
@@ -169,7 +169,7 @@ class EventInfoType
     private $_paramString1PossibleValues;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramBoolean1Description")
@@ -178,7 +178,7 @@ class EventInfoType
     private $_paramBoolean1Description;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramEventPartId1Description")
@@ -187,7 +187,7 @@ class EventInfoType
     private $_paramEventPartId1Description;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramEventStatusId1Description")
@@ -196,7 +196,7 @@ class EventInfoType
     private $_paramEventStatusId1Description;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramTime1Description")
@@ -205,169 +205,169 @@ class EventInfoType
     private $_paramTime1Description;
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamFloat1(): bool
+    public function isHasParamFloat1(): ?bool
     {
         return $this->_hasParamFloat1;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamFloat1Description(): string
+    public function getParamFloat1Description(): ?string
     {
         return $this->_paramFloat1Description;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamFloat2(): bool
+    public function isHasParamFloat2(): ?bool
     {
         return $this->_hasParamFloat2;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamFloat2Description(): string
+    public function getParamFloat2Description(): ?string
     {
         return $this->_paramFloat2Description;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamParticipantId1(): bool
+    public function isHasParamParticipantId1(): ?bool
     {
         return $this->_hasParamParticipantId1;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamParticipantId1Description(): string
+    public function getParamParticipantId1Description(): ?string
     {
         return $this->_paramParticipantId1Description;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamParticipantId2(): bool
+    public function isHasParamParticipantId2(): ?bool
     {
         return $this->_hasParamParticipantId2;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamParticipantId2Description(): string
+    public function getParamParticipantId2Description(): ?string
     {
         return $this->_paramParticipantId2Description;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamEventPartId1(): bool
+    public function isHasParamEventPartId1(): ?bool
     {
         return $this->_hasParamEventPartId1;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamString1(): bool
+    public function isHasParamString1(): ?bool
     {
         return $this->_hasParamString1;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamBoolean1(): bool
+    public function isHasParamBoolean1(): ?bool
     {
         return $this->_hasParamBoolean1;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamEventStatusId1(): bool
+    public function isHasParamEventStatusId1(): ?bool
     {
         return $this->_hasParamEventStatusId1;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamTime1(): bool
+    public function isHasParamTime1(): ?bool
     {
         return $this->_hasParamTime1;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isParamParticipantIdsMustBeOrdered(): bool
+    public function isParamParticipantIdsMustBeOrdered(): ?bool
     {
         return $this->_paramParticipantIdsMustBeOrdered;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasParamScoringUnitId1(): bool
+    public function isHasParamScoringUnitId1(): ?bool
     {
         return $this->_hasParamScoringUnitId1;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamString1Description(): string
+    public function getParamString1Description(): ?string
     {
         return $this->_paramString1Description;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamString1PossibleValues(): string
+    public function getParamString1PossibleValues(): ?string
     {
         return $this->_paramString1PossibleValues;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamBoolean1Description(): string
+    public function getParamBoolean1Description(): ?string
     {
         return $this->_paramBoolean1Description;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamEventPartId1Description(): string
+    public function getParamEventPartId1Description(): ?string
     {
         return $this->_paramEventPartId1Description;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamEventStatusId1Description(): string
+    public function getParamEventStatusId1Description(): ?string
     {
         return $this->_paramEventStatusId1Description;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamTime1Description(): string
+    public function getParamTime1Description(): ?string
     {
         return $this->_paramTime1Description;
     }

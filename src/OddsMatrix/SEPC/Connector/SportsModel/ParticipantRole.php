@@ -16,7 +16,7 @@ class ParticipantRole
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isPrimary")
@@ -25,9 +25,9 @@ class ParticipantRole
     private $_isPrimary;
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isPrimary(): bool
+    public function isPrimary(): ?bool
     {
         return $this->_isPrimary;
     }

@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class EventParticipantInfo
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,7 +25,7 @@ class EventParticipantInfo
     private $_typeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventId")
@@ -34,7 +34,7 @@ class EventParticipantInfo
     private $_eventId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("providerId")
@@ -43,7 +43,7 @@ class EventParticipantInfo
     private $_providerId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("statusId")
@@ -52,7 +52,7 @@ class EventParticipantInfo
     private $_statusId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -61,7 +61,7 @@ class EventParticipantInfo
     private $_eventPartId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("participantId")
@@ -70,49 +70,49 @@ class EventParticipantInfo
     private $_participantId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->_eventId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getProviderId(): int
+    public function getProviderId(): ?int
     {
         return $this->_providerId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getStatusId(): int
+    public function getStatusId(): ?int
     {
         return $this->_statusId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParticipantId(): int
+    public function getParticipantId(): ?int
     {
         return $this->_participantId;
     }

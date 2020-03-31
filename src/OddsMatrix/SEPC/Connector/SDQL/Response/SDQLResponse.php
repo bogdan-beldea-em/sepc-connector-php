@@ -15,7 +15,7 @@ use OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData;
 class SDQLResponse
 {
     /**
-     * @var SDQLSubscribeResponse
+     * @var SDQLSubscribeResponse|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLSubscribeResponse")
      * @Serializer\SerializedName("SubscribeResponse")
@@ -23,7 +23,7 @@ class SDQLResponse
     private $_subscribeResponse;
 
     /**
-     * @var SDQLUnsubscribeResponse
+     * @var SDQLUnsubscribeResponse|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLUnsubscribeResponse")
      * @Serializer\SerializedName("UnsubscribeResponse")
@@ -31,15 +31,15 @@ class SDQLResponse
     private $_unsubscribeResponse;
 
     /**
-     * @var SDQLInitialDataResponse
+     * @var SDQLInitialDataResponse|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLInitialDataResponse")
      * @Serializer\SerializedName("GetNextInitialDataResponse")
      */
-    private $_initialData;
+    private $_initialDataResponse;
 
     /**
-     * @var SDQLUpdateDataResponse
+     * @var SDQLUpdateDataResponse|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLUpdateDataResponse")
      * @Serializer\SerializedName("GetNextUpdateDataResponse")
@@ -47,7 +47,7 @@ class SDQLResponse
     private $_updateData;
 
     /**
-     * @var SDQLError
+     * @var SDQLError|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLError")
      * @Serializer\SerializedName("error")
@@ -57,7 +57,7 @@ class SDQLResponse
     /**
      * @return SDQLSubscribeResponse
      */
-    public function getSubscribeResponse(): SDQLSubscribeResponse
+    public function getSubscribeResponse(): ?SDQLSubscribeResponse
     {
         return $this->_subscribeResponse;
     }
@@ -65,7 +65,7 @@ class SDQLResponse
     /**
      * @return SDQLUnsubscribeResponse
      */
-    public function getUnsubscribeResponse(): SDQLUnsubscribeResponse
+    public function getUnsubscribeResponse(): ?SDQLUnsubscribeResponse
     {
         return $this->_unsubscribeResponse;
     }
@@ -73,7 +73,7 @@ class SDQLResponse
     /**
      * @return SDQLError
      */
-    public function getError(): SDQLError
+    public function getError(): ?SDQLError
     {
         return $this->_error;
     }
@@ -81,15 +81,15 @@ class SDQLResponse
     /**
      * @return SDQLInitialDataResponse
      */
-    public function getInitialData(): SDQLInitialDataResponse
+    public function getInitialDataResponse(): ?SDQLInitialDataResponse
     {
-        return $this->_initialData;
+        return $this->_initialDataResponse;
     }
 
     /**
      * @return SDQLUpdateDataResponse
      */
-    public function getUpdateData(): SDQLUpdateDataResponse
+    public function getUpdateData(): ?SDQLUpdateDataResponse
     {
         return $this->_updateData;
     }

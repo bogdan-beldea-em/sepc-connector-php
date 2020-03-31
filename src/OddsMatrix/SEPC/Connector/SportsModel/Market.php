@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Market
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait, UpdateTimeTrait, TypedTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventId")
@@ -25,7 +25,7 @@ class Market
     private $_eventId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -34,7 +34,7 @@ class Market
     private $_eventPartId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("bettingTypeId")
@@ -43,7 +43,7 @@ class Market
     private $_bettingTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("scoringUnitId")
@@ -52,7 +52,7 @@ class Market
     private $_scoringUnitId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("numberOfOutcomes")
@@ -61,7 +61,7 @@ class Market
     private $_numberOfOutcomes;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isComplete")
@@ -70,7 +70,7 @@ class Market
     private $_isComplete;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isClosed")
@@ -79,7 +79,7 @@ class Market
     private $_isClosed;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramFloat1")
@@ -88,7 +88,7 @@ class Market
     private $_paramFloat1;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramParticipantId1")
@@ -97,34 +97,7 @@ class Market
     private $_paramParticipantId1;
 
     /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("paramParticipantId2")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramParticipantId2;
-
-    /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramFloat2")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramFloat2;
-
-    /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramFloat3")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramFloat3;
-
-    /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("discriminator")
@@ -133,7 +106,34 @@ class Market
     private $_discriminator;
 
     /**
-    * @var int
+    * @var float|null
+    *
+    * @Serializer\Type("float")
+    * @Serializer\SerializedName("paramFloat2")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramFloat2;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramFloat3")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramFloat3;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("paramParticipantId2")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipantId2;
+
+    /**
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramParticipantId3")
@@ -142,7 +142,7 @@ class Market
     private $_paramParticipantId3;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramString1")
@@ -151,121 +151,121 @@ class Market
     private $_paramString1;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->_eventId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getBettingTypeId(): int
+    public function getBettingTypeId(): ?int
     {
         return $this->_bettingTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getScoringUnitId(): int
+    public function getScoringUnitId(): ?int
     {
         return $this->_scoringUnitId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNumberOfOutcomes(): int
+    public function getNumberOfOutcomes(): ?int
     {
         return $this->_numberOfOutcomes;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isComplete(): bool
+    public function isComplete(): ?bool
     {
         return $this->_isComplete;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isClosed(): bool
+    public function isClosed(): ?bool
     {
         return $this->_isClosed;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamFloat1(): string
+    public function getParamFloat1(): ?string
     {
         return $this->_paramFloat1;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParamParticipantId1(): int
+    public function getParamParticipantId1(): ?int
     {
         return $this->_paramParticipantId1;
     }
 
     /**
-     * @return int
+     * @return string|null
      */
-    public function getParamParticipantId2(): int
-    {
-        return $this->_paramParticipantId2;
-    }
-
-    /**
-     * @return string
-     */
-    public function getParamFloat2(): string
-    {
-        return $this->_paramFloat2;
-    }
-
-    /**
-     * @return string
-     */
-    public function getParamFloat3(): string
-    {
-        return $this->_paramFloat3;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDiscriminator(): string
+    public function getDiscriminator(): ?string
     {
         return $this->_discriminator;
     }
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getParamParticipantId3(): int
+    public function getParamFloat2(): ?float
+    {
+        return $this->_paramFloat2;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getParamFloat3(): ?string
+    {
+        return $this->_paramFloat3;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getParamParticipantId2(): ?int
+    {
+        return $this->_paramParticipantId2;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getParamParticipantId3(): ?int
     {
         return $this->_paramParticipantId3;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamString1(): string
+    public function getParamString1(): ?string
     {
         return $this->_paramString1;
     }

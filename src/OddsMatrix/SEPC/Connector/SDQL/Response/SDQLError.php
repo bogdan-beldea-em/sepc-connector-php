@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation as Serializer;
 class SDQLError
 {
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Type("int")
      * @Serializer\SerializedName("code")
@@ -23,11 +23,27 @@ class SDQLError
     private $_code;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("message")
      * @Serializer\XmlAttribute()
      */
     private $_message;
+
+    /**
+     * @return int|null
+     */
+    public function getCode(): ?int
+    {
+        return $this->_code;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMessage(): ?string
+    {
+        return $this->_message;
+    }
 }

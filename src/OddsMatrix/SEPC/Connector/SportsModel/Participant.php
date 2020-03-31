@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Participant
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,34 +25,7 @@ class Participant
     private $_typeId;
 
     /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("firstName")
-    * @Serializer\XmlAttribute()
-    */
-    private $_firstName;
-
-    /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("lastName")
-    * @Serializer\XmlAttribute()
-    */
-    private $_lastName;
-
-    /**
-    * @var bool
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("isMale")
-    * @Serializer\XmlAttribute()
-    */
-    private $_isMale;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("countryId")
@@ -61,7 +34,34 @@ class Participant
     private $_countryId;
 
     /**
-    * @var string
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isMale")
+    * @Serializer\XmlAttribute()
+    */
+    private $_isMale;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("firstName")
+    * @Serializer\XmlAttribute()
+    */
+    private $_firstName;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("lastName")
+    * @Serializer\XmlAttribute()
+    */
+    private $_lastName;
+
+    /**
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("url")
@@ -70,7 +70,7 @@ class Participant
     private $_url;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("shortName")
@@ -79,7 +79,7 @@ class Participant
     private $_shortName;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("logoUrl")
@@ -88,7 +88,7 @@ class Participant
     private $_logoUrl;
 
     /**
-    * @var \DateTime
+    * @var \DateTime|null
     *
     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("birthTime")
@@ -97,73 +97,73 @@ class Participant
     private $_birthTime;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getFirstName(): string
-    {
-        return $this->_firstName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->_lastName;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isMale(): bool
-    {
-        return $this->_isMale;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCountryId(): int
+    public function getCountryId(): ?int
     {
         return $this->_countryId;
     }
 
     /**
-     * @return string
+     * @return bool|null
      */
-    public function getUrl(): string
+    public function isMale(): ?bool
+    {
+        return $this->_isMale;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->_firstName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName(): ?string
+    {
+        return $this->_lastName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUrl(): ?string
     {
         return $this->_url;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getShortName(): string
+    public function getShortName(): ?string
     {
         return $this->_shortName;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLogoUrl(): string
+    public function getLogoUrl(): ?string
     {
         return $this->_logoUrl;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getBirthTime(): \DateTime
+    public function getBirthTime(): ?\DateTime
     {
         return $this->_birthTime;
     }

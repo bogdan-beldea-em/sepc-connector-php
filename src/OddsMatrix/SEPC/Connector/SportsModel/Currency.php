@@ -16,7 +16,7 @@ class Currency
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("code")
@@ -25,9 +25,9 @@ class Currency
     private $_code;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->_code;
     }

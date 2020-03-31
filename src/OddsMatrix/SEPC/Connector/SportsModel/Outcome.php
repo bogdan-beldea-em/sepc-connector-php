@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Outcome
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,7 +25,7 @@ class Outcome
     private $_typeId;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isNegation")
@@ -34,7 +34,7 @@ class Outcome
     private $_isNegation;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("statusId")
@@ -43,7 +43,7 @@ class Outcome
     private $_statusId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventId")
@@ -52,7 +52,7 @@ class Outcome
     private $_eventId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -61,7 +61,7 @@ class Outcome
     private $_eventPartId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramFloat1")
@@ -70,16 +70,7 @@ class Outcome
     private $_paramFloat1;
 
     /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramFloat2")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramFloat2;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramParticipantId1")
@@ -88,7 +79,7 @@ class Outcome
     private $_paramParticipantId1;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramScoringUnitId1")
@@ -97,7 +88,7 @@ class Outcome
     private $_paramScoringUnitId1;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("code")
@@ -106,7 +97,7 @@ class Outcome
     private $_code;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("settlementRequired")
@@ -115,7 +106,7 @@ class Outcome
     private $_settlementRequired;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("paramBoolean1")
@@ -124,7 +115,16 @@ class Outcome
     private $_paramBoolean1;
 
     /**
-    * @var int
+    * @var float|null
+    *
+    * @Serializer\Type("float")
+    * @Serializer\SerializedName("paramFloat2")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramFloat2;
+
+    /**
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramParticipantId2")
@@ -133,7 +133,7 @@ class Outcome
     private $_paramParticipantId2;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("paramFloat3")
@@ -142,16 +142,7 @@ class Outcome
     private $_paramFloat3;
 
     /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramString1")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramString1;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramParticipantId3")
@@ -160,7 +151,16 @@ class Outcome
     private $_paramParticipantId3;
 
     /**
-    * @var int
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramString1")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramString1;
+
+    /**
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("paramEventPartId1")
@@ -169,137 +169,137 @@ class Outcome
     private $_paramEventPartId1;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isNegation(): bool
+    public function isNegation(): ?bool
     {
         return $this->_isNegation;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getStatusId(): int
+    public function getStatusId(): ?int
     {
         return $this->_statusId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventId(): int
+    public function getEventId(): ?int
     {
         return $this->_eventId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamFloat1(): string
+    public function getParamFloat1(): ?string
     {
         return $this->_paramFloat1;
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getParamFloat2(): string
-    {
-        return $this->_paramFloat2;
-    }
-
-    /**
-     * @return int
-     */
-    public function getParamParticipantId1(): int
+    public function getParamParticipantId1(): ?int
     {
         return $this->_paramParticipantId1;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParamScoringUnitId1(): int
+    public function getParamScoringUnitId1(): ?int
     {
         return $this->_paramScoringUnitId1;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->_code;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isSettlementRequired(): bool
+    public function isSettlementRequired(): ?bool
     {
         return $this->_settlementRequired;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isParamBoolean1(): bool
+    public function isParamBoolean1(): ?bool
     {
         return $this->_paramBoolean1;
     }
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getParamParticipantId2(): int
+    public function getParamFloat2(): ?float
+    {
+        return $this->_paramFloat2;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getParamParticipantId2(): ?int
     {
         return $this->_paramParticipantId2;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParamFloat3(): string
+    public function getParamFloat3(): ?string
     {
         return $this->_paramFloat3;
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getParamString1(): string
-    {
-        return $this->_paramString1;
-    }
-
-    /**
-     * @return int
-     */
-    public function getParamParticipantId3(): int
+    public function getParamParticipantId3(): ?int
     {
         return $this->_paramParticipantId3;
     }
 
     /**
-     * @return int
+     * @return string|null
      */
-    public function getParamEventPartId1(): int
+    public function getParamString1(): ?string
+    {
+        return $this->_paramString1;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getParamEventPartId1(): ?int
     {
         return $this->_paramEventPartId1;
     }

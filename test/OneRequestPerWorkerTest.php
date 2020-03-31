@@ -183,9 +183,11 @@ const connectionStatePath = "../resources_extra/connection_state.xml";
 $connectionState = null;
 try {
     $connectionStateFile = fopen(connectionStatePath, "r");
-    $connectionStateData = fread($connectionStateFile, 90000);
-    fclose($connectionStateFile);
-    $connectionState = $serializer->deserialize($connectionStateData, PersistableConnection::class, 'xml');
+    if (false !== $connectionStateFile) {
+        $connectionStateData = fread($connectionStateFile, 90000);
+        fclose($connectionStateFile);
+        $connectionState = $serializer->deserialize($connectionStateData, PersistableConnection::class, 'xml');
+    }
 } catch (Exception $e) {
 
 }
@@ -199,8 +201,8 @@ if (null == $connectionState) {
 }
 
 $connection->setOnStateChanged(function (SEPCConnectionStateInterface $newState) {
-    echo "New state\n";
-    var_dump($newState);
+//    echo "New state\n";
+//    var_dump($newState);
 
     $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
@@ -213,6 +215,7 @@ $connection->setOnStateChanged(function (SEPCConnectionStateInterface $newState)
 
     }
 });
+
 
 if ($connectionState->isInitialDataDumpComplete()) {
     try {

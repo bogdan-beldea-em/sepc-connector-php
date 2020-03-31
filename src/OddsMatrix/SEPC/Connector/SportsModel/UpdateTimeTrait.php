@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as Serializer;
 trait UpdateTimeTrait
 {
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
      * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
      * @Serializer\SerializedName("lastChangedTime")
@@ -18,9 +18,9 @@ trait UpdateTimeTrait
     private $_lastChangedTime;
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastChangedTime(): \DateTime
+    public function getLastChangedTime(): ?\DateTime
     {
         return $this->_lastChangedTime;
     }

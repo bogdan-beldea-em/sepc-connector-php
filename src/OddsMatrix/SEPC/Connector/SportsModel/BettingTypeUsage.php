@@ -16,7 +16,7 @@ class BettingTypeUsage
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("bettingTypeId")
@@ -25,7 +25,7 @@ class BettingTypeUsage
     private $_bettingTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventTypeId")
@@ -34,7 +34,7 @@ class BettingTypeUsage
     private $_eventTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("sportId")
@@ -43,7 +43,7 @@ class BettingTypeUsage
     private $_sportId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
@@ -52,33 +52,33 @@ class BettingTypeUsage
     private $_eventPartId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getBettingTypeId(): int
+    public function getBettingTypeId(): ?int
     {
         return $this->_bettingTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventTypeId(): int
+    public function getEventTypeId(): ?int
     {
         return $this->_eventTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSportId(): int
+    public function getSportId(): ?int
     {
         return $this->_sportId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventPartId(): int
+    public function getEventPartId(): ?int
     {
         return $this->_eventPartId;
     }

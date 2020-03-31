@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Translation
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("entityId")
@@ -25,7 +25,7 @@ class Translation
     private $_entityId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("entityTypeId")
@@ -34,7 +34,7 @@ class Translation
     private $_entityTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("languageId")
@@ -43,7 +43,7 @@ class Translation
     private $_languageId;
 
     /**
-    * @var \DateTime
+    * @var \DateTime|null
     *
     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("lastChangedDate")
@@ -52,33 +52,33 @@ class Translation
     private $_lastChangedDate;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEntityId(): int
+    public function getEntityId(): ?int
     {
         return $this->_entityId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEntityTypeId(): int
+    public function getEntityTypeId(): ?int
     {
         return $this->_entityTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLanguageId(): int
+    public function getLanguageId(): ?int
     {
         return $this->_languageId;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastChangedDate(): \DateTime
+    public function getLastChangedDate(): ?\DateTime
     {
         return $this->_lastChangedDate;
     }

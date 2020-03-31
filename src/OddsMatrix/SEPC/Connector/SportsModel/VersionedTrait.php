@@ -10,7 +10,7 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 trait VersionedTrait
 {
     /**
-     * @var int
+     * @var int|null
      *
      * @Serializer\Type("int")
      * @Serializer\SerializedName("version")
@@ -19,9 +19,9 @@ trait VersionedTrait
     private $_version;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getVersion(): int
+    public function getVersion(): ?int
     {
         return $this->_version;
     }

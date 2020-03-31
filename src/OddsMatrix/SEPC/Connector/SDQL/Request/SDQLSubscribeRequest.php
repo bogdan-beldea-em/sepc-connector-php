@@ -16,6 +16,7 @@ class SDQLSubscribeRequest
 {
     /**
      * @var string
+     *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("subscriptionSpecificationName")
      * @Serializer\XmlAttribute()

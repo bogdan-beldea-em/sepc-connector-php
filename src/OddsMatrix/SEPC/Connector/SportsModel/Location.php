@@ -16,7 +16,7 @@ class Location
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("typeId")
@@ -25,7 +25,7 @@ class Location
     private $_typeId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("code")
@@ -34,7 +34,7 @@ class Location
     private $_code;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isHistoric")
@@ -43,25 +43,25 @@ class Location
     private $_isHistoric;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTypeId(): int
+    public function getTypeId(): ?int
     {
         return $this->_typeId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->_code;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHistoric(): bool
+    public function isHistoric(): ?bool
     {
         return $this->_isHistoric;
     }

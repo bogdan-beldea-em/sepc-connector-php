@@ -16,7 +16,7 @@ class EventParticipantInfoDetailStatus
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isAvailable")
@@ -25,9 +25,9 @@ class EventParticipantInfoDetailStatus
     private $_isAvailable;
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isAvailable(): bool
+    public function isAvailable(): ?bool
     {
         return $this->_isAvailable;
     }

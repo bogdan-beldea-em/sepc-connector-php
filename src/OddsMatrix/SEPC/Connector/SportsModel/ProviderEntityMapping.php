@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ProviderEntityMapping
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("providerId")
@@ -25,7 +25,7 @@ class ProviderEntityMapping
     private $_providerId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("providerEntityTypeId")
@@ -34,7 +34,7 @@ class ProviderEntityMapping
     private $_providerEntityTypeId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("providerEntityId")
@@ -43,7 +43,7 @@ class ProviderEntityMapping
     private $_providerEntityId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("entityTypeId")
@@ -52,7 +52,7 @@ class ProviderEntityMapping
     private $_entityTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("entityId")
@@ -61,41 +61,41 @@ class ProviderEntityMapping
     private $_entityId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getProviderId(): int
+    public function getProviderId(): ?int
     {
         return $this->_providerId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProviderEntityTypeId(): string
+    public function getProviderEntityTypeId(): ?string
     {
         return $this->_providerEntityTypeId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProviderEntityId(): string
+    public function getProviderEntityId(): ?string
     {
         return $this->_providerEntityId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEntityTypeId(): int
+    public function getEntityTypeId(): ?int
     {
         return $this->_entityTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEntityId(): int
+    public function getEntityId(): ?int
     {
         return $this->_entityId;
     }

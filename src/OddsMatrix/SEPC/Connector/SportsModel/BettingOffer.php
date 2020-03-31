@@ -13,46 +13,19 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class BettingOffer
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait, UpdateTimeTrait;
 
     /**
-    * @var int
+    * @var float|null
     *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("providerId")
+    * @Serializer\Type("float")
+    * @Serializer\SerializedName("odds")
     * @Serializer\XmlAttribute()
     */
-    private $_providerId;
+    private $_odds;
 
     /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("sourceId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_sourceId;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("outcomeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_outcomeId;
-
-    /**
-    * @var int
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("bettingTypeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_bettingTypeId;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("statusId")
@@ -61,7 +34,43 @@ class BettingOffer
     private $_statusId;
 
     /**
-    * @var bool
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("providerId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_providerId;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("sourceId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_sourceId;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("outcomeId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_outcomeId;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("bettingTypeId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_bettingTypeId;
+
+    /**
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("isLive")
@@ -70,16 +79,7 @@ class BettingOffer
     private $_isLive;
 
     /**
-    * @var string
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("odds")
-    * @Serializer\XmlAttribute()
-    */
-    private $_odds;
-
-    /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("multiplicity")
@@ -88,7 +88,7 @@ class BettingOffer
     private $_multiplicity;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("couponKey")
@@ -97,7 +97,7 @@ class BettingOffer
     private $_couponKey;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("slotNum")
@@ -106,132 +106,115 @@ class BettingOffer
     private $_slotNum;
 
     /**
-    * @var \DateTime
+    * @var float|null
     *
-    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
-    * @Serializer\SerializedName("lastChangedTime")
-    * @Serializer\XmlAttribute()
-    */
-    private $_lastChangedTime;
-
-    /**
-    * @var string
-    *
-    * @Serializer\Type("string")
+    * @Serializer\Type("float")
     * @Serializer\SerializedName("volume")
     * @Serializer\XmlAttribute()
     */
     private $_volume;
 
     /**
-    * @var int
+    * @var string|null
     *
-    * @Serializer\Type("int")
+    * @Serializer\Type("string")
     * @Serializer\SerializedName("volumeCurrencyId")
     * @Serializer\XmlAttribute()
     */
     private $_volumeCurrencyId;
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getProviderId(): int
-    {
-        return $this->_providerId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSourceId(): int
-    {
-        return $this->_sourceId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getOutcomeId(): int
-    {
-        return $this->_outcomeId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getBettingTypeId(): int
-    {
-        return $this->_bettingTypeId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStatusId(): int
-    {
-        return $this->_statusId;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isLive(): bool
-    {
-        return $this->_isLive;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOdds(): string
+    public function getOdds(): ?float
     {
         return $this->_odds;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMultiplicity(): int
+    public function getStatusId(): ?int
+    {
+        return $this->_statusId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getProviderId(): ?int
+    {
+        return $this->_providerId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSourceId(): ?int
+    {
+        return $this->_sourceId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getOutcomeId(): ?int
+    {
+        return $this->_outcomeId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getBettingTypeId(): ?int
+    {
+        return $this->_bettingTypeId;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isLive(): ?bool
+    {
+        return $this->_isLive;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMultiplicity(): ?int
     {
         return $this->_multiplicity;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCouponKey(): string
+    public function getCouponKey(): ?string
     {
         return $this->_couponKey;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSlotNum(): int
+    public function getSlotNum(): ?int
     {
         return $this->_slotNum;
     }
 
     /**
-     * @return \DateTime
+     * @return float|null
      */
-    public function getLastChangedTime(): \DateTime
-    {
-        return $this->_lastChangedTime;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVolume(): string
+    public function getVolume(): ?float
     {
         return $this->_volume;
     }
 
     /**
-     * @return int
+     * @return string|null
      */
-    public function getVolumeCurrencyId(): int
+    public function getVolumeCurrencyId(): ?string
     {
         return $this->_volumeCurrencyId;
     }

@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class EventTemplate
 {
-    use IdentifiableModelTrait, VersionedTrait, NamedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("eventTypeId")
@@ -25,7 +25,7 @@ class EventTemplate
     private $_eventTypeId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("sportId")
@@ -34,7 +34,7 @@ class EventTemplate
     private $_sportId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("categoryId")
@@ -43,7 +43,7 @@ class EventTemplate
     private $_categoryId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("venueId")
@@ -52,7 +52,7 @@ class EventTemplate
     private $_venueId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("rootPartId")
@@ -61,7 +61,7 @@ class EventTemplate
     private $_rootPartId;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("url")
@@ -70,49 +70,49 @@ class EventTemplate
     private $_url;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventTypeId(): int
+    public function getEventTypeId(): ?int
     {
         return $this->_eventTypeId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSportId(): int
+    public function getSportId(): ?int
     {
         return $this->_sportId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCategoryId(): int
+    public function getCategoryId(): ?int
     {
         return $this->_categoryId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getVenueId(): int
+    public function getVenueId(): ?int
     {
         return $this->_venueId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRootPartId(): int
+    public function getRootPartId(): ?int
     {
         return $this->_rootPartId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->_url;
     }

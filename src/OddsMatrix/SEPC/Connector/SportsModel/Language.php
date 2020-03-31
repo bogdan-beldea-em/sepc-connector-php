@@ -16,7 +16,7 @@ class Language
     use IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var string
+    * @var string|null
     *
     * @Serializer\Type("string")
     * @Serializer\SerializedName("code")
@@ -25,7 +25,7 @@ class Language
     private $_code;
 
     /**
-    * @var \DateTime
+    * @var \DateTime|null
     *
     * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
     * @Serializer\SerializedName("createDate")
@@ -34,17 +34,17 @@ class Language
     private $_createDate;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->_code;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreateDate(): \DateTime
+    public function getCreateDate(): ?\DateTime
     {
         return $this->_createDate;
     }

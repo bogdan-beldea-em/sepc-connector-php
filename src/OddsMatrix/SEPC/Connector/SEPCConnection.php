@@ -99,10 +99,10 @@ class SEPCConnection
                     fwrite($file2, $reserialized);
                     fflush($file2);
                     fclose($file2);
-                    if ($response->getInitialData()->getInitialData()->isDumpComplete()) {
+                    if ($response->getInitialDataResponse()->getInitialData()->isDumpComplete()) {
                         $this->_connectionState->setInitialDataDumpComplete(true);
                         if (null != $this->_onStateChanged) {
-                            call_user_func($this->_onStateChanged);
+                            call_user_func($this->_onStateChanged, $this->_connectionState);
                         }
                         break;
                     }
@@ -155,10 +155,10 @@ class SEPCConnection
                 fwrite($file2, $reserialized);
                 fflush($file2);
                 fclose($file2);
-                if ($response->getInitialData()->getInitialData()->isDumpComplete()) {
+                if ($response->getInitialDataResponse()->getInitialData()->isDumpComplete()) {
                     $this->_connectionState->setInitialDataDumpComplete(true);
                     if (null != $this->_onStateChanged) {
-                        call_user_func($this->_onStateChanged);
+                        call_user_func($this->_onStateChanged, $this->_connectionState);
                     }
                 }
                 return $response;

@@ -16,7 +16,7 @@ class LocationType
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
     /**
-    * @var bool
+    * @var bool|null
     *
     * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasCode")
@@ -25,9 +25,9 @@ class LocationType
     private $_hasCode;
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isHasCode(): bool
+    public function isHasCode(): ?bool
     {
         return $this->_hasCode;
     }

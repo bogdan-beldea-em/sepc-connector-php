@@ -13,10 +13,10 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class MarketOutcomeRelation
 {
-    use IdentifiableModelTrait, VersionedTrait, TypedTrait, UpdateTimeTrait;
+    use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("marketId")
@@ -25,7 +25,7 @@ class MarketOutcomeRelation
     private $_marketId;
 
     /**
-    * @var int
+    * @var int|null
     *
     * @Serializer\Type("int")
     * @Serializer\SerializedName("outcomeId")
@@ -34,17 +34,17 @@ class MarketOutcomeRelation
     private $_outcomeId;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMarketId(): int
+    public function getMarketId(): ?int
     {
         return $this->_marketId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOutcomeId(): int
+    public function getOutcomeId(): ?int
     {
         return $this->_outcomeId;
     }
