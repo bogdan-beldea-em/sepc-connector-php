@@ -5,7 +5,8 @@
   "require": {
     "jms/serializer": "^3.6",
     "ext-zlib": "*",
-    "ext-simplexml": "*"
+    "ext-simplexml": "*",
+    "ext-sockets": "*"
   },
   "authors": [
     {

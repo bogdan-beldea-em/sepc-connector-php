@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation as Serializer;
 class SDQLRequest
 {
     /**
-     * @var SDQLSubscribeRequest
+     * @var SDQLSubscribeRequest|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest")
      * @Serializer\SerializedName("SubscribeRequest")
@@ -23,12 +23,27 @@ class SDQLRequest
     private $_subscribeRequest;
 
     /**
-     * @param SDQLSubscribeRequest $subscribeRequest
+     * @var SDQLPingResponse|null
+     */
+    private $_pingResponse;
+
+    /**
+     * @param SDQLSubscribeRequest|null $subscribeRequest
      * @return SDQLRequest
      */
-    public function setSubscribeRequest(SDQLSubscribeRequest $subscribeRequest): SDQLRequest
+    public function setSubscribeRequest(?SDQLSubscribeRequest $subscribeRequest): SDQLRequest
     {
         $this->_subscribeRequest = $subscribeRequest;
+        return $this;
+    }
+
+    /**
+     * @param SDQLPingResponse|null $pingResponse
+     * @return SDQLRequest
+     */
+    public function setPingResponse(?SDQLPingResponse $pingResponse): SDQLRequest
+    {
+        $this->_pingResponse = $pingResponse;
         return $this;
     }
 }

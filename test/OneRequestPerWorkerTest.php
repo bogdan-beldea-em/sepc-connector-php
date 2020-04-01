@@ -197,7 +197,7 @@ if (null == $connectionState) {
     $connection = $connector->connect("http://sept.oddsmatrix.com", 8081);
     $connectionState = $connection->getConnectionState();
 } else {
-    $connection = new \OM\OddsMatrix\SEPC\Connector\SEPCConnection($connectionState);
+    $connection = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnection($connectionState);
 }
 
 $connection->setOnStateChanged(function (SEPCConnectionStateInterface $newState) {

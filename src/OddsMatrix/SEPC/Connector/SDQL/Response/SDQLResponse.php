@@ -55,6 +55,14 @@ class SDQLResponse
     private $_error;
 
     /**
+     * @var SDQLPingRequest|null
+     *
+     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLPingRequest")
+     * @Serializer\SerializedName("PingRequest")
+     */
+    private $_pingRequest;
+
+    /**
      * @return SDQLSubscribeResponse
      */
     public function getSubscribeResponse(): ?SDQLSubscribeResponse

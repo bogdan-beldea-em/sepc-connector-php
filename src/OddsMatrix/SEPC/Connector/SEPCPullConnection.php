@@ -16,7 +16,7 @@ use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
 use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
 
-class SEPCConnection
+class SEPCPullConnection
 {
     /**
      * @var QueryParamSerializer
@@ -39,7 +39,7 @@ class SEPCConnection
     private $_onStateChanged;
 
     /**
-     * SEPCConnection constructor.
+     * SEPCPullConnection constructor.
      * @param SEPCConnectionStateInterface $_connectionState
      */
     public function __construct(SEPCConnectionStateInterface $_connectionState)

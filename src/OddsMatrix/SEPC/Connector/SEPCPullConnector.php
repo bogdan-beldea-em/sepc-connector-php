@@ -42,7 +42,7 @@ class SEPCPullConnector
         $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
     }
 
-    public function connect(string $host, int $port): SEPCConnection
+    public function connect(string $host, int $port): SEPCPullConnection
     {
         $request = new SDQLSubscribeRequest($this->_credentials->getSubscriptionSpecificationName());
         $url = $host . ':' . $port . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
@@ -69,6 +69,6 @@ class SEPCPullConnector
             ->setHost($host)
             ->setPort($port);
 
-        return new SEPCConnection($this->_connectionState);
+        return new SEPCPullConnection($this->_connectionState);
     }
 }
