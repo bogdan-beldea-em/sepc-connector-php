@@ -18,7 +18,6 @@ class SDQLGetNextUpdateDataRequest
 {
     use SubscriptionIdentifiableTrait;
 
-
     /**
      * SDQLGetNextUpdateDataRequest constructor.
      * @param string $subscriptionId

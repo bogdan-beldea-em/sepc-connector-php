@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector;
 
 
+use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
@@ -11,6 +12,10 @@ use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
 class SEPCPushBridge
 {
     private $_socket;
+
+    /**
+     * @var SerializerInterface
+     */
     private $_serializer;
 
     /**
@@ -43,7 +48,7 @@ class SEPCPushBridge
         }
     }
 
-    public function receiveData(): ?SDQLResponse
+    public function receiveData(int $i = 0): ?SDQLResponse
     {
         echo "Waiting for response...\n";
         $rawData = socket_read($this->_socket, "1");
@@ -72,6 +77,11 @@ class SEPCPushBridge
         }
 
         $response = gzdecode($content);
+
+        $dumpFile = fopen("../resources_extra/bridge_dump_$i.xml", "w");
+        fwrite($dumpFile, $response);
+        fflush($dumpFile);
+        fclose($dumpFile);
 
         return $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
     }

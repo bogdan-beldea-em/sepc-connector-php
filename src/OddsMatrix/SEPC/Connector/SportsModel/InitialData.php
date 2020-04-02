@@ -13,8 +13,6 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class InitialData
 {
-    use ;
-
     /**
     * @var int|null
     *
@@ -43,6 +41,15 @@ class InitialData
     private $_dumpComplete;
 
     /**
+     * @var EntitiesContainer
+     *
+     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\EntitiesContainer")
+     * @Serializer\SerializedName("entities")
+     * @Serializer\XmlElement()
+     */
+    private $_entities;
+
+    /**
      * @return int|null
      */
     public function getBatchId(): ?int
@@ -66,4 +73,11 @@ class InitialData
         return $this->_dumpComplete;
     }
 
+    /**
+     * @return EntitiesContainer
+     */
+    public function getEntities(): EntitiesContainer
+    {
+        return $this->_entities;
+    }
 }
