@@ -50,7 +50,15 @@ interface SEPCConnectionStateInterface
      */
     public function getHost(): string;
 
-    public function isInitialDataDumpComplete(): bool;
+    public function isInitialDataDumpComplete(): ?bool;
 
     public function setInitialDataDumpComplete(bool $initialDataComplete);
+
+    public function getSubscriptionChecksum(): ?string;
+
+    public function setSubscriptionChecksum(string $subscriptionChecksum);
+
+    public function getLastBatchUuid(): ?string;
+
+    public function setLastBatchUuid(string $uuid);
 }

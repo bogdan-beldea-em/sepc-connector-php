@@ -49,4 +49,20 @@ class UpdateData
     {
         return $this->_batchId;
     }
+
+    /**
+     * @return string
+     */
+    public function getBatchUuid(): string
+    {
+        return $this->_batchUuid;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedTime(): \DateTime
+    {
+        return $this->_createdTime;
+    }
 }

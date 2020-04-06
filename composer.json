@@ -6,7 +6,8 @@
     "jms/serializer": "^3.6",
     "ext-zlib": "*",
     "ext-simplexml": "*",
-    "ext-sockets": "*"
+    "ext-sockets": "*",
+    "psr/log": "^1.1"
   },
   "authors": [
     {

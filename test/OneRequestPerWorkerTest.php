@@ -10,7 +10,8 @@ require_once __DIR__ . "/../src/autoload_manual.php";
  *
  * @Serializer\XmlRoot(name="PersistableConnection")
  */
-class PersistableConnection implements SEPCConnectionStateInterface {
+class PersistableConnection implements SEPCConnectionStateInterface
+{
 
     /**
      * @var string
@@ -65,6 +66,24 @@ class PersistableConnection implements SEPCConnectionStateInterface {
      * @Serializer\XmlAttribute()
      */
     private $_count = 0;
+
+    /**
+     * @var string|null
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("lastBatchUuid")
+     * @Serializer\XmlAttribute()
+     */
+    private $_lastBatchUuid;
+
+    /**
+     * @var string|null
+     *
+     * @Serializer\Type("string")
+     * @Serializer\SerializedName("subscriptionChecksum")
+     * @Serializer\XmlAttribute()
+     */
+    private $_subscriptionChecksum;
 
     /**
      * @return string
@@ -173,6 +192,42 @@ class PersistableConnection implements SEPCConnectionStateInterface {
         $this->_count = $count;
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getLastBatchUuid(): ?string
+    {
+        return $this->_lastBatchUuid;
+    }
+
+    /**
+     * @param string|null $lastBatchUuid
+     * @return PersistableConnection
+     */
+    public function setLastBatchUuid(?string $lastBatchUuid): PersistableConnection
+    {
+        $this->_lastBatchUuid = $lastBatchUuid;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSubscriptionChecksum(): ?string
+    {
+        return $this->_subscriptionChecksum;
+    }
+
+    /**
+     * @param string|null $subscriptionChecksum
+     * @return PersistableConnection
+     */
+    public function setSubscriptionChecksum(?string $subscriptionChecksum): PersistableConnection
+    {
+        $this->_subscriptionChecksum = $subscriptionChecksum;
+        return $this;
+    }
 }
 
 $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
@@ -182,12 +237,8 @@ const connectionStatePath = "../resources_extra/connection_state.xml";
 /** @var PersistableConnection $connectionState */
 $connectionState = null;
 try {
-    $connectionStateFile = fopen(connectionStatePath, "r");
-    if (false !== $connectionStateFile) {
-        $connectionStateData = fread($connectionStateFile, 90000);
-        fclose($connectionStateFile);
-        $connectionState = $serializer->deserialize($connectionStateData, PersistableConnection::class, 'xml');
-    }
+    $connectionStateData = file_get_contents(connectionStatePath);
+    $connectionState = $serializer->deserialize($connectionStateData, PersistableConnection::class, 'xml');
 } catch (Exception $e) {
 
 }
@@ -200,33 +251,16 @@ if (null == $connectionState) {
     $connection = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnection($connectionState);
 }
 
-$connection->setOnStateChanged(function (SEPCConnectionStateInterface $newState) {
-//    echo "New state\n";
-//    var_dump($newState);
-
-    $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
-
-    try {
-        $connectionStateData = $serializer->serialize($newState, 'xml');
-        $file = fopen(connectionStatePath, "w");
-        fwrite($file, $connectionStateData);
-        fclose($file);
-    } catch (Exception $e) {
-
-    }
-});
-
-
 if ($connectionState->isInitialDataDumpComplete()) {
     try {
-        $connection->getNextUpdate($connectionState->getCount() + 1000);
+        $connection->getNextUpdate();
         sleep(35);
     } catch (Exception $e) {
 
     }
 } else {
     try {
-        $connection->getOneNextInitialData($connectionState->getCount());
+        $connection->getOneNextInitialData();
     } catch (Exception $e) {
 
     }

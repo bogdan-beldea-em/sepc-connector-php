@@ -15,7 +15,7 @@ use OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData;
 class SDQLUpdateDataResponse
 {
     /**
-     * @var UpdateData[]
+     * @var UpdateData[]|null
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData>")
      * @Serializer\XmlList(inline=true, entry="UpdateData")
@@ -23,9 +23,9 @@ class SDQLUpdateDataResponse
     private $_dataUpdates;
 
     /**
-     * @return UpdateData[]
+     * @return UpdateData[]|null
      */
-    public function getDataUpdates(): array
+    public function getDataUpdates(): ?array
     {
         return $this->_dataUpdates;
     }

@@ -15,7 +15,7 @@ use OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData;
 class SDQLInitialDataResponse
 {
     /**
-     * @var InitialData
+     * @var InitialData|null
      *
      * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData")
      * @Serializer\SerializedName("InitialData")
@@ -24,9 +24,9 @@ class SDQLInitialDataResponse
     private $_initialData;
 
     /**
-     * @return InitialData
+     * @return InitialData|null
      */
-    public function getInitialData(): InitialData
+    public function getInitialData(): ?InitialData
     {
         return $this->_initialData;
     }

@@ -105,22 +105,6 @@ class SDQLResponse
     }
 
     /**
-     * @return SDQLInitialDataResponse
-     */
-    public function getInitialDataResponse(): ?SDQLInitialDataResponse
-    {
-        return $this->_initialDataResponse;
-    }
-
-    /**
-     * @return SDQLUpdateDataResponse
-     */
-    public function getUpdateDataResponse(): ?SDQLUpdateDataResponse
-    {
-        return $this->_updateDataResponse;
-    }
-
-    /**
      * @return SDQLPingRequest|null
      */
     public function getPingRequest(): ?SDQLPingRequest
@@ -133,6 +117,10 @@ class SDQLResponse
      */
     public function getInitialData(): ?InitialData
     {
+        if (!is_null($this->_initialDataResponse)) {
+            return $this->_initialDataResponse->getInitialData();
+        }
+
         return $this->_initialData;
     }
 
@@ -141,6 +129,10 @@ class SDQLResponse
      */
     public function getDataUpdates(): ?array
     {
+        if (!is_null($this->_updateDataResponse)) {
+            return $this->_updateDataResponse->getDataUpdates();
+        }
+
         return $this->_dataUpdates;
     }
 }

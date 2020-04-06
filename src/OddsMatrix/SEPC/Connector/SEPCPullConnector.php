@@ -9,8 +9,10 @@ use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\Enum\Routes;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
+use OM\OddsMatrix\SEPC\Connector\Util\LogUtil;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
 use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
+use Psr\Log\LoggerInterface;
 
 class SEPCPullConnector
 {
@@ -34,27 +36,42 @@ class SEPCPullConnector
      */
     private $_connectionState;
 
-    public function __construct(SEPCCredentials $_credentials, SEPCConnectionStateInterface $connectionState = null)
+    /**
+     * @var LoggerInterface
+     */
+    private $_logger;
+
+    /**
+     * SEPCPullConnector constructor.
+     * @param SEPCCredentials $_credentials
+     * @param SEPCConnectionStateInterface|null $connectionState
+     * @param LoggerInterface|null $logger
+     */
+    public function __construct(SEPCCredentials $_credentials, SEPCConnectionStateInterface $connectionState = null, LoggerInterface $logger = null)
     {
         $this->_connectionState = $connectionState;
         $this->_credentials = $_credentials;
+        $this->_logger = $logger;
         $this->_queryParamSerializer = new QueryParamSerializer();
         $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
     }
 
+    /**
+     * @param string $host
+     * @param int $port
+     * @return SEPCPullConnection
+     */
     public function connect(string $host, int $port): SEPCPullConnection
     {
         $request = new SDQLSubscribeRequest($this->_credentials->getSubscriptionSpecificationName());
         $url = $host . ':' . $port . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
+        LogUtil::logD($this->_logger, "GET $url");
 
-        echo "URL: $url\n";
         $responseData = gzdecode(file_get_contents($url));
-        echo "Response data: $responseData \n";
+        LogUtil::logD($this->_logger, "Response data: $responseData ");
 
         /** @var SDQLResponse $response */
         $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
-        echo "Deserialized\n";
-        echo $this->_xmlSerializer->serialize($response, 'xml');
 
         $subscriptionId = $response->getSubscribeResponse()->getSubscriptionId();
 
@@ -69,6 +86,6 @@ class SEPCPullConnector
             ->setHost($host)
             ->setPort($port);
 
-        return new SEPCPullConnection($this->_connectionState);
+        return new SEPCPullConnection($this->_connectionState, $this->_logger);
     }
 }

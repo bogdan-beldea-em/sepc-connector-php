@@ -19,6 +19,11 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     /**
      * @var string
      */
+    private $_subscriptionChecksum;
+
+    /**
+     * @var string
+     */
     private $_host;
 
     /**
@@ -29,7 +34,12 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     /**
      * @var bool
      */
-    private $_initialDataDumpComplete;
+    private $_initialDataDumpComplete = false;
+
+    /**
+     * @var string
+     */
+    private $_lastBatchUuid;
 
     /**
      * @return string
@@ -117,5 +127,41 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     public function isInitialDataDumpComplete(): bool
     {
         return $this->_initialDataDumpComplete;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubscriptionChecksum(): string
+    {
+        return $this->_subscriptionChecksum;
+    }
+
+    /**
+     * @param string $subscriptionChecksum
+     * @return SEPCBasicConnectionState
+     */
+    public function setSubscriptionChecksum(string $subscriptionChecksum): SEPCBasicConnectionState
+    {
+        $this->_subscriptionChecksum = $subscriptionChecksum;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastBatchUuid(): string
+    {
+        return $this->_lastBatchUuid;
+    }
+
+    /**
+     * @param string $lastBatchUuid
+     * @return SEPCBasicConnectionState
+     */
+    public function setLastBatchUuid(string $lastBatchUuid): SEPCBasicConnectionState
+    {
+        $this->_lastBatchUuid = $lastBatchUuid;
+        return $this;
     }
 }

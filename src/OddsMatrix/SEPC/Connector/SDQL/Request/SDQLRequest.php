@@ -59,6 +59,15 @@ class SDQLRequest
     private $_dataUpdateRequest;
 
     /**
+     * @var SDQLUpdateDataResumeRequest
+     *
+     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLUpdateDataResumeRequest")
+     * @Serializer\SerializedName("UpdateDataResumeRequest")
+     * @Serializer\XmlElement()
+     */
+    private $_resumeRequest;
+
+    /**
      * @param SDQLSubscribeRequest|null $subscribeRequest
      * @return SDQLRequest
      */
@@ -105,6 +114,16 @@ class SDQLRequest
     public function setUnsubscribeRequest(?SDQLUnsubscribeRequest $unsubscribeRequest): SDQLRequest
     {
         $this->_unsubscribeRequest = $unsubscribeRequest;
+        return $this;
+    }
+
+    /**
+     * @param SDQLUpdateDataResumeRequest $resumeRequest
+     * @return SDQLRequest
+     */
+    public function setResumeRequest(SDQLUpdateDataResumeRequest $resumeRequest): SDQLRequest
+    {
+        $this->_resumeRequest = $resumeRequest;
         return $this;
     }
 }
