@@ -49,10 +49,11 @@ class SEPCPullConnector
     /**
      * SEPCPullConnector constructor.
      * @param SEPCCredentials $_credentials
-     * @param SEPCConnectionStateInterface|null $connectionState
      * @param LoggerInterface|null $logger
+     * @param SEPCConnectionStateInterface|null $connectionState
+     * @throws \ReflectionException
      */
-    public function __construct(SEPCCredentials $_credentials, SEPCConnectionStateInterface $connectionState = null, LoggerInterface $logger = null)
+    public function __construct(SEPCCredentials $_credentials, LoggerInterface $logger = null, SEPCConnectionStateInterface $connectionState = null)
     {
         $this->_connectionState = $connectionState;
         $this->_credentials = $_credentials;

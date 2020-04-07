@@ -38,7 +38,7 @@ class SEPCPushConnector
      * @param LoggerInterface $_logger
      * @param SEPCConnectionStateInterface|null $_state
      */
-    public function __construct(SEPCCredentials $_credentials, LoggerInterface $_logger, ?SEPCConnectionStateInterface $_state)
+    public function __construct(SEPCCredentials $_credentials, LoggerInterface $_logger = null, ?SEPCConnectionStateInterface $_state = null)
     {
         $this->_credentials = $_credentials;
         $this->_logger = $_logger;
