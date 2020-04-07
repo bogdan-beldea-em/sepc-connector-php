@@ -53,13 +53,17 @@ class SEPCPullConnector
      * @param SEPCConnectionStateInterface|null $connectionState
      * @throws \ReflectionException
      */
-    public function __construct(SEPCCredentials $_credentials, LoggerInterface $logger = null, SEPCConnectionStateInterface $connectionState = null)
+    public function __construct(?SEPCCredentials $_credentials, ?LoggerInterface $logger = null, ?SEPCConnectionStateInterface $connectionState = null)
     {
         $this->_connectionState = $connectionState;
         $this->_credentials = $_credentials;
         $this->_logger = $logger;
         $this->_queryParamSerializer = new QueryParamSerializer();
         $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
+
+        if (null != $connectionState) {
+            $this->_connection = new SEPCPullConnection($this->_connectionState, $this->_logger);
+        }
     }
 
     /**
@@ -142,5 +146,13 @@ class SEPCPullConnector
         }
 
         return $this->_connection->getConnectionState()->isInitialDataDumpComplete();
+    }
+
+    /**
+     * @return SEPCConnectionStateInterface
+     */
+    public function getConnectionState(): SEPCConnectionStateInterface
+    {
+        return $this->_connection->getConnectionState();
     }
 }

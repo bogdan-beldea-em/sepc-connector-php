@@ -227,7 +227,9 @@ class PersistableConnection implements SEPCConnectionStateInterface
     {
         $this->_subscriptionChecksum = $subscriptionChecksum;
         return $this;
+
     }
+
 }
 
 $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
@@ -243,24 +245,27 @@ try {
 
 }
 
+$logger = new StdoutLogger();
+
 if (null == $connectionState) {
-    $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials('test'), new PersistableConnection());
+    $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials('test'), $logger, new PersistableConnection());
     $connection = $connector->connect("http://sept.oddsmatrix.com", 8081);
     $connectionState = $connection->getConnectionState();
 } else {
-    $connection = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnection($connectionState);
+    $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(null, $logger, $connectionState);
+//    $connection = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnection($connectionState);
 }
 
 if ($connectionState->isInitialDataDumpComplete()) {
     try {
-        $connection->getNextUpdate();
+        $connector->getNextData();
         sleep(35);
     } catch (Exception $e) {
 
     }
 } else {
     try {
-        $connection->getOneNextInitialData();
+        $connector->getNextData();
     } catch (Exception $e) {
 
     }
@@ -275,7 +280,4 @@ if (is_int($count)) {
 
 $connectionState->setCount($count);
 
-$finalFile = fopen(connectionStatePath, "w");
-fwrite($finalFile, $serializer->serialize($connectionState, 'xml'));
-fflush($finalFile);
-fclose($finalFile);
+file_put_contents(connectionStatePath, $serializer->serialize($connectionState, 'xml'));
