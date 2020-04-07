@@ -53,6 +53,7 @@ class SEPCPullConnection
         $this->_connectionState = $_connectionState;
         $this->_queryParamSerializer = new QueryParamSerializer();
         $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
+        $this->_logger = $logger;
     }
 
     public function disconnect(): ?SDQLResponse
