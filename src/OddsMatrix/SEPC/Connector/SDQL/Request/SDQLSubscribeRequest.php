@@ -4,12 +4,13 @@ namespace OM\OddsMatrix\SEPC\Connector\SDQL\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 use OM\OddsMatrix\SEPC\Connector\Annotation\QueryParam;
+use OM\OddsMatrix\SEPC\Connector\Annotation\RequestType;
 
 /**
  * Class SDQLSubscribeRequest
  * @package OM\OddsMatrix\SEPC\Connector\SDQL\Request
  *
- * @\RequestType(name="subscribeRequest")
+ * @RequestType(name="subscribeRequest")
  * @Serializer\XmlRoot(name="SubscribeRequest")
  */
 class SDQLSubscribeRequest

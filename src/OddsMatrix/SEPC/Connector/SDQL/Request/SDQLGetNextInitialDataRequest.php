@@ -4,7 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SDQL\Request;
 
 use JMS\Serializer\Annotation as Serializer;
-use RequestType;
+use OM\OddsMatrix\SEPC\Connector\Annotation\RequestType;
 
 /**
  * Class SDQLGetNextInitialDataRequest

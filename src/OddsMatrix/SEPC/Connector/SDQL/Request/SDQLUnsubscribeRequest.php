@@ -4,6 +4,7 @@ namespace OM\OddsMatrix\SEPC\Connector\SDQL\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 use OM\OddsMatrix\SEPC\Connector\Annotation\QueryParam;
+use OM\OddsMatrix\SEPC\Connector\Annotation\RequestType;
 
 /**
  * Class SDQLUnsubscribeRequest

@@ -1,5 +1,7 @@
 <?php
 
+namespace OM\OddsMatrix\SEPC\Connector\Annotation;
+
 use Doctrine\Common\Annotations\Annotation as Doctrine;
 
 /**

@@ -3,9 +3,8 @@
 namespace OM\OddsMatrix\SEPC\Connector\Util;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use OM\OddsMatrix\SEPC\Connector\Annotation\QueryParam;
-use RequestType;
+use OM\OddsMatrix\SEPC\Connector\Annotation\RequestType;
 
 /**
  * Class QueryParamSerializer
@@ -15,7 +14,21 @@ use RequestType;
  */
 class QueryParamSerializer
 {
-    public function serialize($object)
+    /**
+     * QueryParamSerializer constructor.
+     */
+    public function __construct()
+    {
+        SEPCAnnotationLoader::load();
+    }
+
+    /**
+     * @param $object
+     * @return string
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
+     */
+    public function serialize($object): string
     {
         $reader = new AnnotationReader();
         $reflectionClass = new \ReflectionClass($object);
