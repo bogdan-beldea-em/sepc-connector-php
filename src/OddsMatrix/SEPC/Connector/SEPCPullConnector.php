@@ -42,6 +42,11 @@ class SEPCPullConnector
     private $_logger;
 
     /**
+     * @var SEPCPullConnection;
+     */
+    private $_connection;
+
+    /**
      * SEPCPullConnector constructor.
      * @param SEPCCredentials $_credentials
      * @param SEPCConnectionStateInterface|null $connectionState
@@ -60,6 +65,8 @@ class SEPCPullConnector
      * @param string $host
      * @param int $port
      * @return SEPCPullConnection
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
      */
     public function connect(string $host, int $port): SEPCPullConnection
     {
@@ -86,6 +93,53 @@ class SEPCPullConnector
             ->setHost($host)
             ->setPort($port);
 
-        return new SEPCPullConnection($this->_connectionState, $this->_logger);
+        $this->_connection = new SEPCPullConnection($this->_connectionState, $this->_logger);
+
+        return $this->_connection;
+    }
+
+    /**
+     * @return SDQLResponse|null
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
+     */
+    public function getNextData(): ?SDQLResponse
+    {
+        /** @var SDQLResponse|null $data */
+        $data = null;
+
+        if (is_null($this->_connection) || is_null($this->_connection->getConnectionState())) {
+            LogUtil::logC($this->_logger, "Cannot retrieve data from connection before calling the connect method");
+
+            return null;
+        }
+
+        if ($this->_connection->getConnectionState()->isInitialDataDumpComplete()) {
+            $data = $this->_connection->getNextUpdate();
+        } else {
+            $data = $this->_connection->getOneNextInitialData();
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInitialDataDumpComplete(): bool
+    {
+        if (is_null($this->_connection)) {
+            return false;
+        }
+
+        if (is_null($this->_connection->getConnectionState())) {
+            return false;
+        }
+
+        if (is_null($this->_connection->getConnectionState()->isInitialDataDumpComplete())) {
+            return false;
+        }
+
+        return $this->_connection->getConnectionState()->isInitialDataDumpComplete();
     }
 }

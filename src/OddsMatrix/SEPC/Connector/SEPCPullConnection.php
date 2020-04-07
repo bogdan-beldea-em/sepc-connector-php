@@ -72,7 +72,9 @@ class SEPCPullConnection
     }
 
     /**
-     * @return SDQLResponse
+     * @return SDQLResponse|null
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
      */
     public function getOneNextInitialData(): ?SDQLResponse
     {
@@ -108,6 +110,8 @@ class SEPCPullConnection
 
     /**
      * @return SDQLResponse|null
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
      */
     public function getNextUpdate(): ?SDQLResponse
     {
