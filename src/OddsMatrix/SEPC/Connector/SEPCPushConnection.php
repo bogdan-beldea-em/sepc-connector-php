@@ -14,6 +14,7 @@ use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLUpdateDataResumeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData;
 use OM\OddsMatrix\SEPC\Connector\Util\LogUtil;
+use OM\OddsMatrix\SEPC\Connector\Util\SEPCAnnotationLoader;
 use Psr\Log\LoggerInterface;
 
 class SEPCPushConnection
@@ -46,6 +47,7 @@ class SEPCPushConnection
      */
     public function __construct(SEPCCredentials $credentials, SEPCConnectionStateInterface $connectionState = null, LoggerInterface $logger = null)
     {
+        SEPCAnnotationLoader::load();
         $this->_logger = $logger;
 
         if (!is_null($connectionState)) {

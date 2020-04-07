@@ -15,7 +15,10 @@ class SDQLSerializerProvider
      */
     private static $_serializer = null;
 
-
+    /**
+     * @return SerializerInterface
+     * @throws \ReflectionException
+     */
     public static function getSerializer(): SerializerInterface
     {
         if (null == self::$_serializer) {
@@ -25,9 +28,28 @@ class SDQLSerializerProvider
                 ->configureHandlers(function (\JMS\Serializer\Handler\HandlerRegistry $registry) {
                     $registry->registerSubscribingHandler(new SDQLDateSerializationHandler());
                 })
-                ->build();;
+                ->build();
+
+            self::buildSerializationContext(self::$_serializer);
         }
 
         return self::$_serializer;
+    }
+
+    /**
+     * @param SerializerInterface $serializer
+     * @throws \ReflectionException
+     */
+    private static function buildSerializationContext(SerializerInterface $serializer): void {
+        $reflectionClass = new \ReflectionClass($serializer);
+        $fileName = $reflectionClass->getFileName();
+        $directory = dirname($fileName);
+
+        require_once $directory . "/Annotation/XmlRoot.php";
+        require_once $directory . "/Annotation/Type.php";
+        require_once $directory . "/Annotation/SerializedName.php";
+        require_once $directory . "/Annotation/XmlElement.php";
+        require_once $directory . "/Annotation/XmlAttribute.php";
+        require_once $directory . "/Annotation/XmlList.php";
     }
 }

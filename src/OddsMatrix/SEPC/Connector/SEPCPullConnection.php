@@ -13,6 +13,7 @@ use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\LogUtil;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
 use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
+use OM\OddsMatrix\SEPC\Connector\Util\SEPCAnnotationLoader;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -48,6 +49,7 @@ class SEPCPullConnection
      */
     public function __construct(SEPCConnectionStateInterface $_connectionState, LoggerInterface $logger = null)
     {
+        SEPCAnnotationLoader::load();
         $this->_connectionState = $_connectionState;
         $this->_queryParamSerializer = new QueryParamSerializer();
         $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();

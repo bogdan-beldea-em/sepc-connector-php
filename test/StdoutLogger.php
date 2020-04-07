@@ -4,7 +4,7 @@
 class StdoutLogger implements \Psr\Log\LoggerInterface {
     public function emergency($message, array $context = array())
     {
-        // TODO: Implement emergency() method.
+        echo "[EMERGENCY] $message\n";
     }
 
     public function alert($message, array $context = array())
@@ -14,7 +14,7 @@ class StdoutLogger implements \Psr\Log\LoggerInterface {
 
     public function critical($message, array $context = array())
     {
-        // TODO: Implement critical() method.
+        echo "[CRITICAL] $message\n";
     }
 
     public function error($message, array $context = array())
@@ -29,7 +29,7 @@ class StdoutLogger implements \Psr\Log\LoggerInterface {
 
     public function notice($message, array $context = array())
     {
-        // TODO: Implement notice() method.
+        echo "[NOTICE] $message\n";
     }
 
     public function info($message, array $context = array())

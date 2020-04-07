@@ -38,14 +38,19 @@ class SEPCPushBridge
 
     /**
      * SEPCPushBridge constructor.
-     * @param resource $_socket
+     * @param $_socket
      * @param LoggerInterface|null $logger
      */
     public function __construct($_socket, LoggerInterface $logger = null)
     {
         $this->_logger = $logger;
         $this->_socket = $_socket;
-        $this->_serializer = SDQLSerializerProvider::getSerializer();
+
+        try {
+            $this->_serializer = SDQLSerializerProvider::getSerializer();
+        } catch (\ReflectionException $e) {
+            LogUtil::logC($this->_logger, "Could not instantiate XML serializer: $e");
+        }
     }
 
 
@@ -131,7 +136,7 @@ class SEPCPushBridge
             $this->_socketReadRetries = self::READ_RETRIES;
 
             $content .= $socket_read;
-            LogUtil::logD($this->_logger, "Received chink of size " . strlen($socket_read));
+            LogUtil::logD($this->_logger, "Received chunk of size " . strlen($socket_read));
         }
 
         $response = gzdecode($content);

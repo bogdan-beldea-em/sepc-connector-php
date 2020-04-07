@@ -51,4 +51,15 @@ class LogUtil
             $logger->error($message);
         }
     }
+
+    /**
+     * @param LoggerInterface|null $logger
+     * @param string $message
+     */
+    public static function logC(LoggerInterface $logger, string $message): void
+    {
+        if (!is_null($logger) && !is_null($message)) {
+            $logger->critical($message);
+        }
+    }
 }
