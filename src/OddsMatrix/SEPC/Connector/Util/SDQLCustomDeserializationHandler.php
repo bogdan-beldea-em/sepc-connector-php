@@ -31,8 +31,37 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
                 'format' => 'xml',
                 'type' => 'bool',
                 'method' => 'deserializeBool',
+            ],
+            [
+                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
+                'format' => 'xml',
+                'type' => 'int',
+                'method' => 'deserializeInt',
             ]
         ];
+    }
+
+    /**
+     * @param XmlDeserializationVisitor $visitor
+     * @param SimpleXMLElement $element
+     * @param array $type
+     * @param Context $context
+     * @return mixed|null
+     */
+    public function deserializeInt(XmlDeserializationVisitor $visitor, SimpleXMLElement $element, array $type, Context $context)
+    {
+        $intAsString = (string)$element;
+
+        if (is_null($intAsString)) {
+            return null;
+        }
+
+        $result = filter_var($intAsString, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+        if (!is_null($result) && gettype($result) === 'integer') {
+            return $result;
+        } else {
+            return null;
+        }
     }
 
     /**

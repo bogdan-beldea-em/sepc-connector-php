@@ -86,7 +86,7 @@ class SEPCPullConnection
 
         try {
             $responseData = gzdecode(file_get_contents($url));
-            LogUtil::logD($this->_logger, "Response data: $responseData");
+//            LogUtil::logD($this->_logger, "Response data: $responseData");
 
             /** @var SDQLResponse $response */
             $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
@@ -122,7 +122,7 @@ class SEPCPullConnection
 
         try {
             $responseData = gzdecode(file_get_contents($url));
-            LogUtil::logD($this->_logger, "Response data: $responseData");
+//            LogUtil::logD($this->_logger, "Response data: $responseData");
 
             return $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
         } catch (\Exception $e) {
