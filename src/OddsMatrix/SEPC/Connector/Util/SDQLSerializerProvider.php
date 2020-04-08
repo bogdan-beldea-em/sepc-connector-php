@@ -26,7 +26,7 @@ class SDQLSerializerProvider
                 ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
                 ->addDefaultHandlers()
                 ->configureHandlers(function (\JMS\Serializer\Handler\HandlerRegistry $registry) {
-                    $registry->registerSubscribingHandler(new SDQLDateSerializationHandler());
+                    $registry->registerSubscribingHandler(new SDQLCustomDeserializationHandler());
                 })
                 ->build();
 
