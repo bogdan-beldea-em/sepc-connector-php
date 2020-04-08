@@ -94,4 +94,17 @@ class SEPCPushConnector
 
         return null;
     }
+
+    /**
+     * @return SDQLResponse|null
+     * @throws ConnectionException
+     * @throws SocketException
+     */
+    public function disconnect(): ?SDQLResponse
+    {
+        $response = $this->_connection->disconnect();
+        $this->_connection = null;
+
+        return $response;
+    }
 }

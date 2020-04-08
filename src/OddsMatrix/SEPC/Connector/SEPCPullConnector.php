@@ -155,4 +155,15 @@ class SEPCPullConnector
     {
         return $this->_connection->getConnectionState();
     }
+
+    /**
+     * @return SDQLResponse|null
+     */
+    public function disconnect(): ?SDQLResponse
+    {
+        $response = $this->_connection->disconnect();
+        $this->_connection = null;
+
+        return $response;
+    }
 }

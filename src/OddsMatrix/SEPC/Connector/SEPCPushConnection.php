@@ -181,7 +181,10 @@ class SEPCPushConnection
             case !is_null($receivedData->getDataUpdates()) && count($receivedData->getDataUpdates()) > 0:
             {
                 /** @var UpdateData $lastBatch */
-                $lastBatch = end($receivedData->getDataUpdates());
+                $lastBatch = null;
+                foreach ($receivedData->getDataUpdates() as $batch) {
+                    $lastBatch = $batch;
+                }
 
                 LogUtil::logD($this->_logger, "Received update data response last batch_uuid:{$lastBatch->getBatchUuid()}");
 
