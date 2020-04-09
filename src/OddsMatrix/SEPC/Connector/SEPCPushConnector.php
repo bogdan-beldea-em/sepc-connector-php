@@ -66,6 +66,26 @@ class SEPCPushConnector
     }
 
     /**
+     * @param string $host
+     * @param int $port
+     * @return SEPCPullConnection|null
+     * @throws ConnectionException
+     * @throws SocketException
+     */
+    public function reconnect(string $host, int $port): ?SEPCPushConnection
+    {
+        $this->_connection = new SEPCPushConnection(
+            $this->_credentials,
+            $this->_state,
+            $this->_logger
+        );
+
+        $this->_connection->reconnect();
+
+        return $this->_connection;
+    }
+
+    /**
      * @return SDQLResponse|null
      * @throws ConnectionException
      * @throws SocketException
@@ -106,5 +126,13 @@ class SEPCPushConnector
         $this->_connection = null;
 
         return $response;
+    }
+
+    /**
+     * @return SEPCConnectionStateInterface
+     */
+    public function getConnectionState(): SEPCConnectionStateInterface
+    {
+        return $this->_connection->getConnectionState();
     }
 }
