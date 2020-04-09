@@ -236,15 +236,15 @@ $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSeri
 
 
 
-$subscriptionSpecificationName = getenv($subscriptionSpecEnvVarName);
-if (is_null($subscriptionSpecificationName) || false == $subscriptionSpecificationName || '' == $subscriptionSpecificationName) {
-    echo "Please provide the $subscriptionSpecEnvVarName environment variable";
-}
+$subscriptionSpecificationName = EnvVarProvider::getSubscriptionSpecificationName();
+$connectionStatePath = EnvVarProvider::getConnectionStatePath();
+$pullEndpoint = EnvVarProvider::getPullEndpoint();
+$pullPort = EnvVarProvider::getPullPort();
 
 /** @var PersistableConnection $connectionState */
 $connectionState = null;
 try {
-    $connectionStateData = file_get_contents(connectionStatePath);
+    $connectionStateData = file_get_contents($connectionStatePath);
     $connectionState = $serializer->deserialize($connectionStateData, PersistableConnection::class, 'xml');
 } catch (Exception $e) {
 
@@ -253,8 +253,8 @@ try {
 $logger = new StdoutLogger();
 
 if (null == $connectionState) {
-    $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials('test'), $logger, new PersistableConnection());
-    $connection = $connector->connect("http://sept.oddsmatrix.com", 8081);
+    $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials($subscriptionSpecificationName), $logger, new PersistableConnection());
+    $connection = $connector->connect($pullEndpoint, $pullPort);
     $connectionState = $connection->getConnectionState();
 } else {
     $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(null, $logger, $connectionState);
@@ -285,4 +285,4 @@ if (is_int($count)) {
 
 $connectionState->setCount($count);
 
-file_put_contents(connectionStatePath, $serializer->serialize($connectionState, 'xml'));
+file_put_contents($connectionStatePath, $serializer->serialize($connectionState, 'xml'));

@@ -2,55 +2,55 @@
 
 class EnvVarProvider
 {
-    private $connectionStatePathEnvVarName = "SEPC_CONNECTION_STATE_PATH";
-    private $subscriptionSpecEnvVarName = 'SEPC_SUBSCRIPTION_SPECIFICATION_NAME';
-    private $pushEndpointEnvVarName = 'SEPC_PUSH_ENDPOINT';
-    private $pullEndpointEnvVarName = 'SEPC_PULL_ENDPOINT';
-    private $pushPortEnvVarName = 'SEPC_PUSH_PORT';
-    private $pullPortEnvVarName = 'SEPC_PULL_PORT';
+    private static $connectionStatePathEnvVarName = "SEPC_CONNECTION_STATE_PATH";
+    private static $subscriptionSpecEnvVarName = 'SEPC_SUBSCRIPTION_SPECIFICATION_NAME';
+    private static $pushEndpointEnvVarName = 'SEPC_PUSH_ENDPOINT';
+    private static $pullEndpointEnvVarName = 'SEPC_PULL_ENDPOINT';
+    private static $pushPortEnvVarName = 'SEPC_PUSH_PORT';
+    private static $pullPortEnvVarName = 'SEPC_PULL_PORT';
 
     /**
      * @return string
      */
-    public function getConnectionStatePath(): string
+    public static function getConnectionStatePath(): string
     {
-        return $this->getValue($this->connectionStatePathEnvVarName);
+        return self::getValue(self::$connectionStatePathEnvVarName);
     }
 
     /**
      * @return string
      */
-    public function getSubscriptionSpecificationName(): string
+    public static function getSubscriptionSpecificationName(): string
     {
-        return $this->getValue($this->subscriptionSpecEnvVarName);
+        return self::getValue(self::$subscriptionSpecEnvVarName);
     }
 
     /**
      * @return string
      */
-    public function getPushEndpoint(): string
+    public static function getPushEndpoint(): string
     {
-        return $this->getValue($this->pushEndpointEnvVarName);
+        return self::getValue(self::$pushEndpointEnvVarName);
     }
 
     /**
      * @return string
      */
-    public function getPullEndpoint(): string
+    public static function getPullEndpoint(): string
     {
-        return $this->getValue($this->pullEndpointEnvVarName);
+        return self::getValue(self::$pullEndpointEnvVarName);
     }
 
     /**
      * @return int
      */
-    public function getPushPort(): int
+    public static function getPushPort(): int
     {
-        $stringValue = $this->getValue($this->pushPortEnvVarName);
+        $stringValue = self::getValue(self::$pushPortEnvVarName);
         $intValue = \OM\OddsMatrix\SEPC\Connector\Util\ParserUtil::parseInt($stringValue);
 
         if (is_null($intValue)) {
-            $this->crashWrongFormat($this->pushPortEnvVarName, "int");
+            self::crashWrongFormat(self::$pushPortEnvVarName, "int");
         }
 
         return $intValue;
@@ -59,13 +59,13 @@ class EnvVarProvider
     /**
      * @return int
      */
-    public function getPullPort(): int
+    public static function getPullPort(): int
     {
-        $stringValue = $this->getValue($this->pullPortEnvVarName);
+        $stringValue = self::getValue(self::$pullPortEnvVarName);
         $intValue = \OM\OddsMatrix\SEPC\Connector\Util\ParserUtil::parseInt($stringValue);
 
         if (is_null($intValue)) {
-            $this->crashWrongFormat($this->pullPortEnvVarName, "int");
+            self::crashWrongFormat(self::$pullPortEnvVarName, "int");
         }
 
         return $intValue;
@@ -75,7 +75,7 @@ class EnvVarProvider
      * @param string $varName
      * @return string
      */
-    private function getValue(string $varName): string
+    private static function getValue(string $varName): string
     {
         $value = getenv($varName);
         if (is_null($value) || '' == $value) {
@@ -90,7 +90,7 @@ class EnvVarProvider
      * @param string $varName
      * @param string $requiredFormat
      */
-    private function crashWrongFormat(string $varName, string $requiredFormat): void
+    private static function crashWrongFormat(string $varName, string $requiredFormat): void
     {
         echo "$varName is required to be a $requiredFormat\n";
         die;

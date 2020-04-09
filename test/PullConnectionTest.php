@@ -10,8 +10,12 @@ $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSeri
 
 $logger = new StdoutLogger();
 
-$connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials('test'), null, $logger);
-$connection = $connector->connect("http://sept.oddsmatrix.com", 8081);
+$subscriptionSpecificationName = EnvVarProvider::getSubscriptionSpecificationName();
+$pullEndpoint = EnvVarProvider::getPullEndpoint();
+$pullPort = EnvVarProvider::getPullPort();
+
+$connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPullConnector(new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials($subscriptionSpecificationName), $logger);
+$connection = $connector->connect($pullEndpoint, $pullPort);
 
 $requestCount = 0;
 try {
