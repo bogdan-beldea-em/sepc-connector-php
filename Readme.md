@@ -4,7 +4,7 @@ The Sports Engine Publication Component (SEPC) is the component to which clients
 
 We provide a PHP-based connector which knows how to connect to and communicate with the SEPC.
 
-Current version: `0.1.7-dev`
+Current version: `0.1.8-dev`
 
 ## Installation
 
