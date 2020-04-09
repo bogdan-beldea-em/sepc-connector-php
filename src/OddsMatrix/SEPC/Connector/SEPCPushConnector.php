@@ -66,13 +66,11 @@ class SEPCPushConnector
     }
 
     /**
-     * @param string $host
-     * @param int $port
      * @return SEPCPullConnection|null
      * @throws ConnectionException
      * @throws SocketException
      */
-    public function reconnect(string $host, int $port): ?SEPCPushConnection
+    public function reconnect(): ?SEPCPushConnection
     {
         $this->_connection = new SEPCPushConnection(
             $this->_credentials,
