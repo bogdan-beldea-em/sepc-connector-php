@@ -121,7 +121,6 @@ class SEPCPushConnection
      */
     public function reconnect(): void
     {
-        socket_close($this->_socket);
         $this->createSocketConnection($this->_connectionState->getHost(), $this->_connectionState->getPort());
         $this->_bridge = new SEPCPushBridge($this->_socket, $this->_logger);
         $this->_bridge->sendData(
