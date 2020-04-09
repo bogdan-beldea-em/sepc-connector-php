@@ -234,7 +234,12 @@ class PersistableConnection implements SEPCConnectionStateInterface
 
 $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
-const connectionStatePath = "../resources_extra/connection_state.xml";
+
+
+$subscriptionSpecificationName = getenv($subscriptionSpecEnvVarName);
+if (is_null($subscriptionSpecificationName) || false == $subscriptionSpecificationName || '' == $subscriptionSpecificationName) {
+    echo "Please provide the $subscriptionSpecEnvVarName environment variable";
+}
 
 /** @var PersistableConnection $connectionState */
 $connectionState = null;

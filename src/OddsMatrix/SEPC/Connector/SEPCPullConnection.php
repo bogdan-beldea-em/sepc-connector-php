@@ -64,7 +64,7 @@ class SEPCPullConnection
 
         $responseData = gzdecode(file_get_contents($url));
 
-        LogUtil::logD($this->_logger, "Disconnect response: $responseData");
+        LogUtil::logI($this->_logger, "Disconnect response: $responseData");
 
         /** @var SDQLResponse $response */
         $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
@@ -82,11 +82,11 @@ class SEPCPullConnection
         $request = new SDQLGetNextInitialDataRequest($this->_connectionState->getSubscriptionId());
         $url = $this->_connectionState->getHost() . ':' . $this->_connectionState->getPort() . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
 
-        LogUtil::logD($this->_logger, "GET $url");
+        LogUtil::logI($this->_logger, "GET $url");
 
         try {
             $responseData = gzdecode(file_get_contents($url));
-//            LogUtil::logD($this->_logger, "Response data: $responseData");
+            LogUtil::logD($this->_logger, "Response data: $responseData");
 
             /** @var SDQLResponse $response */
             $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
@@ -118,11 +118,11 @@ class SEPCPullConnection
     {
         $request = new SDQLGetNextUpdateDataRequest($this->_connectionState->getSubscriptionId());
         $url = $this->_connectionState->getHost() . ':' . $this->_connectionState->getPort() . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
-        LogUtil::logD($this->_logger, "GET $url");
+        LogUtil::logI($this->_logger, "GET $url");
 
         try {
             $responseData = gzdecode(file_get_contents($url));
-//            LogUtil::logD($this->_logger, "Response data: $responseData");
+            LogUtil::logD($this->_logger, "Response data: $responseData");
 
             return $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
         } catch (\Exception $e) {

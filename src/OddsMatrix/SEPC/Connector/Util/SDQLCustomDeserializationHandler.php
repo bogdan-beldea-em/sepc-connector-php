@@ -64,15 +64,7 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
     {
         $stringValue = (string)$element;
 
-        if (is_null($stringValue)) {
-            return null;
-        }
-
-        if ($stringValue == 'null') {
-            return null;
-        }
-
-        return $stringValue;
+        return ParserUtil::parseString($stringValue);
     }
 
     /**
@@ -86,16 +78,7 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
     {
         $floatAsString = (string)$element;
 
-        if (is_null($floatAsString)) {
-            return null;
-        }
-
-        $result = filter_var($floatAsString, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE);
-        if (!is_null($result) && gettype($result) === 'double') {
-            return $result;
-        } else {
-            return null;
-        }
+        return ParserUtil::parseFloat($floatAsString);
     }
 
     /**
@@ -109,16 +92,7 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
     {
         $intAsString = (string)$element;
 
-        if (is_null($intAsString)) {
-            return null;
-        }
-
-        $result = filter_var($intAsString, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-        if (!is_null($result) && gettype($result) === 'integer') {
-            return $result;
-        } else {
-            return null;
-        }
+        return ParserUtil::parseInt($intAsString);
     }
 
     /**
@@ -132,16 +106,7 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
     {
         $boolAsString = (string)$element;
 
-        if (is_null($boolAsString)) {
-            return null;
-        }
-
-        $result = filter_var($boolAsString, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        if (!is_null($result) && gettype($result) === 'boolean') {
-            return $result;
-        } else {
-            return null;
-        }
+        return ParserUtil::parseBool($boolAsString);
     }
 
     /**
@@ -155,19 +120,6 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
     {
         $dateAsString = (string)$element;
 
-        if (null == $dateAsString) {
-            return null;
-        }
-
-        try {
-            $deserialized = DateTime::createFromFormat('Y-m-d H:i:s.v', $dateAsString);
-            if (is_bool($deserialized)) {
-                return null;
-            } else {
-                return $deserialized;
-            }
-        } catch (Exception $e) {
-            return null;
-        }
+        return ParserUtil::parseDateTime($dateAsString);
     }
 }

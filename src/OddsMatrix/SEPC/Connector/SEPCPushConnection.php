@@ -168,7 +168,7 @@ class SEPCPushConnection
             }
             case !is_null($receivedData->getInitialData()):
             {
-                LogUtil::logD($this->_logger, "Received initial data response with batch_id:{$receivedData->getInitialData()->getBatchId()}" .
+                LogUtil::logI($this->_logger, "Received initial data response with batch_id:{$receivedData->getInitialData()->getBatchId()}" .
                     " batches_left: {$receivedData->getInitialData()->getBatchesLeft()}...");
 
                 $this->_connectionState->setInitialDataDumpComplete(
@@ -186,7 +186,7 @@ class SEPCPushConnection
                     $lastBatch = $batch;
                 }
 
-                LogUtil::logD($this->_logger, "Received update data response last batch_uuid:{$lastBatch->getBatchUuid()}");
+                LogUtil::logI($this->_logger, "Received update data response last batch_uuid:{$lastBatch->getBatchUuid()}");
 
                 $this->_connectionState->setLastBatchUuid($lastBatch->getBatchUuid());
 
@@ -206,12 +206,12 @@ class SEPCPushConnection
                     ->setSubscriptionId($receivedData->getSubscribeResponse()->getSubscriptionId())
                     ->setSubscriptionChecksum($receivedData->getSubscribeResponse()->getSubscriptionChecksum());
 
-                LogUtil::logD($this->_logger, "Received subscribe response with id {$this->_connectionState->getSubscriptionId()}");
+                LogUtil::logI($this->_logger, "Received subscribe response with id {$this->_connectionState->getSubscriptionId()}");
                 break;
             }
             case !is_null($receivedData->getUnsubscribeResponse()):
             {
-                LogUtil::logD($this->_logger, "Received unsubscribe response...");
+                LogUtil::logI($this->_logger, "Received unsubscribe response...");
                 break;
             }
             default:

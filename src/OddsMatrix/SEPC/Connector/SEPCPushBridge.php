@@ -62,7 +62,7 @@ class SEPCPushBridge
     {
         $dataToSend = $this->_serializer->serialize($object, 'xml');
         $dataToSend = preg_replace("/[\n]|[\r]/", "", $dataToSend);
-        LogUtil::logD($this->_logger, "Prepare to send data: $dataToSend");
+        LogUtil::logI($this->_logger, "Prepare to send data: $dataToSend");
 
         $compressedDataToSend = gzencode($dataToSend);
         $compressedDataLength = strlen($compressedDataToSend);
@@ -80,7 +80,7 @@ class SEPCPushBridge
                 throw new SocketException($lastErrorMessage, $lastErrorCode);
             }
 
-            LogUtil::logD($this->_logger, "Sent $sentBytes chunk");
+            LogUtil::logI($this->_logger, "Sent $sentBytes chunk");
             $remainingDataToSend -= $sentBytes;
             $package = substr($package, $sentBytes);
         }
@@ -92,7 +92,7 @@ class SEPCPushBridge
      */
     public function receiveData(): ?SDQLResponse
     {
-        LogUtil::logD($this->_logger, "Waiting for data");
+        LogUtil::logI($this->_logger, "Waiting for data");
         $rawData = socket_read($this->_socket, "1");
 
         if (strlen($rawData) <= 0) {
@@ -105,12 +105,12 @@ class SEPCPushBridge
 
         $contentLengthString = '';
         while (preg_match("/[0-9]/", $rawData)) {
-            LogUtil::logD($this->_logger, "Received content_length info: $rawData");
+            LogUtil::logI($this->_logger, "Received content_length info: $rawData");
             $contentLengthString .= $rawData;
             $rawData = socket_read($this->_socket, "1");
         }
         $contentLength = (int)$contentLengthString;
-        LogUtil::logD($this->_logger, "Actual content length: $contentLength");
+        LogUtil::logI($this->_logger, "Actual content length: $contentLength");
 
         $content = '';
         while (strlen($content) < $contentLength) {
@@ -136,7 +136,7 @@ class SEPCPushBridge
             $this->_socketReadRetries = self::READ_RETRIES;
 
             $content .= $socket_read;
-            LogUtil::logD($this->_logger, "Received chunk of size " . strlen($socket_read));
+            LogUtil::logI($this->_logger, "Received chunk of size " . strlen($socket_read));
         }
 
         $response = gzdecode($content);
