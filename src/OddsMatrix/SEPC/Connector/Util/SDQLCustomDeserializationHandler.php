@@ -37,8 +37,65 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
                 'format' => 'xml',
                 'type' => 'int',
                 'method' => 'deserializeInt',
+            ],
+            [
+                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
+                'format' => 'xml',
+                'type' => 'float',
+                'method' => 'deserializeInt',
+            ],
+            [
+                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
+                'format' => 'xml',
+                'type' => 'string',
+                'method' => 'deserializeString',
             ]
         ];
+    }
+
+    /**
+     * @param XmlDeserializationVisitor $visitor
+     * @param SimpleXMLElement $element
+     * @param array $type
+     * @param Context $context
+     * @return string|null
+     */
+    public function deserializeString(XmlDeserializationVisitor $visitor, SimpleXMLElement $element, array $type, Context $context)
+    {
+        $stringValue = (string)$element;
+
+        if (is_null($stringValue)) {
+            return null;
+        }
+
+        if ($stringValue == 'null') {
+            return null;
+        }
+
+        return $stringValue;
+    }
+
+    /**
+     * @param XmlDeserializationVisitor $visitor
+     * @param SimpleXMLElement $element
+     * @param array $type
+     * @param Context $context
+     * @return mixed|null
+     */
+    public function deserializeFloat(XmlDeserializationVisitor $visitor, SimpleXMLElement $element, array $type, Context $context)
+    {
+        $floatAsString = (string)$element;
+
+        if (is_null($floatAsString)) {
+            return null;
+        }
+
+        $result = filter_var($floatAsString, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE);
+        if (!is_null($result) && gettype($result) === 'double') {
+            return $result;
+        } else {
+            return null;
+        }
     }
 
     /**
