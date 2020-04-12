@@ -41,7 +41,7 @@ interface SEPCConnectionStateInterface
     /**
      * @return int
      */
-    public function getPort(): int;
+    public function getPort(): ?int;
 
     /**
      * @param string $host
@@ -52,7 +52,7 @@ interface SEPCConnectionStateInterface
     /**
      * @return string
      */
-    public function getHost(): string;
+    public function getHost(): ?string;
 
     /**
      * @return bool|null
