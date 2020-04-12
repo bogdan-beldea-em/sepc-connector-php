@@ -42,6 +42,11 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     private $_lastBatchUuid;
 
     /**
+     * @var bool
+     */
+    private $_resumable;
+
+    /**
      * @return string
      */
     public function getSubscriptionId(): string
@@ -162,6 +167,24 @@ class SEPCBasicConnectionState implements SEPCConnectionStateInterface
     public function setLastBatchUuid(string $lastBatchUuid): SEPCBasicConnectionState
     {
         $this->_lastBatchUuid = $lastBatchUuid;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isResumable(): bool
+    {
+        return $this->_resumable;
+    }
+
+    /**
+     * @param bool $resumable
+     * @return SEPCBasicConnectionState
+     */
+    public function setResumable(bool $resumable): SEPCBasicConnectionState
+    {
+        $this->_resumable = $resumable;
         return $this;
     }
 }

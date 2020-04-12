@@ -174,6 +174,8 @@ class SEPCPushConnection
                     $receivedData->getInitialData()->isDumpComplete()
                 );
 
+                $this->_connectionState->setResumable(false);
+
                 $returnData = $receivedData;
                 break;
             }
@@ -184,6 +186,8 @@ class SEPCPushConnection
                 foreach ($receivedData->getDataUpdates() as $batch) {
                     $lastBatch = $batch;
                 }
+
+                $this->_connectionState->setResumable(true);
 
                 LogUtil::logI($this->_logger, "Received update data response last batch_uuid:{$lastBatch->getBatchUuid()}");
 
@@ -196,12 +200,17 @@ class SEPCPushConnection
             {
                 // TODO Return object with error or throw?
 
+                if (400 === $receivedData->getError()->getCode()) {
+                    $this->_connectionState->setResumable(false);
+                }
+
                 LogUtil::logW($this->_logger, "Received error with code {$receivedData->getError()->getCode()}: {$receivedData->getError()->getMessage()}");
                 break;
             }
             case !is_null($receivedData->getSubscribeResponse()):
             {
                 $this->_connectionState
+                    ->setResumable(false)
                     ->setSubscriptionId($receivedData->getSubscribeResponse()->getSubscriptionId())
                     ->setSubscriptionChecksum($receivedData->getSubscribeResponse()->getSubscriptionChecksum());
 

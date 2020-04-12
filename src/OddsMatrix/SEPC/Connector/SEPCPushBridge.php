@@ -34,7 +34,15 @@ class SEPCPushBridge
      */
     private $_logger;
 
+    /**
+     * @var int
+     */
     private $_socketReadRetries = self::READ_RETRIES;
+
+    /**
+     * @var float
+     */
+    private $_lastByteReceivedTimestamp = 0;
 
     /**
      * SEPCPushBridge constructor.
@@ -45,6 +53,7 @@ class SEPCPushBridge
     {
         $this->_logger = $logger;
         $this->_socket = $_socket;
+        $this->_lastByteReceivedTimestamp = microtime(true);
 
         try {
             $this->_serializer = SDQLSerializerProvider::getSerializer();

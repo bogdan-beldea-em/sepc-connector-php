@@ -86,6 +86,15 @@ class PersistableConnection implements SEPCConnectionStateInterface
     private $_subscriptionChecksum;
 
     /**
+     * @var bool
+     *
+     * @Serializer\Type("bool")
+     * @Serializer\SerializedName("resumable)
+     * @Serializer\XmlAttribute()
+     */
+    private $_resumable = false;
+
+    /**
      * @return string
      */
     public function getSubscriptionId(): string
@@ -230,6 +239,23 @@ class PersistableConnection implements SEPCConnectionStateInterface
 
     }
 
+    /**
+     * @return bool
+     */
+    public function isResumable(): bool
+    {
+        return $this->_resumable;
+    }
+
+    /**
+     * @param bool $resumable
+     * @return PersistableConnection
+     */
+    public function setResumable(bool $resumable): PersistableConnection
+    {
+        $this->_resumable = $resumable;
+        return $this;
+    }
 }
 
 $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
