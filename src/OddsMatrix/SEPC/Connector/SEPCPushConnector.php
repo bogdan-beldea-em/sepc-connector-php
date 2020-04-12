@@ -92,14 +92,22 @@ class SEPCPushConnector
      */
     public function autoconnect(string $host = null, int $port = null): ?SEPCPushConnection
     {
-        if (is_null($this->_state->getHost()) || is_null($host)) {
-            LogUtil::logE($this->_logger, "Connection host must be part of the connection state or passed as a parameter to autoconnect.");
-            throw new ConnectionException("HOST cannot be null");
+        if (is_null($this->_state->getHost())) {
+            if (is_null($host)) {
+                LogUtil::logE($this->_logger, "Connection host must be part of the connection state or passed as a parameter to autoconnect.");
+                throw new ConnectionException("HOST cannot be null");
+            } else {
+                $this->_state->setHost($host);
+            }
         }
 
-        if (is_null($this->_state->getPort()) || is_null($port)) {
-            LogUtil::logE($this->_logger, "Connection port must be part of the connection state or passed as a parameter to autoconnect.");
-            throw new ConnectionException("PORT cannot be null");
+        if (is_null($this->_state->getPort())) {
+            if (is_null($port)) {
+                LogUtil::logE($this->_logger, "Connection port must be part of the connection state or passed as a parameter to autoconnect.");
+                throw new ConnectionException("PORT cannot be null");
+            } else {
+                $this->_state->setPort($port);
+            }
         }
 
         if ($this->_state->isResumable()) {

@@ -5,6 +5,7 @@ namespace OM\OddsMatrix\SEPC\Connector;
 
 
 use OM\OddsMatrix\SEPC\Connector\Exception\ConnectionException;
+use OM\OddsMatrix\SEPC\Connector\Exception\SEPCException;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLGetNextInitialDataRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLGetNextUpdateDataRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLRequest;
@@ -139,6 +140,7 @@ class SEPCPushConnection
      * @return SDQLResponse|null
      * @throws ConnectionException
      * @throws Exception\SocketException
+     * @throws SEPCException
      */
     public function getNextData(): ?SDQLResponse
     {
@@ -205,7 +207,8 @@ class SEPCPushConnection
                 }
 
                 LogUtil::logW($this->_logger, "Received error with code {$receivedData->getError()->getCode()}: {$receivedData->getError()->getMessage()}");
-                break;
+
+                throw new SEPCException($receivedData->getError()->getMessage(), $receivedData->getError()->getCode());
             }
             case !is_null($receivedData->getSubscribeResponse()):
             {

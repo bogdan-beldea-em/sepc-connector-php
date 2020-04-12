@@ -75,6 +75,55 @@ $connector->connect("sept.oddsmatrix.com", 7000);
 $response = $connector->getNextData();
 ```
 
+### Preserved state PUSH
+#### 1. Create the `SEPCCredentials`
+Refer to the common section.
+
+#### 2. Retrieve the persisted state file
+We will use the same `SDQLSerializer` for serializing and deserializing the persisted state.
+```
+$stateFilePath = ...;
+$serializer = SDQLSerializerProvider::getSerializer();
+$state = null;
+
+try {
+    $stateFileContent = file_get_contents($stateFilePath);
+    if (false !== $stateFileContent) {
+        $state = $serializer->deserialize($stateFileContent, PersistableConnectionState::class, 'xml');
+    }
+} catch (\Exception $e) {
+    ...
+}
+```
+
+In case there is no state to be read, we will create a new empty state.
+```
+if (is_null($state)) {
+    $state = new PersistableConnectionState();
+}
+```
+
+#### 3. Create the connector
+```
+$connector = new SEPCPushConnector(
+            $credentials,
+            $this->_logger,
+            $state
+        );
+```
+#### 4. Connect
+```
+$connector->autoconnect("sept.oddsmatrix.com", 7000);
+```
+#### 5. Poll the connector for data
+```
+/** @var SDQLResponse|null $response */
+$response = $connector->getNextData();
+```
+#### 6. Persist the updated state after every poll
+```
+file_put_contents($stateFilePath, $serializer->serialize($connector->getConnectionState(), 'xml'));
+```
 ### PULL
 #### 1. Create `SEPCCredentials`
 Refer to the common section.
@@ -428,4 +477,19 @@ It is important to also invalidate the persisted connection state when unsubscri
 Logging can be enabled by passing the optional second parameter in any 
 SEPC Connector constructor.
 The second parameter must implement the `Psr\Log\LoggerInterface`.
-Passing `null` as a second parameter is valid. 
+Passing `null` as a second parameter is valid.
+#### Keeping processes alive with `supervisor`
+```
+[program:push]
+directory=$HOME/sepc-connector-test
+command=$HOME/sepc-connector-test/bin/console sepc:push -vv --state-file-path=$HOME/state.xml
+autostart=true
+startsecs=60
+startretries=5
+autorestart=true
+stopsignal=KILL
+stdout_logfile=$HOME/push_stdout.log
+stderr_logfile=$HOME/push_stderr.log
+stdout_logfile_maxbybytes=10GB
+stderr_logfile_maxbytes=10GB
+```
