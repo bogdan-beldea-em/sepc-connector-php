@@ -104,6 +104,7 @@ if (is_null($state)) {
 ```
 
 #### 3. Create the connector
+For socket connections use port 7000.
 ```
 $connector = new SEPCPushConnector(
             $credentials,
@@ -123,6 +124,26 @@ $response = $connector->getNextData();
 #### 6. Persist the updated state after every poll
 ```
 file_put_contents($stateFilePath, $serializer->serialize($connector->getConnectionState(), 'xml'));
+```
+#### (Optional) Keeping the process alive with `supervisor`
+It is important to set the supervisor directory argument first. (which sets the CWD)
+Here is an example supervisor config for a Symfony application.
+Supervisor configuration files should reside in `/etc/supervisor.d/` and should have a
+`.ini` extension.
+Note that `stderr` and `stdout` forwarding make sense only if the logging interface prints to console.
+```
+[program:push-persisted-state]
+directory=$HOME/sepc-connector-test
+command=$HOME/sepc-connector-test/bin/console sepc:push -vv --state-file-path=$HOME/state.xml
+autostart=true
+startsecs=60
+startretries=5
+autorestart=true
+stopsignal=KILL
+stdout_logfile=$HOME/push_stdout.log
+stderr_logfile=$HOME/push_stderr.log
+stdout_logfile_maxbytes=1GB
+stderr_logfile_maxbytes=1GB
 ```
 ### PULL
 #### 1. Create `SEPCCredentials`
@@ -478,18 +499,3 @@ Logging can be enabled by passing the optional second parameter in any
 SEPC Connector constructor.
 The second parameter must implement the `Psr\Log\LoggerInterface`.
 Passing `null` as a second parameter is valid.
-#### Keeping processes alive with `supervisor`
-```
-[program:push]
-directory=$HOME/sepc-connector-test
-command=$HOME/sepc-connector-test/bin/console sepc:push -vv --state-file-path=$HOME/state.xml
-autostart=true
-startsecs=60
-startretries=5
-autorestart=true
-stopsignal=KILL
-stdout_logfile=$HOME/push_stdout.log
-stderr_logfile=$HOME/push_stderr.log
-stdout_logfile_maxbybytes=10GB
-stderr_logfile_maxbytes=10GB
-```

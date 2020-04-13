@@ -92,22 +92,22 @@ class SEPCPushConnector
      */
     public function autoconnect(string $host = null, int $port = null): ?SEPCPushConnection
     {
+        if (!is_null($host)) {
+            $this->_state->setHost($host);
+        }
+
+        if (!is_null($port)) {
+            $this->_state->setPort($port);
+        }
+
         if (is_null($this->_state->getHost())) {
-            if (is_null($host)) {
-                LogUtil::logE($this->_logger, "Connection host must be part of the connection state or passed as a parameter to autoconnect.");
-                throw new ConnectionException("HOST cannot be null");
-            } else {
-                $this->_state->setHost($host);
-            }
+            LogUtil::logE($this->_logger, "Connection host must be part of the connection state or passed as a parameter to autoconnect().");
+            throw new ConnectionException("HOST cannot be null");
         }
 
         if (is_null($this->_state->getPort())) {
-            if (is_null($port)) {
-                LogUtil::logE($this->_logger, "Connection port must be part of the connection state or passed as a parameter to autoconnect.");
-                throw new ConnectionException("PORT cannot be null");
-            } else {
-                $this->_state->setPort($port);
-            }
+            LogUtil::logE($this->_logger, "Connection port must be part of the connection state or passed as a parameter to autoconnect().");
+            throw new ConnectionException("PORT cannot be null");
         }
 
         if ($this->_state->isResumable()) {
@@ -120,6 +120,7 @@ class SEPCPushConnector
     /**
      * @return SDQLResponse|null
      * @throws ConnectionException
+     * @throws Exception\SEPCException
      * @throws SocketException
      */
     public function getNextData(): ?SDQLResponse
@@ -130,14 +131,7 @@ class SEPCPushConnector
             LogUtil::logI($this->_logger, "$e\n Reconnecting...");
             try {
                 sleep(5);
-                if ($this->_connection->isInitialDataDumpComplete()) {
-                    $this->_connection->reconnect();
-                } else {
-                    $this->_connection->connect(
-                        $this->_connection->getConnectionState()->getHost(),
-                        $this->_connection->getConnectionState()->getPort()
-                    );
-                }
+                $this->autoconnect();
             } catch (SocketException|ConnectionException $e) {
                 LogUtil::logC($this->_logger, "Error trying to reconnect: $e");
                 throw $e;
