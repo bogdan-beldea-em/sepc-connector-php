@@ -113,7 +113,7 @@ class SEPCPushConnector
         if ($this->_state->isResumable()) {
             return $this->reconnect();
         } else {
-            return $this->connect($host, $port);
+            return $this->connect($this->_state->getHost(), $this->_state->getPort());
         }
     }
 
