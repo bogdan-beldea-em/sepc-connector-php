@@ -4,7 +4,7 @@ The Sports Engine Publication Component (SEPC) is the component to which clients
 
 We provide a PHP-based connector which knows how to connect to and communicate with the SEPC.
 
-Current version: `0.1.8-dev`
+Current version: `0.1.11-dev`
 
 ## Installation
 
@@ -134,14 +134,14 @@ Note that `stderr` and `stdout` forwarding make sense only if the logging interf
 ```
 [program:push-persisted-state]
 directory=$HOME/sepc-connector-test
-command=$HOME/sepc-connector-test/bin/console sepc:push -vv --state-file-path=$HOME/state.xml
+command=$HOME/sepc-connector-test/bin/console sepc:push -vv --state-file-path=$HOME/sepc-state.xml
 autostart=true
 startsecs=60
 startretries=5
 autorestart=true
 stopsignal=KILL
-stdout_logfile=$HOME/push_stdout.log
-stderr_logfile=$HOME/push_stderr.log
+stdout_logfile=/var/log/sepc/push_stdout.log
+stderr_logfile=/var/log/sepc/push_stderr.log
 stdout_logfile_maxbytes=1GB
 stderr_logfile_maxbytes=1GB
 ```
@@ -267,6 +267,15 @@ class PersistableConnectionState implements SEPCConnectionStateInterface
      * @Serializer\XmlAttribute()
      */
     private $_subscriptionChecksum;
+
+    /**
+     * @var bool
+     *
+     * @Serializer\Type("bool")
+     * @Serializer\SerializedName("resumable")
+     * @Serializer\XmlAttribute()
+     */
+    private $_resumable = false;
 
     /**
      * @return string
@@ -409,6 +418,24 @@ class PersistableConnectionState implements SEPCConnectionStateInterface
     public function setSubscriptionChecksum(?string $subscriptionChecksum): PersistableConnectionState
     {
         $this->_subscriptionChecksum = $subscriptionChecksum;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isResumable(): bool
+    {
+        return $this->_resumable;
+    }
+
+    /**
+     * @param bool $resumable
+     * @return PersistableConnection
+     */
+    public function setResumable(bool $resumable): PersistableConnection
+    {
+        $this->_resumable = $resumable;
         return $this;
     }
 }

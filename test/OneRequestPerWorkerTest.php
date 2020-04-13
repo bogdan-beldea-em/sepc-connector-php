@@ -89,7 +89,7 @@ class PersistableConnection implements SEPCConnectionStateInterface
      * @var bool
      *
      * @Serializer\Type("bool")
-     * @Serializer\SerializedName("resumable)
+     * @Serializer\SerializedName("resumable")
      * @Serializer\XmlAttribute()
      */
     private $_resumable = false;
