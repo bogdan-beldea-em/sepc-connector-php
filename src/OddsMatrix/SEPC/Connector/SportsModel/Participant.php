@@ -79,6 +79,15 @@ class Participant
     private $_shortName;
 
     /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isBanned")
+    * @Serializer\XmlAttribute()
+    */
+    private $_isBanned;
+
+    /**
     * @var string|null
     *
     * @Serializer\Type("string")
@@ -95,6 +104,33 @@ class Participant
     * @Serializer\XmlAttribute()
     */
     private $_birthTime;
+    
+    /**
+    * @var \DateTime|null
+    *
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+    * @Serializer\SerializedName("retirementTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_retirementTime;
+
+    /**
+    * @var \DateTime|null
+    *
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+    * @Serializer\SerializedName("lastEventParticipationTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_lastEventParticipationTime;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
 
     /**
      * @return int|null
@@ -168,4 +204,35 @@ class Participant
         return $this->_birthTime;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function isBanned(): ?bool
+    {
+        return $this->_isBanned;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getRetirementTime(): ?\DateTime
+    {
+        return $this->_retirementTime;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastEventParticipationTime(): ?\DateTime
+    {
+        return $this->_lastEventParticipationTime;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

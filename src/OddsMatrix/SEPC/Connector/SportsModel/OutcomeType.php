@@ -127,6 +127,15 @@ class OutcomeType
     * @var bool|null
     *
     * @Serializer\Type("bool")
+    * @Serializer\SerializedName("paramParticipant2MustHaveRole")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipant2MustHaveRole;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamParticipantId3")
     * @Serializer\XmlAttribute()
     */
@@ -154,6 +163,15 @@ class OutcomeType
     * @var bool|null
     *
     * @Serializer\Type("bool")
+    * @Serializer\SerializedName("paramParticipant3MustHaveRole")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipant3MustHaveRole;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
     * @Serializer\SerializedName("hasParamEventPartId1")
     * @Serializer\XmlAttribute()
     */
@@ -176,6 +194,15 @@ class OutcomeType
     * @Serializer\XmlAttribute()
     */
     private $_paramParticipantId1Description;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("paramParticipant1MustHaveRole")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipant1MustHaveRole;
 
     /**
     * @var string|null
@@ -474,4 +501,27 @@ class OutcomeType
         return $this->_paramEventPartId1Description;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function isParamParticipant1MustHaveRole(): ?bool
+    {
+        return $this->_paramParticipant1MustHaveRole;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isParamParticipant2MustHaveRole(): ?bool
+    {
+        return $this->_paramParticipant2MustHaveRole;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isParamParticipant3MustHaveRole(): ?bool
+    {
+        return $this->_paramParticipant3MustHaveRole;
+    }
 }

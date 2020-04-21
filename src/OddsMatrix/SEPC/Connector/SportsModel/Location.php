@@ -43,6 +43,24 @@ class Location
     private $_isHistoric;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("url")
+    * @Serializer\XmlAttribute()
+    */
+    private $_url;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
+
+    /**
      * @return int|null
      */
     public function getTypeId(): ?int
@@ -66,4 +84,19 @@ class Location
         return $this->_isHistoric;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getUrl(): ?string
+    {
+        return $this->_url;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

@@ -142,6 +142,15 @@ class EventInfo
     private $_paramBoolean1;
 
     /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("sourceId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_sourceId;
+
+    /**
      * @return float|null
      */
     public function getParamFloat1(): ?float
@@ -253,4 +262,11 @@ class EventInfo
         return $this->_paramBoolean1;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getSourceId(): ?int
+    {
+        return $this->_sourceId;
+    }
 }

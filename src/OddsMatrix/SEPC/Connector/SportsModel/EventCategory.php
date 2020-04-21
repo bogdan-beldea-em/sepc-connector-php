@@ -25,6 +25,15 @@ class EventCategory
     private $_sportId;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
+
+    /**
      * @return int|null
      */
     public function getSportId(): ?int
@@ -32,4 +41,11 @@ class EventCategory
         return $this->_sportId;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

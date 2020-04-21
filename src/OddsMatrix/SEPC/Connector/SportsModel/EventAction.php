@@ -55,6 +55,15 @@ class EventAction
     * @var int|null
     *
     * @Serializer\Type("int")
+    * @Serializer\SerializedName("sourceId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_sourceId;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
     * @Serializer\SerializedName("eventPartId")
     * @Serializer\XmlAttribute()
     */
@@ -68,6 +77,24 @@ class EventAction
     * @Serializer\XmlAttribute()
     */
     private $_paramFloat1;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("paramParticipantId1")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipantId1;
+
+    /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("paramParticipantId2")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipantId2;
 
     /**
      * @return int|null
@@ -117,4 +144,27 @@ class EventAction
         return $this->_paramFloat1;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getParamParticipantId1(): ?int
+    {
+        return $this->_paramParticipantId1;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getParamParticipantId2(): ?int
+    {
+        return $this->_paramParticipantId2;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSourceId(): ?int
+    {
+        return $this->_sourceId;
+    }
 }

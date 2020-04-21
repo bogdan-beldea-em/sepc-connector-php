@@ -25,6 +25,15 @@ class StreamingProvider
     private $_urlTemplate;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
+
+    /**
      * @return string|null
      */
     public function getUrlTemplate(): ?string
@@ -32,4 +41,11 @@ class StreamingProvider
         return $this->_urlTemplate;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

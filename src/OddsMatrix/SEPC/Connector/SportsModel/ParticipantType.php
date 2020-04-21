@@ -59,6 +59,42 @@ class ParticipantType
     * @Serializer\XmlAttribute()
     */
     private $_hasShortName;
+    
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasIsMale")
+    * @Serializer\XmlAttribute()
+    */
+    private $_hasIsMale;
+    
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasBirthTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_hasBirthTime;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasCountry")
+    * @Serializer\XmlAttribute()
+    */
+    private $_hasCountry;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasRetirementTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_hasRetirementTime;
 
     /**
      * @return bool|null
@@ -100,4 +136,35 @@ class ParticipantType
         return $this->_hasShortName;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function isHasIsMale(): ?bool
+    {
+        return $this->_hasIsMale;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isHasBirthTime(): ?bool
+    {
+        return $this->_hasBirthTime;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isHasCountry(): ?bool
+    {
+        return $this->_hasCountry;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isHasRetirementTime(): ?bool
+    {
+        return $this->_hasRetirementTime;
+    }
 }

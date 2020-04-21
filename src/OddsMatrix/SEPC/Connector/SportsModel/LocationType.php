@@ -25,6 +25,15 @@ class LocationType
     private $_hasCode;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("codeDescription")
+    * @Serializer\XmlAttribute()
+    */
+    private $_codeDescription;
+
+    /**
      * @return bool|null
      */
     public function isHasCode(): ?bool
@@ -32,4 +41,11 @@ class LocationType
         return $this->_hasCode;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getCodeDescription(): ?string
+    {
+        return $this->_codeDescription;
+    }
 }

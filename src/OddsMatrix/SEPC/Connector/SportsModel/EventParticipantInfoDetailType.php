@@ -43,6 +43,15 @@ class EventParticipantInfoDetailType
     private $_hasParamParticipantId1;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramParticipantId1Description")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramParticipantId1Description;
+
+    /**
     * @var bool|null
     *
     * @Serializer\Type("bool")
@@ -151,4 +160,11 @@ class EventParticipantInfoDetailType
         return $this->_paramBoolean1Description;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getParamParticipantId1Description(): ?string
+    {
+        return $this->_paramParticipantId1Description;
+    }
 }

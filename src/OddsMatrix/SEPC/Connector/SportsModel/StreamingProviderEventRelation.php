@@ -52,6 +52,15 @@ class StreamingProviderEventRelation
     private $_language;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
+
+    /**
      * @return int|null
      */
     public function getStreamingProviderId(): ?int
@@ -83,4 +92,11 @@ class StreamingProviderEventRelation
         return $this->_language;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

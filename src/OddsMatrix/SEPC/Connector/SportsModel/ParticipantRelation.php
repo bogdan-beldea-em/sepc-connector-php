@@ -61,6 +61,15 @@ class ParticipantRelation
     private $_startTime;
 
     /**
+    * @var \DateTime|null
+    *
+    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
+    * @Serializer\SerializedName("endTime")
+    * @Serializer\XmlAttribute()
+    */
+    private $_endTime;
+
+    /**
      * @return int|null
      */
     public function getTypeId(): ?int
@@ -100,4 +109,11 @@ class ParticipantRelation
         return $this->_startTime;
     }
 
+    /**
+     * @return \DateTime|null
+     */
+    public function getEndTime(): ?\DateTime
+    {
+        return $this->_endTime;
+    }
 }

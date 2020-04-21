@@ -158,6 +158,15 @@ class Event
     * @Serializer\XmlAttribute()
     */
     private $_url;
+    
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
 
     /**
     * @var int|null
@@ -304,4 +313,11 @@ class Event
         return $this->_popularity;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

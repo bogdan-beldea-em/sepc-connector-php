@@ -70,6 +70,42 @@ class EventTemplate
     private $_url;
 
     /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("parentId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_parentId;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("hasMatches")
+    * @Serializer\XmlAttribute()
+    */
+    private $_hasMatches;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
+    * @Serializer\SerializedName("isBanned")
+    * @Serializer\XmlAttribute()
+    */
+    private $_isBanned;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
+
+    /**
      * @return int|null
      */
     public function getEventTypeId(): ?int
@@ -117,4 +153,35 @@ class EventTemplate
         return $this->_url;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getParentId(): ?int
+    {
+        return $this->_parentId;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isHasMatches(): ?bool
+    {
+        return $this->_hasMatches;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isBanned(): ?bool
+    {
+        return $this->_isBanned;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

@@ -70,6 +70,15 @@ class EventParticipantInfoDetail
     private $_paramParticipantId1;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramString1")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramString1;
+
+    /**
      * @return int|null
      */
     public function getTypeId(): ?int
@@ -117,4 +126,11 @@ class EventParticipantInfoDetail
         return $this->_paramParticipantId1;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getParamString1(): ?string
+    {
+        return $this->_paramString1;
+    }
 }

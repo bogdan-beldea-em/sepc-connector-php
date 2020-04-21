@@ -52,6 +52,15 @@ class ProviderEntityMapping
     private $_entityTypeId;
 
     /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("providerEntityName")
+    * @Serializer\XmlAttribute()
+    */
+    private $_providerEntityName;
+
+    /**
     * @var int|null
     *
     * @Serializer\Type("int")
@@ -100,4 +109,11 @@ class ProviderEntityMapping
         return $this->_entityId;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getProviderEntityName(): ?string
+    {
+        return $this->_providerEntityName;
+    }
 }

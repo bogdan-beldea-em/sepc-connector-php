@@ -154,6 +154,15 @@ class EventInfoType
     * @var string|null
     *
     * @Serializer\Type("string")
+    * @Serializer\SerializedName("paramScoringUnitId1Description")
+    * @Serializer\XmlAttribute()
+    */
+    private $_paramScoringUnitId1Description;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
     * @Serializer\SerializedName("paramString1Description")
     * @Serializer\XmlAttribute()
     */
@@ -372,4 +381,11 @@ class EventInfoType
         return $this->_paramTime1Description;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getParamScoringUnitId1Description(): ?string
+    {
+        return $this->_paramScoringUnitId1Description;
+    }
 }

@@ -64,6 +64,15 @@ class Provider
     * @var bool|null
     *
     * @Serializer\Type("bool")
+    * @Serializer\SerializedName("includeBettingVACs")
+    * @Serializer\XmlAttribute()
+    */
+    private $_includeBettingVACs;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
     * @Serializer\SerializedName("isLiveOddsApproved")
     * @Serializer\XmlAttribute()
     */
@@ -82,10 +91,28 @@ class Provider
     * @var bool|null
     *
     * @Serializer\Type("bool")
+    * @Serializer\SerializedName("requiresSettlement")
+    * @Serializer\XmlAttribute()
+    */
+    private $_requiresSettlement;
+
+    /**
+    * @var bool|null
+    *
+    * @Serializer\Type("bool")
     * @Serializer\SerializedName("isEnabled")
     * @Serializer\XmlAttribute()
     */
     private $_isEnabled;
+
+    /**
+    * @var string|null
+    *
+    * @Serializer\Type("string")
+    * @Serializer\SerializedName("note")
+    * @Serializer\XmlAttribute()
+    */
+    private $_note;
 
     /**
      * @return int|null
@@ -151,4 +178,27 @@ class Provider
         return $this->_isEnabled;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function isIncludeBettingVACs(): ?bool
+    {
+        return $this->_includeBettingVACs;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isRequiresSettlement(): ?bool
+    {
+        return $this->_requiresSettlement;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->_note;
+    }
 }

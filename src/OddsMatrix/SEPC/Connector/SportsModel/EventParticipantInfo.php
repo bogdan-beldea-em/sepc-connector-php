@@ -70,6 +70,15 @@ class EventParticipantInfo
     private $_participantId;
 
     /**
+    * @var int|null
+    *
+    * @Serializer\Type("int")
+    * @Serializer\SerializedName("sourceId")
+    * @Serializer\XmlAttribute()
+    */
+    private $_sourceId;
+
+    /**
      * @return int|null
      */
     public function getTypeId(): ?int
@@ -117,4 +126,11 @@ class EventParticipantInfo
         return $this->_participantId;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getSourceId(): ?int
+    {
+        return $this->_sourceId;
+    }
 }
