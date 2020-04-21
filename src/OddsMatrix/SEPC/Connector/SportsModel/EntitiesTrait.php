@@ -4,6 +4,8 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait EntitiesTrait
 {
     /**
@@ -341,6 +343,14 @@ trait EntitiesTrait
      * @Serializer\XmlList(inline=true, entry="BettingTypeUsage")
      */
     private $_bettingTypeUsages;
+
+    /**
+     * @var ProviderOutcomeRelation[]|null
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ProviderOutcomeRelation>")
+     * @Serializer\XmlList(inline=true, entry="ProviderOutcomeRelation")
+     */
+    private $_providerOutcomeRelations;
 
     /**
      * @var EventInfoStatus[]|null
@@ -932,5 +942,13 @@ trait EntitiesTrait
     public function getEventParticipantInfoDetailTypes(): ?array
     {
         return $this->_eventParticipantInfoDetailTypes;
+    }
+
+    /**
+     * @return ProviderOutcomeRelation[]|null
+     */
+    public function getProviderOutcomeRelations(): ?array
+    {
+        return $this->_providerOutcomeRelations;
     }
 }
