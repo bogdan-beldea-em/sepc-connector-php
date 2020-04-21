@@ -23,7 +23,7 @@ class LogUtil
      * @param LoggerInterface|null $logger
      * @param string $message
      */
-    public static function logW(LoggerInterface $logger, string $message): void
+    public static function logW(?LoggerInterface $logger, string $message): void
     {
         if (!is_null($logger) && !is_null($message)) {
             $logger->warning($message);
@@ -34,7 +34,7 @@ class LogUtil
      * @param LoggerInterface|null $logger
      * @param string $message
      */
-    public static function logI(LoggerInterface $logger, string $message): void
+    public static function logI(?LoggerInterface $logger, string $message): void
     {
         if (!is_null($logger) && !is_null($message)) {
             $logger->info($message);
@@ -45,7 +45,7 @@ class LogUtil
      * @param LoggerInterface|null $logger
      * @param string $message
      */
-    public static function logE(LoggerInterface $logger, string $message): void
+    public static function logE(?LoggerInterface $logger, string $message): void
     {
         if (!is_null($logger) && !is_null($message)) {
             $logger->error($message);
@@ -56,7 +56,7 @@ class LogUtil
      * @param LoggerInterface|null $logger
      * @param string $message
      */
-    public static function logC(LoggerInterface $logger, string $message): void
+    public static function logC(?LoggerInterface $logger, string $message): void
     {
         if (!is_null($logger) && !is_null($message)) {
             $logger->critical($message);
