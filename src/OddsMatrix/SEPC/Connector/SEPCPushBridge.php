@@ -62,7 +62,6 @@ class SEPCPushBridge
         }
     }
 
-
     /**
      * @param SDQLRequest $object
      * @throws SocketException
@@ -98,35 +97,37 @@ class SEPCPushBridge
     /**
      * @return SDQLResponse|null
      * @throws ConnectionException
+     * @throws SocketException
      */
     public function receiveData(): ?SDQLResponse
     {
         LogUtil::logI($this->_logger, "Waiting for data");
         $rawData = socket_read($this->_socket, "1");
+        $this->assertSocketData($rawData);
 
         if (strlen($rawData) <= 0) {
             return null;
         }
 
         while (!preg_match("/[0-9]/", $rawData)) {
-            $rawData = socket_read($this->_socket, "1");
+            $rawData = $this->socketRead($this->_socket, 1);
+            $this->assertSocketData($rawData);
         }
 
         $contentLengthString = '';
         while (preg_match("/[0-9]/", $rawData)) {
             LogUtil::logI($this->_logger, "Received content_length info: $rawData");
             $contentLengthString .= $rawData;
-            $rawData = socket_read($this->_socket, "1");
+            $rawData = $this->socketRead($this->_socket, 1);
+            $this->assertSocketData($rawData);
         }
         $contentLength = (int)$contentLengthString;
         LogUtil::logI($this->_logger, "Actual content length: $contentLength");
 
         $content = '';
         while (strlen($content) < $contentLength) {
-            $socket_read = socket_read($this->_socket, $contentLength);
-            if (false === $socket_read) {
-                throw new ConnectionException();
-            }
+            $socket_read = $this->socketRead($this->_socket, $contentLength);
+            $this->assertSocketData($socket_read);
 
             if (0 === $socket_read || strlen($socket_read) < 1) {
                 $this->_socketReadRetries--;
@@ -156,5 +157,43 @@ class SEPCPushBridge
             LogUtil::logW($this->_logger, "Failed to parse XML data: $response");
             return null;
         }
+    }
+
+    /**
+     * @param $rawData
+     * @throws SocketException
+     */
+    private function assertSocketData($rawData): void
+    {
+        if (false === $rawData) {
+            $errorCode = socket_last_error($this->_socket);
+            $errorMessage = socket_strerror($errorCode);
+
+            $socketException = new SocketException($errorMessage, $errorCode);
+            $this->_logger->error("[SEPCPushBridge] $socketException");
+
+            throw $socketException;
+        }
+    }
+
+    /**
+     * @param resource $socket
+     * @param int $length
+     * @return false|string
+     */
+    private function socketRead($socket, int $length) {
+        $data = socket_read($socket, $length);
+
+        if (false !== $data) {
+            $rawSocketFilePath = getenv("RAW_SOCKET_OUTPUT_FILE");
+            if (strlen($rawSocketFilePath) > 0) {
+                $handle = fopen($rawSocketFilePath, "a");
+                fwrite($handle, $data);
+                fflush($handle);
+                fclose($handle);
+            }
+        }
+
+        return $data;
     }
 }
