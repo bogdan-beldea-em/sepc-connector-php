@@ -102,7 +102,7 @@ class SEPCPushBridge
     public function receiveData(): ?SDQLResponse
     {
         LogUtil::logI($this->_logger, "Waiting for data");
-        $rawData = socket_read($this->_socket, "1");
+        $rawData = $this->socketRead($this->_socket, 1);
         $this->assertSocketData($rawData);
 
         if (strlen($rawData) <= 0) {
@@ -188,6 +188,8 @@ class SEPCPushBridge
             $rawSocketFilePath = getenv("RAW_SOCKET_OUTPUT_FILE");
             if (strlen($rawSocketFilePath) > 0) {
                 $handle = fopen($rawSocketFilePath, "a");
+                $position = ftell($handle);
+                $this->_logger->info("[RAW SOCKET OUTPUT FILE SEEK POSITION] $position");
                 fwrite($handle, $data);
                 fflush($handle);
                 fclose($handle);
