@@ -188,10 +188,10 @@ class SEPCPushBridge
             $rawSocketFilePath = getenv("RAW_SOCKET_OUTPUT_FILE");
             if (strlen($rawSocketFilePath) > 0) {
                 $handle = fopen($rawSocketFilePath, "a");
-                $position = ftell($handle);
-                $this->_logger->info("[RAW SOCKET OUTPUT FILE SEEK POSITION] $position");
                 fwrite($handle, $data);
                 fflush($handle);
+                $position = ftell($handle);
+                $this->_logger->info("RAW_SOCKET_OUTPUT_FILE seek position: $position");
                 fclose($handle);
             }
         }
