@@ -126,7 +126,7 @@ class SEPCPushBridge
 
         $content = '';
         while (strlen($content) < $contentLength) {
-            $socket_read = $this->socketRead($this->_socket, $contentLength);
+            $socket_read = $this->socketRead($this->_socket, $contentLength - strlen($content));
             $this->assertSocketData($socket_read);
 
             if (0 === $socket_read || strlen($socket_read) < 1) {
@@ -147,7 +147,6 @@ class SEPCPushBridge
 
             $content .= $socket_read;
             $receivedDataLength = strlen($socket_read);
-            $contentLength -= $receivedDataLength;
             LogUtil::logI($this->_logger, "Received chunk of size " . $receivedDataLength);
         }
 
