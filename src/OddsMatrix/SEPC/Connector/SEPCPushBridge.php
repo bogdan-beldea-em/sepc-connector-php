@@ -146,7 +146,9 @@ class SEPCPushBridge
             $this->_socketReadRetries = self::READ_RETRIES;
 
             $content .= $socket_read;
-            LogUtil::logI($this->_logger, "Received chunk of size " . strlen($socket_read));
+            $receivedDataLength = strlen($socket_read);
+            $contentLength -= $receivedDataLength;
+            LogUtil::logI($this->_logger, "Received chunk of size " . $receivedDataLength);
         }
 
         $response = gzdecode($content);
