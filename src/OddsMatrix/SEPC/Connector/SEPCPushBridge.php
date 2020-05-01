@@ -20,6 +20,11 @@ class SEPCPushBridge
     private const WAIT_SECONDS_BEFORE_RETRY = 5;
 
     /**
+     * @var int
+     */
+    private $_messageCounter = 0;
+
+    /**
      * @var resource
      */
     private $_socket;
@@ -151,6 +156,12 @@ class SEPCPushBridge
         }
 
         $response = gzdecode($content);
+        $this->_messageCounter++;
+        $decodedSocketInputDirectoryPath = getenv("DECODED_SOCKET_DIRECTORY_PATH");
+        if (strlen($decodedSocketInputDirectoryPath) > 0) {
+            $filename = $decodedSocketInputDirectoryPath . "{$this->_messageCounter}.xml";
+            file_put_contents($filename, $response);
+        }
 
         try {
             return $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
