@@ -64,4 +64,9 @@ class SDQLUpdateDataResumeRequest
         $this->_lastBatchUuid = $_lastBatchUuid;
     }
 
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return "SDQLUpdateDataResumeRequest[subId: " . $this->_subscriptionId . " checksum: " . $this->_subscriptionChecksum . " batchUUID: " . $this->_lastBatchUuid . "]";
+    }
 }

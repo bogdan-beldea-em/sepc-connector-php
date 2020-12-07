@@ -126,4 +126,13 @@ class SDQLRequest
         $this->_resumeRequest = $resumeRequest;
         return $this;
     }
+
+    public function __toString()
+    {
+        if (!is_null($this->_resumeRequest)) {
+            return "SDQLRequest[resumeRequest: " . $this->_resumeRequest . "]";
+        }
+
+        return "SDQLRequest[empty]";
+    }
 }

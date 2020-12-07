@@ -123,17 +123,18 @@ class SEPCPushConnection
     public function reconnect(): void
     {
         $this->createSocketConnection($this->_connectionState->getHost(), $this->_connectionState->getPort());
+        $this->_logger->info("Creating new socket connection...");
         $this->_bridge = new SEPCPushBridge($this->_socket, $this->_logger);
-        $this->_bridge->sendData(
-            (new SDQLRequest())->setResumeRequest(
-                new SDQLUpdateDataResumeRequest(
-                    $this->_connectionState->getSubscriptionId(),
-                    $this->_connectionState->getSubscriptionSpecificationName(),
-                    $this->_connectionState->getSubscriptionChecksum(),
-                    $this->_connectionState->getLastBatchUuid()
-                )
+        $resumeRequest = (new SDQLRequest())->setResumeRequest(
+            new SDQLUpdateDataResumeRequest(
+                $this->_connectionState->getSubscriptionId(),
+                $this->_connectionState->getSubscriptionSpecificationName(),
+                $this->_connectionState->getSubscriptionChecksum(),
+                $this->_connectionState->getLastBatchUuid()
             )
         );
+        $this->_logger->debug("Sending resume request: ${resumeRequest}");
+        $this->_bridge->sendData($resumeRequest);
     }
 
     /**
@@ -249,6 +250,14 @@ class SEPCPushConnection
         }
 
         return $this->_connectionState->isInitialDataDumpComplete();
+    }
+
+    /**
+     *
+     */
+    public function disconnectForced(): void
+    {
+        socket_close($this->_socket);
     }
 
     /**

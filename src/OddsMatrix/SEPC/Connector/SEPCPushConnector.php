@@ -126,12 +126,15 @@ class SEPCPushConnector
     public function getNextData(): ?SDQLResponse
     {
         try {
+            if (null === $this->_connection) {
+                $this->_connection = $this->reconnect();
+            }
             return $this->_connection->getNextData();
         } catch (SocketException|ConnectionException $e) {
             LogUtil::logI($this->_logger, "$e\n Reconnecting...");
             try {
                 sleep(5);
-                $this->autoconnect();
+                $this->_connection = $this->autoconnect();
             } catch (SocketException|ConnectionException $e) {
                 LogUtil::logC($this->_logger, "Error trying to reconnect: $e");
                 throw $e;
@@ -139,6 +142,12 @@ class SEPCPushConnector
         }
 
         return null;
+    }
+
+    public function disconnectForced(): void
+    {
+        $this->_connection->disconnectForced();
+        $this->_connection = null;
     }
 
     /**
