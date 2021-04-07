@@ -46,4 +46,14 @@ class SDQLError
     {
         return $this->_message;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return "SDQLError[$this->_code $this->_message]";
+    }
+
+
 }

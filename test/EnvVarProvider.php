@@ -8,6 +8,7 @@ class EnvVarProvider
     private static $pullEndpointEnvVarName = 'SEPC_PULL_ENDPOINT';
     private static $pushPortEnvVarName = 'SEPC_PUSH_PORT';
     private static $pullPortEnvVarName = 'SEPC_PULL_PORT';
+    private static $outputDataDirectory = 'SEPC_OUTPUT_DATA_DIRECTORY';
 
     /**
      * @return string
@@ -30,7 +31,7 @@ class EnvVarProvider
      */
     public static function getPushEndpoint(): string
     {
-        return self::getValue(self::$pushEndpointEnvVarName);
+        return self::getValue(self::$pushEndpointEnvVarName, false, "sept.oddsmatrix.local");
     }
 
     /**
@@ -46,7 +47,7 @@ class EnvVarProvider
      */
     public static function getPushPort(): int
     {
-        $stringValue = self::getValue(self::$pushPortEnvVarName);
+        $stringValue = self::getValue(self::$pushPortEnvVarName, false, "7000");
         $intValue = \OM\OddsMatrix\SEPC\Connector\Util\ParserUtil::parseInt($stringValue);
 
         if (is_null($intValue)) {
@@ -72,13 +73,27 @@ class EnvVarProvider
     }
 
     /**
-     * @param string $varName
      * @return string
      */
-    private static function getValue(string $varName): string
+    public static function getOutputDataDirectory(): ?string {
+        return self::getValue(self::$outputDataDirectory, false);
+    }
+
+    /**
+     * @param string $varName
+     * @param bool $required
+     * @param string|null $defaultValue
+     * @return string
+     */
+    private static function getValue(string $varName, bool $required = true, string $defaultValue = null): ?string
     {
         $value = getenv($varName);
         if (is_null($value) || '' == $value) {
+            if (!$required) {
+                echo "Env var not found $varName. Using default value $defaultValue";
+                return $defaultValue;
+            }
+
             echo "FATAL ERROR: Environment value $varName is required\n";
             die;
         }
@@ -92,7 +107,7 @@ class EnvVarProvider
      */
     private static function crashWrongFormat(string $varName, string $requiredFormat): void
     {
-        echo "$varName is required to be a $requiredFormat\n";
+        echo "FATAL ERROR! $varName is required to be a $requiredFormat\n";
         die;
     }
 }
