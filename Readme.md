@@ -4,7 +4,7 @@ The Sports Engine Publication Component (SEPC) is the component to which clients
 
 We provide a PHP-based connector which knows how to connect to and communicate with the SEPC.
 
-Current version: `0.1.22-dev`
+Current version: `0.1.25-dev`
 
 ## Installation
 
@@ -526,3 +526,20 @@ Logging can be enabled by passing the optional second parameter in any
 SEPC Connector constructor.
 The second parameter must implement the `Psr\Log\LoggerInterface`.
 Passing `null` as a second parameter is valid.
+
+### Extra configuration
+Extra configurations for the connector are available via environment variables.
+
+#### Profiling information
+Setting this environment variable `SEPC_CONNECTOR_PROFILING_LOGS` to String `true` will
+cause the connector to print additional profiling information.
+
+Additional logs look like the following:
+```
+Receive data time: 0.00014305114746094
+GZDecode time: 0.0008389949798584
+Deserialize time: 0.012924909591675
+```
+Receive data time: Time elapsed reading from the socket.
+GZDecode time: As the data is received gzipped, this is the time elapsed unzipping the data.
+Deserialize time: Time elapsed mapping string data to actual PHP objects.

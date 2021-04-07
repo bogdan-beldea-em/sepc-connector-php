@@ -50,6 +50,16 @@ class SEPCPushBridge
     private $_lastByteReceivedTimestamp = 0;
 
     /**
+     * @var array|false|string
+     */
+    private $_decodedSocketInputDirectoryPath;
+
+    /**
+     * @var bool
+     */
+    private $_profilingLogsEnabled;
+
+    /**
      * SEPCPushBridge constructor.
      * @param $_socket
      * @param LoggerInterface|null $logger
@@ -59,6 +69,8 @@ class SEPCPushBridge
         $this->_logger = $logger;
         $this->_socket = $_socket;
         $this->_lastByteReceivedTimestamp = microtime(true);
+        $this->_decodedSocketInputDirectoryPath = getenv("DECODED_SOCKET_DIRECTORY_PATH");
+        $this->_profilingLogsEnabled = strlen(getenv("SEPC_CONNECTOR_PROFILING_LOGS")) > 0;
 
         try {
             $this->_serializer = SDQLSerializerProvider::getSerializer();
@@ -106,7 +118,12 @@ class SEPCPushBridge
      */
     public function receiveData(): ?SDQLResponse
     {
-        LogUtil::logI($this->_logger, "Waiting for data");
+        $receiveDataMicrotimeBeginTimestamp = 0;
+        if ($this->_profilingLogsEnabled) {
+            $receiveDataMicrotimeBeginTimestamp = microtime(true);
+        }
+
+        LogUtil::logD($this->_logger, "Waiting for data...");
         $rawData = $this->socketRead($this->_socket, 1);
         $this->assertSocketData($rawData);
 
@@ -121,13 +138,13 @@ class SEPCPushBridge
 
         $contentLengthString = '';
         while (preg_match("/[0-9]/", $rawData)) {
-            LogUtil::logI($this->_logger, "Received content_length info: $rawData");
+            LogUtil::logD($this->_logger, "Received content_length info: $rawData");
             $contentLengthString .= $rawData;
             $rawData = $this->socketRead($this->_socket, 1);
             $this->assertSocketData($rawData);
         }
         $contentLength = (int)$contentLengthString;
-        LogUtil::logI($this->_logger, "Actual content length: $contentLength");
+        LogUtil::logD($this->_logger, "Actual content length: $contentLength");
 
         $content = '';
         while (strlen($content) < $contentLength) {
@@ -152,19 +169,47 @@ class SEPCPushBridge
 
             $content .= $socket_read;
             $receivedDataLength = strlen($socket_read);
-            LogUtil::logI($this->_logger, "Received chunk of size " . $receivedDataLength);
+            LogUtil::logD($this->_logger, "Received chunk of size " . $receivedDataLength);
+        }
+
+        if ($this->_profilingLogsEnabled) {
+            $recvTime = microtime(true) - $receiveDataMicrotimeBeginTimestamp;
+            LogUtil::logI($this->_logger, "Receive data time: $recvTime");
+        }
+
+        $gzdecodeMicrotimeBeginTimestamp = 0;
+        if ($this->_profilingLogsEnabled) {
+            $gzdecodeMicrotimeBeginTimestamp = microtime(true);
         }
 
         $response = gzdecode($content);
+
+        if ($this->_profilingLogsEnabled) {
+            $gzdecodeTime = microtime(true) - $gzdecodeMicrotimeBeginTimestamp;
+            LogUtil::logI($this->_logger, "GZDecode time: $gzdecodeTime");
+        }
+
         $this->_messageCounter++;
-        $decodedSocketInputDirectoryPath = getenv("DECODED_SOCKET_DIRECTORY_PATH");
-        if (strlen($decodedSocketInputDirectoryPath) > 0) {
-            $filename = $decodedSocketInputDirectoryPath . "{$this->_messageCounter}.xml";
+
+        if (strlen($this->_decodedSocketInputDirectoryPath) > 0) {
+            $filename = $this->_decodedSocketInputDirectoryPath . "{$this->_messageCounter}.xml";
             file_put_contents($filename, $response);
         }
 
         try {
-            return $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
+            $deserializeMicrotimeBeginTimestamp = 0;
+            if ($this->_profilingLogsEnabled) {
+                $deserializeMicrotimeBeginTimestamp = microtime(true);
+            }
+
+            $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
+
+            if ($this->_profilingLogsEnabled) {
+                $deserializeTime = microtime(true) - $deserializeMicrotimeBeginTimestamp;
+                LogUtil::logI($this->_logger, "Deserialize time: $deserializeTime");
+            }
+
+            return $deserialize;
         } catch (XmlErrorException $e) {
             LogUtil::logW($this->_logger, "Failed to parse XML data: $response");
             return null;
