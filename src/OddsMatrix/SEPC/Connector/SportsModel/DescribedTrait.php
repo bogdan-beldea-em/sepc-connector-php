@@ -7,7 +7,7 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 trait DescribedTrait
 {
     /**
-     * @var string
+     * @var string | null
      *
      * @Serializer\Type("string")
      * @Serializer\SerializedName("description")
@@ -18,7 +18,7 @@ trait DescribedTrait
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->_description;
     }

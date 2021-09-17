@@ -31,7 +31,7 @@ class EnvVarProvider
      */
     public static function getPushEndpoint(): string
     {
-        return self::getValue(self::$pushEndpointEnvVarName, false, "sept.oddsmatrix.local");
+        return self::getValue(self::$pushEndpointEnvVarName, false, "sept.oddsmatrix.com");
     }
 
     /**
