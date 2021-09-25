@@ -79,9 +79,9 @@ class Market
     private $_isClosed;
 
     /**
-    * @var string|null
+    * @var float|null
     *
-    * @Serializer\Type("string")
+    * @Serializer\Type("float")
     * @Serializer\SerializedName("paramFloat1")
     * @Serializer\XmlAttribute()
     */
@@ -207,9 +207,9 @@ class Market
     }
 
     /**
-     * @return string|null
+     * @return float|null
      */
-    public function getParamFloat1(): ?string
+    public function getParamFloat1(): ?float
     {
         return $this->_paramFloat1;
     }

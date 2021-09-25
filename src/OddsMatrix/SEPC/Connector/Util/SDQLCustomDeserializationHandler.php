@@ -106,6 +106,10 @@ class SDQLCustomDeserializationHandler implements SubscribingHandlerInterface
     {
         $boolAsString = (string)$element;
 
+        if ($boolAsString == "null") {
+            return null;
+        }
+
         return ParserUtil::parseBool($boolAsString);
     }
 
