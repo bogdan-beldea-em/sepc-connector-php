@@ -83,7 +83,12 @@ class SEPCPullConnector
         LogUtil::logD($this->_logger, "Response data: $responseData ");
 
         /** @var SDQLResponse $response */
-        $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+        $response = null;
+        try {
+            $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+        } catch (\Exception $e) {
+            LogUtil::logE($this->_logger, "[SEPCPullConnector] Deserialization error on connect \n $responseData \n" . $e);
+        }
 
         $subscriptionId = $response->getSubscribeResponse()->getSubscriptionId();
 

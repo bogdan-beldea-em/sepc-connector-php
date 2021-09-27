@@ -202,7 +202,12 @@ class SEPCPushBridge
                 $deserializeMicrotimeBeginTimestamp = microtime(true);
             }
 
-            $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
+            $deserialize = null;
+            try {
+                $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
+            } catch (\Exception $e) {
+                LogUtil::logE($this->_logger, "[SEPCPushBridge] Deserialization error for \n $response \n " . $e);
+            }
 
             if ($this->_profilingLogsEnabled) {
                 $deserializeTime = microtime(true) - $deserializeMicrotimeBeginTimestamp;

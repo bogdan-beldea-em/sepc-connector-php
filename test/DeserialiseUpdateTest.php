@@ -35,6 +35,20 @@ $fileContents = [
             function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Market $market) { return assert($market->getParamFloat1() === null); },
             function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Market $market) { return assert($market->getParamFloat2() === 113.12); },
         ]
+    ],
+    [
+        \OM\OddsMatrix\SEPC\Connector\SportsModel\Source::class,
+        '<Source />',
+        [
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Source $source) { return assert($source->getLastCollectedTime() === null); },
+        ]
+    ],
+    [
+        \OM\OddsMatrix\SEPC\Connector\SportsModel\Source::class,
+        '<Source lastCollectedTime="1990-02-01 00:00:00.000" />',
+        [
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Source $source) { return assert($source->getLastCollectedTime()->getTimestamp() !== null); },
+        ]
     ]
 ];
 

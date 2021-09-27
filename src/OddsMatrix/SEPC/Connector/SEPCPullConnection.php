@@ -84,13 +84,24 @@ class SEPCPullConnection
 
         LogUtil::logI($this->_logger, "GET $url");
 
+        $responseData = null;
+
         try {
             $responseData = gzdecode(file_get_contents($url));
             LogUtil::logD($this->_logger, "Response data: $responseData");
+        } catch (\Exception $e) {
+            LogUtil::logE($this->_logger, "gzdecode error " . $e);
+        }
 
-            /** @var SDQLResponse $response */
-            $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+        /** @var SDQLResponse $response */
+        $response = null;
+        try {
+            $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+        } catch (\Exception $e) {
+            LogUtil::logE($this->_logger, "deserialize error" . $e);
+        }
 
+        try {
             if (is_null($response)) {
                 return null;
             }
@@ -120,13 +131,17 @@ class SEPCPullConnection
         $url = $this->_connectionState->getHost() . ':' . $this->_connectionState->getPort() . Routes::XML_FEED . $this->_queryParamSerializer->serialize($request);
         LogUtil::logI($this->_logger, "GET $url");
 
+        $responseData = null;
         try {
             $responseData = gzdecode(file_get_contents($url));
             LogUtil::logD($this->_logger, "Response data: $responseData");
-
+        } catch (\Exception $e) {
+            LogUtil::logE($this->_logger, "[SEPCPullConnection] gzdecode error " . $e);
+        }
+        try {
             return $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
         } catch (\Exception $e) {
-
+            LogUtil::logE($this->_logger, "[SEPCPullConnection] error during deserialization \n $responseData \n " . $e);
         }
 
         return null;

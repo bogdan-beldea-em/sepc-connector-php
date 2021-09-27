@@ -12,7 +12,7 @@ $connector = new \OM\OddsMatrix\SEPC\Connector\SEPCPushConnector(
     null
 );
 $connector->connect($pushEndpoint, $pushPort);
-for ($i = 0; $i < 100; $i++) {
+for ($i = 0; $i < 10000000; $i++) {
     $connector->getNextData();
     $logger->info("Step $i");
 }
