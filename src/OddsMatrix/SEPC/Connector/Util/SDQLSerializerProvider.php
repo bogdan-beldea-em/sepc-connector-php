@@ -8,6 +8,8 @@ use JMS\Serializer\EventDispatcher\EventDispatcherInterface;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
+use JMS\Serializer\Visitor\Factory\XmlDeserializationVisitorFactory;
+use JMS\Serializer\Visitor\Factory\XmlSerializationVisitorFactory;
 
 class SDQLSerializerProvider
 {
@@ -26,6 +28,7 @@ class SDQLSerializerProvider
             self::$_serializer = SerializerBuilder::create()
                 ->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
                 ->setDeserializationVisitor('xml', new CustomDeserializationVisitorFactory())
+                ->setSerializationVisitor('xml', new XmlSerializationVisitorFactory())
                 ->build();
 
             self::buildSerializationContext(self::$_serializer);
