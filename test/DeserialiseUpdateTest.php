@@ -49,7 +49,23 @@ $fileContents = [
         [
             function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Source $source) { return assert($source->getLastCollectedTime()->getTimestamp() !== null); },
         ]
-    ]
+    ],
+    [
+        \OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse::class,
+        '
+        <sdql>
+            <InitialData batchId="12" batchesLeft="1178" dumpComplete="false">
+                <entities>
+                    <Participant id="610678" version="6" typeId="2" name="Brunei Darussalam" birthTime="1990-02-01 00:00:00.000" countryId="28"/>
+                </entities>
+            </InitialData>
+        </sdql>
+        ',
+        [
+            function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getParticipants()[0]->getName() === 'Brunei Darussalam'); },
+            function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getParticipants()[0]->getBirthTime() !== null); },
+        ]
+    ],
 ];
 
 for ($i = 0; $i < count($fileContents); $i++) {
