@@ -66,6 +66,24 @@ $fileContents = [
             function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getParticipants()[0]->getBirthTime() !== null); },
         ]
     ],
+    [
+        \OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo::class,
+        '<EventInfo paramFloat1="0.0" paramFloat2="0"/>',
+        [
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo $eventInfo) { return assert($eventInfo->getParamFloat1() === 0.0); },
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo $eventInfo) { return assert($eventInfo->getParamFloat1() !== null); },
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo $eventInfo) { return assert($eventInfo->getParamFloat2() === 0.0); },
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo $eventInfo) { return assert($eventInfo->getParamFloat2() !== null); },
+        ]
+    ],
+    [
+        \OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo::class,
+        '<EventInfo paramFloat1="null" />',
+        [
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo $eventInfo) { return assert($eventInfo->getParamFloat1() === null); },
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo $eventInfo) { return assert($eventInfo->getParamFloat2() === null); },
+        ]
+    ]
 ];
 
 for ($i = 0; $i < count($fileContents); $i++) {
