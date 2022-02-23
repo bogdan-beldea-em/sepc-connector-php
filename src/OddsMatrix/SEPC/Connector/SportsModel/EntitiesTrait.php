@@ -951,4 +951,83 @@ trait EntitiesTrait
     {
         return $this->_providerOutcomeRelations;
     }
+
+    /**
+     * @return Stringable[]
+     */
+    public function getAll(): array
+    {
+        /** @var Stringable[] $result */
+        $result = [];
+
+        $arrays = array(
+            $this->_eventActionDetailTypes,
+            $this->_sources,
+            $this->_eventParts,
+            $this->_outcomeTypes,
+            $this->_eventInfos,
+            $this->_eventActionStatuses,
+            $this->_eventParticipantInfoDetails,
+            $this->_locationRelations,
+            $this->_eventCategories,
+            $this->_streamingProviderEventRelations,
+            $this->_entityProperties,
+            $this->_translations,
+            $this->_languages,
+            $this->_outcomeStatuses,
+            $this->_eventTemplates,
+            $this->_entityPropertyTypes,
+            $this->_bettingOffers,
+            $this->_outcomeTypeUsages,
+            $this->_eventActions,
+            $this->_eventTypes,
+            $this->_providers,
+            $this->_events,
+            $this->_providerEntityMappings,
+            $this->_streamingProviders,
+            $this->_outcomeTypeBettingTypeRelations,
+            $this->_outcomes,
+            $this->_eventActionDetails,
+            $this->_sports,
+            $this->_eventActionDetailStatuses,
+            $this->_eventParticipantInfos,
+            $this->_entityTypes,
+            $this->_participantRoles,
+            $this->_currencies,
+            $this->_eventParticipantInfoStatuses,
+            $this->_eventParticipantRelations,
+            $this->_eventPartDefaultUsages,
+            $this->_participantRelations,
+            $this->_eventInfoTypes,
+            $this->_eventActionTypes,
+            $this->_eventStatuses,
+            $this->_locationTypes,
+            $this->_bettingTypeUsages,
+            $this->_providerOutcomeRelations,
+            $this->_eventInfoStatuses,
+            $this->_marketOutcomeRelations,
+            $this->_participantRelationTypes,
+            $this->_participantTypes,
+            $this->_markets,
+            $this->_locations,
+            $this->_scoringUnits,
+            $this->_bettingTypes,
+            $this->_locationRelationTypes,
+            $this->_participants,
+            $this->_eventParticipantInfoDetailStatuses,
+            $this->_bettingOfferStatuses,
+            $this->_participantUsages,
+            $this->_eventParticipantInfoTypes,
+            $this->_providerEventRelations,
+            $this->_eventParticipantInfoDetailTypes
+        );
+
+        foreach ($arrays as $array) {
+            if (!is_null($array)) {
+                $result = array_merge($result, $array);
+            }
+        }
+
+        return $result;
+    }
 }
