@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class OutcomeTypeBettingTypeRelation
@@ -49,4 +50,16 @@ class OutcomeTypeBettingTypeRelation
         return $this->_bettingTypeId;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("OutcomeTypeBettingTypeRelation"))
+            ->addProperty("version", $this->_version)
+            ->addProperty("id", $this->_id)
+            ->addProperty("bettingTypeId", $this->_bettingTypeId)
+            ->addProperty("outcomeTypeId", $this->_outcomeTypeId)
+            ;
+    }
 }

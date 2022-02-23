@@ -90,7 +90,7 @@ class EnvVarProvider
         $value = getenv($varName);
         if (is_null($value) || '' == $value) {
             if (!$required) {
-                echo "Env var not found $varName. Using default value $defaultValue";
+                echo "Env var not found $varName. Using default value $defaultValue\n";
                 return $defaultValue;
             }
 

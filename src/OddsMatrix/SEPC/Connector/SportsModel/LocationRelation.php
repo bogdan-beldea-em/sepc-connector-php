@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class LocationRelation
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="LocationRelation")
  */
-class LocationRelation
+class LocationRelation implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
@@ -66,4 +67,17 @@ class LocationRelation
         return $this->_toLocationId;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("LocationRelation"))
+            ->addProperty("version", $this->_version)
+            ->addProperty("fromLocationId", $this->_fromLocationId)
+            ->addProperty("toLocationId", $this->_toLocationId)
+            ->addProperty("typeId", $this->_typeId)
+            ->addProperty("id", $this->_id)
+            ;
+    }
 }

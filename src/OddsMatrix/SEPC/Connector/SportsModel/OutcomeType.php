@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class OutcomeType
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="OutcomeType")
  */
-class OutcomeType
+class OutcomeType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
@@ -523,5 +524,48 @@ class OutcomeType
     public function isParamParticipant3MustHaveRole(): ?bool
     {
         return $this->_paramParticipant3MustHaveRole;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("OutcomeType"))
+            ->addProperty("paramParticipant1MustHaveRoleId", $this->_paramParticipant1MustHaveRoleId)
+            ->addProperty("hasParamScoringUnitId1", $this->_hasParamScoringUnitId1)
+            ->addProperty("paramFloat1Description", $this->_paramFloat1Description)
+            ->addProperty("paramParticipant3MustHaveRole", $this->_paramParticipant3MustHaveRole)
+            ->addProperty("hasParamString1", $this->_hasParamString1)
+            ->addProperty("paramParticipant3MustBeRoot", $this->_paramParticipant3MustBeRoot)
+            ->addProperty("paramParticipantId2Description", $this->_paramParticipantId2Description)
+            ->addProperty("paramParticipant2MustHaveRole", $this->_paramParticipant2MustHaveRole)
+            ->addProperty("hasParamParticipantId2", $this->_hasParamParticipantId2)
+            ->addProperty("hasParamParticipantId1", $this->_hasParamParticipantId1)
+            ->addProperty("paramString1Description", $this->_paramString1Description)
+            ->addProperty("paramString1PossibleValues", $this->_paramString1PossibleValues)
+            ->addProperty("hasParamFloat3", $this->_hasParamFloat3)
+            ->addProperty("hasParamBoolean1", $this->_hasParamBoolean1)
+            ->addProperty("id", $this->_id)
+            ->addProperty("hasParamEventPartId1", $this->_hasParamEventPartId1)
+            ->addProperty("hasParamFloat1", $this->_hasParamFloat1)
+            ->addProperty("paramBoolean1Description", $this->_paramBoolean1Description)
+            ->addProperty("paramParticipantId3Description", $this->_paramParticipantId3Description)
+            ->addProperty("hasParamFloat2", $this->_hasParamFloat2)
+            ->addProperty("paramParticipant1MustBeRoot", $this->_paramParticipant1MustBeRoot)
+            ->addProperty("paramParticipant3MustBePrimary", $this->_paramParticipant3MustBePrimary)
+            ->addProperty("paramParticipant1MustHaveRole", $this->_paramParticipant1MustHaveRole)
+            ->addProperty("paramFloat3Description", $this->_paramFloat3Description)
+            ->addProperty("paramParticipant2MustBeRoot", $this->_paramParticipant2MustBeRoot)
+            ->addProperty("paramParticipant2MustBePrimary", $this->_paramParticipant2MustBePrimary)
+            ->addProperty("paramFloat2Description", $this->_paramFloat2Description)
+            ->addProperty("paramEventPartId1Description", $this->_paramEventPartId1Description)
+            ->addProperty("description", $this->_description)
+            ->addProperty("paramParticipant1MustBePrimary", $this->_paramParticipant1MustBePrimary)
+            ->addProperty("version", $this->_version)
+            ->addProperty("paramParticipantId1Description", $this->_paramParticipantId1Description)
+            ->addProperty("hasParamParticipantId3", $this->_hasParamParticipantId3)
+            ->addProperty("name", $this->_name)
+            ;
     }
 }

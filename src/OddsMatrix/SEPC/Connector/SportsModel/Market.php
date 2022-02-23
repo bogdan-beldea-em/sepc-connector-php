@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class Market
@@ -270,4 +271,31 @@ class Market
         return $this->_paramString1;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("Market"))
+            ->addProperty("eventId", $this->_eventId)
+            ->addProperty("version", $this->_version)
+            ->addProperty("paramParticipantId1", $this->_paramParticipantId1)
+            ->addProperty("numberOfOutcomes", $this->_numberOfOutcomes)
+            ->addProperty("paramString1", $this->_paramString1)
+            ->addProperty("paramParticipantId3", $this->_paramParticipantId3)
+            ->addProperty("discriminator", $this->_discriminator)
+            ->addProperty("name", $this->_name)
+            ->addProperty("eventPartId", $this->_eventPartId)
+            ->addProperty("paramFloat1", $this->_paramFloat1)
+            ->addProperty("id", $this->_id)
+            ->addProperty("scoringUnitId", $this->_scoringUnitId)
+            ->addProperty("type", $this->_type)
+            ->addProperty("isClosed", $this->_isClosed)
+            ->addProperty("bettingTypeId", $this->_bettingTypeId)
+            ->addProperty("paramParticipantId2", $this->_paramParticipantId2)
+            ->addProperty("paramFloat3", $this->_paramFloat3)
+            ->addProperty("paramFloat2", $this->_paramFloat2)
+            ->addProperty("isComplete", $this->_isComplete)
+            ;
+    }
 }

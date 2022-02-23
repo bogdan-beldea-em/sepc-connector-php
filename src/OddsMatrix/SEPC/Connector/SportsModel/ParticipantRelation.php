@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class ParticipantRelation
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="ParticipantRelation")
  */
-class ParticipantRelation
+class ParticipantRelation implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
@@ -115,5 +116,22 @@ class ParticipantRelation
     public function getEndTime(): ?\DateTime
     {
         return $this->_endTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("ParticipantRelation"))
+            ->addProperty("paramParticipantRoleId", $this->_paramParticipantRoleId)
+            ->addProperty("startTime", $this->_startTime)
+            ->addProperty("version", $this->_version)
+            ->addProperty("id", $this->_id)
+            ->addProperty("toParticipantId", $this->_toParticipantId)
+            ->addProperty("typeId", $this->_typeId)
+            ->addProperty("fromParticipantId", $this->_fromParticipantId)
+            ->addProperty("endTime", $this->_endTime)
+            ;
     }
 }

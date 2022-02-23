@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class EventParticipantInfoDetail
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="EventParticipantInfoDetail")
  */
-class EventParticipantInfoDetail
+class EventParticipantInfoDetail implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -132,5 +133,25 @@ class EventParticipantInfoDetail
     public function getParamString1(): ?string
     {
         return $this->_paramString1;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("EventParticipantInfoDetail"))
+            ->addProperty("statusId", $this->_statusId)
+            ->addProperty("version", $this->_version)
+            ->addProperty("paramBoolean1", $this->_paramBoolean1)
+            ->addProperty("paramParticipantId1", $this->_paramParticipantId1)
+            ->addProperty("paramString1", $this->_paramString1)
+            ->addProperty("type", $this->_type)
+            ->addProperty("typeId", $this->_typeId)
+            ->addProperty("id", $this->_id)
+            ->addProperty("eventParticipantInfoId", $this->_eventParticipantInfoId)
+            ->addProperty("paramFloat1", $this->_paramFloat1)
+            ;
+
     }
 }

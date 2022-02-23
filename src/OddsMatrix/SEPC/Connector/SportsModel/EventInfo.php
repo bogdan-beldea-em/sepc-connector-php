@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class EventInfo
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="EventInfo")
  */
-class EventInfo
+class EventInfo implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -268,5 +269,33 @@ class EventInfo
     public function getSourceId(): ?int
     {
         return $this->_sourceId;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("EventInfo"))
+            ->addProperty("paramEventPartId1", $this->_paramEventPartId1)
+            ->addProperty("sourceId", $this->_sourceId)
+            ->addProperty("paramFloat2", $this->_paramFloat2)
+            ->addProperty("id", $this->_id)
+            ->addProperty("paramFloat1", $this->_paramFloat1)
+            ->addProperty("eventId", $this->_eventId)
+            ->addProperty("paramParticipantId1", $this->_paramParticipantId1)
+            ->addProperty("type", $this->_type)
+            ->addProperty("paramBoolean1", $this->_paramBoolean1)
+            ->addProperty("providerId", $this->_providerId)
+            ->addProperty("version", $this->_version)
+            ->addProperty("paramParticipantId2", $this->_paramParticipantId2)
+            ->addProperty("statusId", $this->_statusId)
+            ->addProperty("typeId", $this->_typeId)
+            ->addProperty("eventPartId", $this->_eventPartId)
+            ->addProperty("paramScoringUnitId1", $this->_paramScoringUnitId1)
+            ->addProperty("paramString1", $this->_paramString1)
+            ->addProperty("paramEventStatusId1", $this->_paramEventStatusId1)
+            ;
+
     }
 }

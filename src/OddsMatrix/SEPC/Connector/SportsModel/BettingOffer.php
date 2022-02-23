@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class BettingOffer
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="BettingOffer")
  */
-class BettingOffer
+class BettingOffer implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait, UpdateTimeTrait;
 
@@ -219,4 +220,22 @@ class BettingOffer
         return $this->_volumeCurrencyId;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("BettingOffer"))
+            ->addProperty("id", $this->_id)
+            ->addProperty("id", $this->_version)
+            ->addProperty("id", $this->_type)
+            ->addProperty("id", $this->_odds)
+            ->addProperty("id", $this->_statusId)
+            ->addProperty("id", $this->_providerId)
+            ->addProperty("id", $this->_sourceId)
+            ->addProperty("id", $this->_outcomeId)
+            ->addProperty("id", $this->_bettingTypeId)
+            ->addProperty("id", $this->_isLive)
+            ->addProperty("id", $this->_multiplicity);
+    }
 }

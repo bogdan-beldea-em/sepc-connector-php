@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class ParticipantType
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="ParticipantType")
  */
-class ParticipantType
+class ParticipantType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
@@ -166,5 +167,26 @@ class ParticipantType
     public function isHasRetirementTime(): ?bool
     {
         return $this->_hasRetirementTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("ParticipantType"))
+            ->addProperty("hasName", $this->_hasName)
+            ->addProperty("hasCountry", $this->_hasCountry)
+            ->addProperty("hasShortName", $this->_hasShortName)
+            ->addProperty("id", $this->_id)
+            ->addProperty("isIndividual", $this->_isIndividual)
+            ->addProperty("version", $this->_version)
+            ->addProperty("hasRetirementTime", $this->_hasRetirementTime)
+            ->addProperty("hasIsMale", $this->_hasIsMale)
+            ->addProperty("hasFirstName", $this->_hasFirstName)
+            ->addProperty("name", $this->_name)
+            ->addProperty("hasBirthTime", $this->_hasBirthTime)
+            ->addProperty("hasLastName", $this->_hasLastName)
+            ;
     }
 }

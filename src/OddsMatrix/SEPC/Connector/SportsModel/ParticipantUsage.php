@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class ParticipantUsage
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="ParticipantUsage")
  */
-class ParticipantUsage
+class ParticipantUsage implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -49,4 +50,17 @@ class ParticipantUsage
         return $this->_sportId;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("ParticipantUsage"))
+            ->addProperty("version", $this->_version)
+            ->addProperty("participantId", $this->_participantId)
+            ->addProperty("sportId", $this->_sportId)
+            ->addProperty("id", $this->_id)
+            ->addProperty("type", $this->_type)
+            ;
+    }
 }

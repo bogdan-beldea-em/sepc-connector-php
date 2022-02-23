@@ -4,6 +4,8 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
 
 /**
  * Class Participant
@@ -11,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="Participant")
  */
-class Participant
+class Participant implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
@@ -234,5 +236,31 @@ class Participant
     public function getNote(): ?string
     {
         return $this->_note;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("Participant"))
+            ->addProperty("id", $this->_id)
+            ->addProperty("url", $this->_url)
+            ->addProperty("name", $this->_name)
+            ->addProperty("retirementTime", ToStringUtil::transformDate($this->_retirementTime))
+            ->addProperty("type", $this->_type)
+            ->addProperty("isBanned", $this->_isBanned)
+            ->addProperty("isMale", $this->_isMale)
+            ->addProperty("typeId", $this->_typeId)
+            ->addProperty("lastEventParticipationTime", ToStringUtil::transformDate($this->_lastEventParticipationTime))
+            ->addProperty("shortName", $this->_shortName)
+            ->addProperty("logoUrl", $this->_logoUrl)
+            ->addProperty("lastName", $this->_lastName)
+            ->addProperty("birthTime", ToStringUtil::transformDate($this->_birthTime))
+            ->addProperty("countryId", $this->_countryId)
+            ->addProperty("note", $this->_note)
+            ->addProperty("firstName", $this->_firstName)
+            ->addProperty("version", $this->_version)
+            ;
     }
 }

@@ -4,6 +4,8 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
 
 /**
  * Class Event
@@ -11,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="Event")
  */
-class Event
+class Event implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
@@ -319,5 +321,33 @@ class Event
     public function getNote(): ?string
     {
         return $this->_note;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("Event"))
+            ->addProperty("hasLiveStatus", $this->_hasLiveStatus)
+            ->addProperty("statusId", $this->_statusId)
+            ->addProperty("currentPartId", $this->_currentPartId)
+            ->addProperty("isComplete", $this->_isComplete)
+            ->addProperty("typeId", $this->_typeId)
+            ->addProperty("sportId", $this->_sportId)
+            ->addProperty("parentId", $this->_parentId)
+            ->addProperty("parentPartId", $this->_parentPartId)
+            ->addProperty("startTime", ToStringUtil::transformDate($this->_startTime))
+            ->addProperty("deleteTimeOffset", $this->_deleteTimeOffset)
+            ->addProperty("rootPartId", $this->_rootPartId)
+            ->addProperty("templateId", $this->_templateId)
+            ->addProperty("categoryId", $this->_categoryId)
+            ->addProperty("endTime", ToStringUtil::transformDate($this->_endTime))
+            ->addProperty("venueId", $this->_venueId)
+            ->addProperty("url", $this->_url)
+            ->addProperty("note", $this->_note)
+            ->addProperty("popularity", $this->_popularity)
+            ;
+
     }
 }

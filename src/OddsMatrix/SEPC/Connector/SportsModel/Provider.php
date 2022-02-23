@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class Provider
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="Provider")
  */
-class Provider
+class Provider implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
@@ -200,5 +201,28 @@ class Provider
     public function getNote(): ?string
     {
         return $this->_note;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("Provider"))
+            ->addProperty("url", $this->_url)
+            ->addProperty("isNewsSource", $this->_isNewsSource)
+            ->addProperty("includeBettingVACs", $this->_includeBettingVACs)
+            ->addProperty("bettingCommissionVACs", $this->_bettingCommissionVACs)
+            ->addProperty("note", $this->_note)
+            ->addProperty("locationId", $this->_locationId)
+            ->addProperty("version", $this->_version)
+            ->addProperty("isBettingExchange", $this->_isBettingExchange)
+            ->addProperty("isLiveOddsApproved", $this->_isLiveOddsApproved)
+            ->addProperty("name", $this->_name)
+            ->addProperty("requiresSettlement", $this->_requiresSettlement)
+            ->addProperty("isBookmaker", $this->_isBookmaker)
+            ->addProperty("isEnabled", $this->_isEnabled)
+            ->addProperty("id", $this->_id)
+            ;
     }
 }

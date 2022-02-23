@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class StreamingProviderEventRelation
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="StreamingProviderEventRelation")
  */
-class StreamingProviderEventRelation
+class StreamingProviderEventRelation implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -98,5 +99,22 @@ class StreamingProviderEventRelation
     public function getNote(): ?string
     {
         return $this->_note;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("StreamingProviderEventRelation"))
+            ->addProperty("channel", $this->_channel)
+            ->addProperty("streamingProviderId", $this->_streamingProviderId)
+            ->addProperty("language", $this->_language)
+            ->addProperty("version", $this->_version)
+            ->addProperty("eventId", $this->_eventId)
+            ->addProperty("type", $this->_type)
+            ->addProperty("id", $this->_id)
+            ->addProperty("note", $this->_note)
+            ;
     }
 }

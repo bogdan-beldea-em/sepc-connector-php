@@ -5,6 +5,7 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class ProviderOutcomeRelation
@@ -82,5 +83,20 @@ class ProviderOutcomeRelation
     public function getQualityRank(): ?int
     {
         return $this->_qualityRank;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("ProviderOutcomeRelation"))
+            ->addProperty("lastChangedTime", $this->_lastChangedTime)
+            ->addProperty("qualityRank", $this->_qualityRank)
+            ->addProperty("id", $this->_id)
+            ->addProperty("statusId", $this->_statusId)
+            ->addProperty("providerId", $this->_providerId)
+            ->addProperty("outcomeId", $this->_outcomeId)
+            ;
     }
 }

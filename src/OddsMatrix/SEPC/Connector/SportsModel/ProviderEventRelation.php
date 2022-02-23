@@ -4,6 +4,8 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
 
 /**
  * Class ProviderEventRelation
@@ -11,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="ProviderEventRelation")
  */
-class ProviderEventRelation
+class ProviderEventRelation implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -134,4 +136,22 @@ class ProviderEventRelation
         return $this->_endTime;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("ProviderEventRelation"))
+            ->addProperty("version", $this->_version)
+            ->addProperty("startTime", $this->_startTime)
+            ->addProperty("providerId", $this->_providerId)
+            ->addProperty("eventId", $this->_eventId)
+            ->addProperty("offersLiveTV", $this->_offersLiveTV)
+            ->addProperty("timeQualityRank", $this->_timeQualityRank)
+            ->addProperty("endTime", ToStringUtil::transformDate($this->_endTime))
+            ->addProperty("id", $this->_id)
+            ->addProperty("offersLiveOdds", $this->_offersLiveOdds)
+            ->addProperty("type", $this->_type)
+            ;
+    }
 }

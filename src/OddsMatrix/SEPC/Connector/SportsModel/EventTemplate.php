@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class EventTemplate
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="EventTemplate")
  */
-class EventTemplate
+class EventTemplate implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
@@ -183,5 +184,28 @@ class EventTemplate
     public function getNote(): ?string
     {
         return $this->_note;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("EventTemplate"))
+            ->addProperty("name", $this->_name)
+            ->addProperty("eventTypeId", $this->_eventTypeId)
+            ->addProperty("id", $this->_id)
+            ->addProperty("rootPartId", $this->_rootPartId)
+            ->addProperty("hasMatches", $this->_hasMatches)
+            ->addProperty("venueId", $this->_venueId)
+            ->addProperty("isBanned", $this->_isBanned)
+            ->addProperty("note", $this->_note)
+            ->addProperty("version", $this->_version)
+            ->addProperty("parentId", $this->_parentId)
+            ->addProperty("url", $this->_url)
+            ->addProperty("type", $this->_type)
+            ->addProperty("categoryId", $this->_categoryId)
+            ->addProperty("sportId", $this->_sportId)
+            ;
     }
 }

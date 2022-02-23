@@ -24,6 +24,7 @@ $fileContents = [
             function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Market $market) { return assert($market->isComplete() === true); },
             function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Market $market) { return assert($market->getParamFloat1() === 331.14); },
             function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Market $market) { return assert($market->getParamFloat2() === null); },
+            function (\OM\OddsMatrix\SEPC\Connector\SportsModel\Market $market) { return assert($market->__toString() !== null); },
         ]
     ],
     [
@@ -57,6 +58,7 @@ $fileContents = [
             <InitialData batchId="12" batchesLeft="1178" dumpComplete="false">
                 <entities>
                     <Participant id="610678" version="6" typeId="2" name="Brunei Darussalam" birthTime="1990-02-01 00:00:00.000" countryId="28"/>
+                    <EventInfo paramFloat1="0.0" paramFloat2="0"/>
                 </entities>
             </InitialData>
         </sdql>
@@ -64,6 +66,10 @@ $fileContents = [
         [
             function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getParticipants()[0]->getName() === 'Brunei Darussalam'); },
             function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getParticipants()[0]->getBirthTime() !== null); },
+            function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getEventInfos()[0]->getParamFloat1() === 0.0); },
+            function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getEventInfos()[0]->getParamFloat1() !== null); },
+            function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getEventInfos()[0]->getParamFloat2() === 0.0); },
+            function (\OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $response) { return assert($response->getInitialData()->getEntities()->getEventInfos()[0]->getParamFloat2() !== null); },
         ]
     ],
     [

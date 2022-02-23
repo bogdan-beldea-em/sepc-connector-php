@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class EventInfoType
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="EventInfoType")
  */
-class EventInfoType
+class EventInfoType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
@@ -387,5 +388,41 @@ class EventInfoType
     public function getParamScoringUnitId1Description(): ?string
     {
         return $this->_paramScoringUnitId1Description;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("EventInfoType"))
+            ->addProperty("hasParamEventPartId1", $this->_hasParamEventPartId1)
+            ->addProperty("paramEventStatusId1Description", $this->_paramEventStatusId1Description)
+            ->addProperty("paramParticipantId1Description", $this->_paramParticipantId1Description)
+            ->addProperty("paramString1Description", $this->_paramString1Description)
+            ->addProperty("version", $this->_version)
+            ->addProperty("paramString1PossibleValues", $this->_paramString1PossibleValues)
+            ->addProperty("hasParamEventStatusId1", $this->_hasParamEventStatusId1)
+            ->addProperty("description", $this->_description)
+            ->addProperty("paramEventPartId1Description", $this->_paramEventPartId1Description)
+            ->addProperty("paramFloat1Description", $this->_paramFloat1Description)
+            ->addProperty("hasParamString1", $this->_hasParamString1)
+            ->addProperty("paramTime1Description", $this->_paramTime1Description)
+            ->addProperty("hasParamTime1", $this->_hasParamTime1)
+            ->addProperty("id", $this->_id)
+            ->addProperty("hasParamParticipantId2", $this->_hasParamParticipantId2)
+            ->addProperty("hasParamFloat1", $this->_hasParamFloat1)
+            ->addProperty("paramBoolean1Description", $this->_paramBoolean1Description)
+            ->addProperty("hasParamFloat2", $this->_hasParamFloat2)
+            ->addProperty("paramParticipantId2Description", $this->_paramParticipantId2Description)
+            ->addProperty("paramParticipantIdsMustBeOrdered", $this->_paramParticipantIdsMustBeOrdered)
+            ->addProperty("paramFloat2Description", $this->_paramFloat2Description)
+            ->addProperty("hasParamScoringUnitId1", $this->_hasParamScoringUnitId1)
+            ->addProperty("hasParamParticipantId1", $this->_hasParamParticipantId1)
+            ->addProperty("hasParamBoolean1", $this->_hasParamBoolean1)
+            ->addProperty("paramScoringUnitId1Description", $this->_paramScoringUnitId1Description)
+            ->addProperty("name", $this->_name)
+            ;
+
     }
 }

@@ -4,6 +4,8 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
 
 /**
  * Class Language
@@ -11,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="Language")
  */
-class Language
+class Language implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
@@ -49,4 +51,16 @@ class Language
         return $this->_createDate;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("Language"))
+            ->addProperty("code", $this->_code)
+            ->addProperty("version", $this->_version)
+            ->addProperty("createDate", ToStringUtil::transformDate($this->_createDate))
+            ->addProperty("id", $this->_id)
+            ;
+    }
 }

@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class EventActionType
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="EventActionType")
  */
-class EventActionType
+class EventActionType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
@@ -117,4 +118,22 @@ class EventActionType
         return $this->_paramParticipantId2Description;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("EventActionType"))
+            ->addProperty("name", $this->_name)
+            ->addProperty("hasParamParticipantId2", $this->_hasParamParticipantId2)
+            ->addProperty("hasParamParticipantId1", $this->_hasParamParticipantId1)
+            ->addProperty("hasParamFloat1", $this->_hasParamFloat1)
+            ->addProperty("paramParticipantId2Description", $this->_paramParticipantId2Description)
+            ->addProperty("description", $this->_description)
+            ->addProperty("paramParticipantId1Description", $this->_paramParticipantId1Description)
+            ->addProperty("version", $this->_version)
+            ->addProperty("paramFloat1Description", $this->_paramFloat1Description)
+            ->addProperty("id", $this->_id)
+            ;
+    }
 }

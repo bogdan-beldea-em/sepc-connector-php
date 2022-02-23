@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class ProviderEntityMapping
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="ProviderEntityMapping")
  */
-class ProviderEntityMapping
+class ProviderEntityMapping implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -115,5 +116,23 @@ class ProviderEntityMapping
     public function getProviderEntityName(): ?string
     {
         return $this->_providerEntityName;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("ProviderEntityMapping"))
+            ->addProperty("providerEntityName", $this->_providerEntityName)
+            ->addProperty("providerEntityTypeId", $this->_providerEntityTypeId)
+            ->addProperty("version", $this->_version)
+            ->addProperty("providerId", $this->_providerId)
+            ->addProperty("providerEntityId", $this->_providerEntityId)
+            ->addProperty("entityTypeId", $this->_entityTypeId)
+            ->addProperty("entityId", $this->_entityId)
+            ->addProperty("id", $this->_id)
+            ->addProperty("type", $this->_type)
+            ;
     }
 }

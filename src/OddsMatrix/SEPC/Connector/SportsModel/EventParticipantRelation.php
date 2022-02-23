@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
 
 /**
  * Class EventParticipantRelation
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @Serializer\XmlRoot(name="EventParticipantRelation")
  */
-class EventParticipantRelation
+class EventParticipantRelation implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
@@ -100,4 +101,21 @@ class EventParticipantRelation
         return $this->_parentParticipantId;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (new ToStringBuilder("EventParticipantRelation"))
+            ->addProperty("participantId", $this->_participantId)
+            ->addProperty("participantRoleId", $this->_participantRoleId)
+            ->addProperty("eventPartId", $this->_eventPartId)
+            ->addProperty("eventId", $this->_eventId)
+            ->addProperty("type", $this->_type)
+            ->addProperty("parentParticipantId", $this->_parentParticipantId)
+            ->addProperty("id", $this->_id)
+            ->addProperty("version", $this->_version)
+            ;
+
+    }
 }
