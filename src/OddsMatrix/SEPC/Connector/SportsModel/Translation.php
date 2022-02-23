@@ -5,6 +5,7 @@ namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
 use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
+use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
 
 /**
  * Class Translation
@@ -93,7 +94,7 @@ class Translation implements Stringable
             ->addProperty("type", $this->_type)
             ->addProperty("version", $this->_version)
             ->addProperty("name", $this->_name)
-            ->addProperty("lastChangedDate", $this->_lastChangedDate)
+            ->addProperty("lastChangedDate", ToStringUtil::transformDate($this->_lastChangedDate))
             ->addProperty("languageId", $this->_languageId)
             ->addProperty("entityTypeId", $this->_entityTypeId)
             ->addProperty("id", $this->_id)
