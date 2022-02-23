@@ -40,9 +40,9 @@ class BettingOfferStatus implements Stringable
     {
         return (new ToStringBuilder("BettingOfferStatus"))
             ->addProperty("id", $this->_id)
-            ->addProperty("id", $this->_version)
-            ->addProperty("id", $this->_name)
-            ->addProperty("id", $this->_description)
-            ->addProperty("id", $this->_isAvailable);
+            ->addProperty("version", $this->_version)
+            ->addProperty("name", $this->_name)
+            ->addProperty("description", $this->_description)
+            ->addProperty("isAvailable", $this->_isAvailable);
     }
 }

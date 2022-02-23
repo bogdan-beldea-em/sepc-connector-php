@@ -227,15 +227,15 @@ class BettingOffer implements Stringable
     {
         return (new ToStringBuilder("BettingOffer"))
             ->addProperty("id", $this->_id)
-            ->addProperty("id", $this->_version)
-            ->addProperty("id", $this->_type)
-            ->addProperty("id", $this->_odds)
-            ->addProperty("id", $this->_statusId)
-            ->addProperty("id", $this->_providerId)
-            ->addProperty("id", $this->_sourceId)
-            ->addProperty("id", $this->_outcomeId)
-            ->addProperty("id", $this->_bettingTypeId)
-            ->addProperty("id", $this->_isLive)
-            ->addProperty("id", $this->_multiplicity);
+            ->addProperty("version", $this->_version)
+            ->addProperty("type", $this->_type)
+            ->addProperty("odds", $this->_odds)
+            ->addProperty("statusId", $this->_statusId)
+            ->addProperty("providerId", $this->_providerId)
+            ->addProperty("sourceId", $this->_sourceId)
+            ->addProperty("outcomeId", $this->_outcomeId)
+            ->addProperty("bettingTypeId", $this->_bettingTypeId)
+            ->addProperty("isLive", $this->_isLive)
+            ->addProperty("multiplicity", $this->_multiplicity);
     }
 }
