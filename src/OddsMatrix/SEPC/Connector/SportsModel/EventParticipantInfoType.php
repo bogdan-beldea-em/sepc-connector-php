@@ -12,7 +12,7 @@ use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
  *
  * @Serializer\XmlRoot(name="EventParticipantInfoType")
  */
-class EventParticipantInfoType
+class EventParticipantInfoType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 

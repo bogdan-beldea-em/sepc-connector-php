@@ -14,7 +14,7 @@ use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
  *
  * @Serializer\XmlRoot(name="ProviderOutcomeRelation")
  */
-class ProviderOutcomeRelation
+class ProviderOutcomeRelation implements Stringable
 {
     use IdentifiableModelTrait, UpdateTimeTrait;
 

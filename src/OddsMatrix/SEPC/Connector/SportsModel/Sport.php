@@ -12,7 +12,7 @@ use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
  *
  * @Serializer\XmlRoot(name="Sport")
  */
-class Sport
+class Sport implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 

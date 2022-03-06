@@ -12,7 +12,7 @@ use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
  *
  * @Serializer\XmlRoot(name="ScoringUnit")
  */
-class ScoringUnit
+class ScoringUnit implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
