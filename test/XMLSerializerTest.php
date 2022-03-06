@@ -7,4 +7,6 @@ use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
 $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
 $entity = new SDQLSubscribeRequest("asd");
-echo $serializer->serialize($entity, 'xml');
+
+echo json_encode(['a' => 1, 'b' => null], JSON_THROW_ON_ERROR);
+echo "\n";

@@ -85,7 +85,7 @@ class SEPCPushBridge
      */
     public function sendData(SDQLRequest $object): void
     {
-        $dataToSend = $this->_serializer->serialize($object, 'xml');
+        $dataToSend = $this->_serializer->serialize($object, 'json');
         $dataToSend = preg_replace("/[\n]|[\r]/", "", $dataToSend);
         LogUtil::logI($this->_logger, "Prepare to send data: $dataToSend");
 
@@ -204,7 +204,7 @@ class SEPCPushBridge
 
             $deserialize = null;
             try {
-                $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'xml');
+                $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'json');
             } catch (\Exception $e) {
                 LogUtil::logE($this->_logger, "[SEPCPushBridge] Deserialization error for \n $response \n " . $e);
             }
