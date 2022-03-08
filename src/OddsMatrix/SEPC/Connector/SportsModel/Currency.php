@@ -3,45 +3,48 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class Currency
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="Currency")
  */
 class Currency implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("code")
-    * @Serializer\XmlAttribute()
-    */
-    private $_code;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return Currency
+     */
+    public static function wrap(array $wrapped_obj): Currency
+    {
+        return new Currency($wrapped_obj);
+    }
+
 
     /**
      * @return string|null
      */
     public function getCode(): ?string
     {
-        return $this->_code;
+        return $this->_wrapped_obj['code'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("Currency"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ->addProperty("name", $this->_name)
-            ->addProperty("code", $this->_code);
+        return json_encode($this->_wrapped_obj);
     }
 }

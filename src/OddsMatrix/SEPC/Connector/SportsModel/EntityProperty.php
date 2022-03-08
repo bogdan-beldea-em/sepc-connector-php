@@ -3,64 +3,57 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class EntityProperty
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="EntityProperty")
  */
 class EntityProperty implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("typeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_typeId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("entityTypeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_entityTypeId;
+     * @param array $wrapped_obj
+     * @return EntityProperty
+     */
+    public static function wrap(array $wrapped_obj): EntityProperty
+    {
+        return new EntityProperty($wrapped_obj);
+    }
+
 
     /**
      * @return int|null
      */
     public function getTypeId(): ?int
     {
-        return $this->_typeId;
+        return $this->_wrapped_obj['typeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getEntityTypeId(): ?int
     {
-        return $this->_entityTypeId;
+        return $this->_wrapped_obj['entityTypeId'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("EntityProperty"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ->addProperty("name", $this->_name)
-            ->addProperty("description", $this->_description)
-            ->addProperty("typeId", $this->_typeId)
-            ->addProperty("entityTypeId", $this->_entityTypeId);
+        return json_encode($this->_wrapped_obj);
     }
 }

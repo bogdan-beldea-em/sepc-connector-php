@@ -32,6 +32,28 @@ class SDQLError
     private $_message;
 
     /**
+     * @param array|null $array
+     */
+    public function __construct(array $array = null)
+    {
+        if (is_null($array)) {
+            return;
+        }
+
+        $this->_code = $array['code'];
+        $this->_message = $array['message'];
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return SDQLError
+     */
+    public static function wrap(array $wrapped_obj): SDQLError
+    {
+        return new SDQLError($wrapped_obj);
+    }
+
+    /**
      * @return int|null
      */
     public function getCode(): ?int

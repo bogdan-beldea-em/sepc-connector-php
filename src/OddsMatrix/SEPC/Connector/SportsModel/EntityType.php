@@ -3,27 +3,39 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class EntityType
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="EntityType")
  */
 class EntityType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
+
+    protected $_wrapped_obj;
+    
+    /**
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return EntityType
+     */
+    public static function wrap(array $wrapped_obj): EntityType
+    {
+        return new EntityType($wrapped_obj);
+    }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("EntityType"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ->addProperty("name", $this->_name);
+        return json_encode($this->_wrapped_obj);
     }
 }

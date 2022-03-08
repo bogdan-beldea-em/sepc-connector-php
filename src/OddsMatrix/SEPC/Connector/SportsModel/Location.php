@@ -3,118 +3,84 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class Location
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="Location")
  */
 class Location implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("typeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_typeId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("code")
-    * @Serializer\XmlAttribute()
-    */
-    private $_code;
+     * @param array $wrapped_obj
+     * @return Location
+     */
+    public static function wrap(array $wrapped_obj): Location
+    {
+        return new Location($wrapped_obj);
+    }
 
-    /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("isHistoric")
-    * @Serializer\XmlAttribute()
-    */
-    private $_isHistoric;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("url")
-    * @Serializer\XmlAttribute()
-    */
-    private $_url;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("note")
-    * @Serializer\XmlAttribute()
-    */
-    private $_note;
 
     /**
      * @return int|null
      */
     public function getTypeId(): ?int
     {
-        return $this->_typeId;
+        return $this->_wrapped_obj['typeId'];
     }
+
 
     /**
      * @return string|null
      */
     public function getCode(): ?string
     {
-        return $this->_code;
+        return $this->_wrapped_obj['code'];
     }
+
 
     /**
      * @return bool|null
      */
     public function isHistoric(): ?bool
     {
-        return $this->_isHistoric;
+        return $this->_wrapped_obj['isHistoric'];
     }
+
 
     /**
      * @return string|null
      */
     public function getUrl(): ?string
     {
-        return $this->_url;
+        return $this->_wrapped_obj['url'];
     }
+
 
     /**
      * @return string|null
      */
     public function getNote(): ?string
     {
-        return $this->_note;
+        return $this->_wrapped_obj['note'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("Location"))
-            ->addProperty("note", $this->_note)
-            ->addProperty("id", $this->_id)
-            ->addProperty("name", $this->_name)
-            ->addProperty("isHistoric", $this->_isHistoric)
-            ->addProperty("url", $this->_url)
-            ->addProperty("typeId", $this->_typeId)
-            ->addProperty("version", $this->_version)
-            ->addProperty("code", $this->_code)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

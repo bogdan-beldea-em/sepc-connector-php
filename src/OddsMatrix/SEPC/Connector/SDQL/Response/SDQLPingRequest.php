@@ -22,6 +22,20 @@ class SDQLPingRequest
     */
     private $_id;
 
+    public function __construct(array $array = null)
+    {
+        if (is_null($array)) {
+            return;
+        }
+
+        $this->_id = $array['id'];
+    }
+
+    public static function wrap($wrapped_obj): SDQLPingRequest
+    {
+        return new SDQLPingRequest($wrapped_obj);
+    }
+
     /**
      * @return string|null
      */

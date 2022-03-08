@@ -28,6 +28,17 @@ class SDQLUnsubscribeRequest {
     private $_subscriptionSpecificationName;
 
     /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'subscriptionSpecificationName' => $this->_subscriptionSpecificationName,
+            'subscriptionId' => $this->_subscriptionId
+        ];
+    }
+
+    /**
      * SDQLUnsubscribeRequest constructor.
      * @param string $_subscriptionSpecificationName
      * @param string $_subscriptionId

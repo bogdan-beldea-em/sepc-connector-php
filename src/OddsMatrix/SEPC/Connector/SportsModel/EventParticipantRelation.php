@@ -3,119 +3,84 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class EventParticipantRelation
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="EventParticipantRelation")
  */
 class EventParticipantRelation implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventPartId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventPartId;
+     * @param array $wrapped_obj
+     * @return EventParticipantRelation
+     */
+    public static function wrap(array $wrapped_obj): EventParticipantRelation
+    {
+        return new EventParticipantRelation($wrapped_obj);
+    }
 
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("participantId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_participantId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("participantRoleId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_participantRoleId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("parentParticipantId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_parentParticipantId;
 
     /**
      * @return int|null
      */
     public function getEventId(): ?int
     {
-        return $this->_eventId;
+        return $this->_wrapped_obj['eventId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getEventPartId(): ?int
     {
-        return $this->_eventPartId;
+        return $this->_wrapped_obj['eventPartId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getParticipantId(): ?int
     {
-        return $this->_participantId;
+        return $this->_wrapped_obj['participantId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getParticipantRoleId(): ?int
     {
-        return $this->_participantRoleId;
+        return $this->_wrapped_obj['participantRoleId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getParentParticipantId(): ?int
     {
-        return $this->_parentParticipantId;
+        return $this->_wrapped_obj['parentParticipantId'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("EventParticipantRelation"))
-            ->addProperty("participantId", $this->_participantId)
-            ->addProperty("participantRoleId", $this->_participantRoleId)
-            ->addProperty("eventPartId", $this->_eventPartId)
-            ->addProperty("eventId", $this->_eventId)
-            ->addProperty("type", $this->_type)
-            ->addProperty("parentParticipantId", $this->_parentParticipantId)
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ;
-
+        return json_encode($this->_wrapped_obj);
     }
 }

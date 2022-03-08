@@ -3,64 +3,48 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
-
 /**
  * Class Language
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="Language")
  */
 class Language implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("code")
-    * @Serializer\XmlAttribute()
-    */
-    private $_code;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var \DateTime|null
-    *
-    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
-    * @Serializer\SerializedName("createDate")
-    * @Serializer\XmlAttribute()
-    */
-    private $_createDate;
+     * @param array $wrapped_obj
+     * @return Language
+     */
+    public static function wrap(array $wrapped_obj): Language
+    {
+        return new Language($wrapped_obj);
+    }
+
 
     /**
      * @return string|null
      */
     public function getCode(): ?string
     {
-        return $this->_code;
+        return $this->_wrapped_obj['code'];
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreateDate(): ?\DateTime
-    {
-        return $this->_createDate;
-    }
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("Language"))
-            ->addProperty("code", $this->_code)
-            ->addProperty("version", $this->_version)
-            ->addProperty("createDate", ToStringUtil::transformDate($this->_createDate))
-            ->addProperty("id", $this->_id)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

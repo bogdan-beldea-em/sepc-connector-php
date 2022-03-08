@@ -4,6 +4,7 @@
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 use JMS\Serializer\Annotation as Serializer;
+use OM\OddsMatrix\SEPC\Connector\Util\DateTimeUtil;
 
 /**
  * Class UpdateData
@@ -14,6 +15,28 @@ use JMS\Serializer\Annotation as Serializer;
 class UpdateData
 {
     use EntitiesTrait;
+
+    public function __construct(array $array = null)
+    {
+        if (is_null($array)) {
+            return;
+        }
+
+        if (!is_null($array['changes'])) {
+            foreach ($array['changes'] as $change) {
+                $this->addEntity($change);
+            }
+        }
+
+        $this->_batchId = $array['batchId'];
+        $this->_batchUuid = $array['batchUuid'];
+        $this->_createdTime = DateTimeUtil::stringToDateTime($array['createdTime']);
+    }
+
+    public static function wrap(array $wrapped_obj): UpdateData
+    {
+        return new UpdateData($wrapped_obj);
+    }
 
     /**
      * @var int

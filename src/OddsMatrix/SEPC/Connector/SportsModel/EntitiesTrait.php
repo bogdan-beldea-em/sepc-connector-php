@@ -9,947 +9,1058 @@ use JMS\Serializer\Annotation as Serializer;
 trait EntitiesTrait
 {
     /**
-     * @var EventActionDetailType[]|null
+     * @var EventActionDetailType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionDetailType>")
      * @Serializer\XmlList(inline=true, entry="EventActionDetailType")
      */
-    private $_eventActionDetailTypes;
+    private $_eventActionDetailTypes = [];
 
     /**
-     * @var Source[]|null
+     * @var EventActionDetailTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionDetailTypeUsage>")
+     * @Serializer\XmlList(inline=true, entry="EventActionDetailTypeUsage")
+     */
+    private $_eventActionDetailTypeUsages = [];
+
+    /**
+     * @var Source[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Source>")
      * @Serializer\XmlList(inline=true, entry="Source")
      */
-    private $_sources;
+    private $_sources = [];
 
     /**
-     * @var EventPart[]|null
+     * @var EventPart[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventPart>")
      * @Serializer\XmlList(inline=true, entry="EventPart")
      */
-    private $_eventParts;
+    private $_eventParts = [];
 
     /**
-     * @var OutcomeType[]|null
+     * @var OutcomeType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeType>")
      * @Serializer\XmlList(inline=true, entry="OutcomeType")
      */
-    private $_outcomeTypes;
+    private $_outcomeTypes = [];
 
     /**
-     * @var EventInfo[]|null
+     * @var EventInfo[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfo>")
      * @Serializer\XmlList(inline=true, entry="EventInfo")
      */
-    private $_eventInfos;
+    private $_eventInfos = [];
 
     /**
-     * @var EventActionStatus[]|null
+     * @var EventActionStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionStatus>")
      * @Serializer\XmlList(inline=true, entry="EventActionStatus")
      */
-    private $_eventActionStatuses;
+    private $_eventActionStatuses = [];
 
     /**
-     * @var EventParticipantInfoDetail[]|null
+     * @var EventParticipantInfoDetail[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoDetail>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantInfoDetail")
      */
-    private $_eventParticipantInfoDetails;
+    private $_eventParticipantInfoDetails = [];
 
     /**
-     * @var LocationRelation[]|null
+     * @var LocationRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\LocationRelation>")
      * @Serializer\XmlList(inline=true, entry="LocationRelation")
      */
-    private $_locationRelations;
+    private $_locationRelations = [];
 
     /**
-     * @var EventCategory[]|null
+     * @var EventCategory[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventCategory>")
      * @Serializer\XmlList(inline=true, entry="EventCategory")
      */
-    private $_eventCategories;
+    private $_eventCategories = [];
 
     /**
-     * @var StreamingProviderEventRelation[]|null
+     * @var StreamingProviderEventRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\StreamingProviderEventRelation>")
      * @Serializer\XmlList(inline=true, entry="StreamingProviderEventRelation")
      */
-    private $_streamingProviderEventRelations;
+    private $_streamingProviderEventRelations = [];
 
     /**
-     * @var EntityProperty[]|null
+     * @var EntityProperty[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EntityProperty>")
      * @Serializer\XmlList(inline=true, entry="EntityProperty")
      */
-    private $_entityProperties;
+    private $_entityProperties = [];
 
     /**
-     * @var Translation[]|null
+     * @var Translation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Translation>")
      * @Serializer\XmlList(inline=true, entry="Translation")
      */
-    private $_translations;
+    private $_translations = [];
 
     /**
-     * @var Language[]|null
+     * @var Language[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Language>")
      * @Serializer\XmlList(inline=true, entry="Language")
      */
-    private $_languages;
+    private $_languages = [];
 
     /**
-     * @var OutcomeStatus[]|null
+     * @var OutcomeStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeStatus>")
      * @Serializer\XmlList(inline=true, entry="OutcomeStatus")
      */
-    private $_outcomeStatuses;
+    private $_outcomeStatuses = [];
 
     /**
-     * @var EventTemplate[]|null
+     * @var EventTemplate[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventTemplate>")
      * @Serializer\XmlList(inline=true, entry="EventTemplate")
      */
-    private $_eventTemplates;
+    private $_eventTemplates = [];
 
     /**
-     * @var EntityPropertyType[]|null
+     * @var EntityPropertyType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EntityPropertyType>")
      * @Serializer\XmlList(inline=true, entry="EntityPropertyType")
      */
-    private $_entityPropertyTypes;
+    private $_entityPropertyTypes = [];
 
     /**
-     * @var BettingOffer[]|null
+     * @var BettingOffer[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\BettingOffer>")
      * @Serializer\XmlList(inline=true, entry="BettingOffer")
      */
-    private $_bettingOffers;
+    private $_bettingOffers = [];
 
     /**
-     * @var OutcomeTypeUsage[]|null
+     * @var OutcomeTypeUsage[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeTypeUsage>")
      * @Serializer\XmlList(inline=true, entry="OutcomeTypeUsage")
      */
-    private $_outcomeTypeUsages;
+    private $_outcomeTypeUsages = [];
 
     /**
-     * @var EventAction[]|null
+     * @var EventAction[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventAction>")
      * @Serializer\XmlList(inline=true, entry="EventAction")
      */
-    private $_eventActions;
+    private $_eventActions = [];
 
     /**
-     * @var EventType[]|null
+     * @var EventType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventType>")
      * @Serializer\XmlList(inline=true, entry="EventType")
      */
-    private $_eventTypes;
+    private $_eventTypes = [];
 
     /**
-     * @var Provider[]|null
+     * @var Provider[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Provider>")
      * @Serializer\XmlList(inline=true, entry="Provider")
      */
-    private $_providers;
+    private $_providers = [];
 
     /**
-     * @var Event[]|null
+     * @var Event[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Event>")
      * @Serializer\XmlList(inline=true, entry="Event")
      */
-    private $_events;
+    private $_events = [];
 
     /**
-     * @var ProviderEntityMapping[]|null
+     * @var ProviderEntityMapping[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ProviderEntityMapping>")
      * @Serializer\XmlList(inline=true, entry="ProviderEntityMapping")
      */
-    private $_providerEntityMappings;
+    private $_providerEntityMappings = [];
 
     /**
-     * @var StreamingProvider[]|null
+     * @var StreamingProvider[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\StreamingProvider>")
      * @Serializer\XmlList(inline=true, entry="StreamingProvider")
      */
-    private $_streamingProviders;
+    private $_streamingProviders = [];
 
     /**
-     * @var OutcomeTypeBettingTypeRelation[]|null
+     * @var OutcomeTypeBettingTypeRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\OutcomeTypeBettingTypeRelation>")
      * @Serializer\XmlList(inline=true, entry="OutcomeTypeBettingTypeRelation")
      */
-    private $_outcomeTypeBettingTypeRelations;
+    private $_outcomeTypeBettingTypeRelations = [];
 
     /**
-     * @var Outcome[]|null
+     * @var Outcome[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Outcome>")
      * @Serializer\XmlList(inline=true, entry="Outcome")
      */
-    private $_outcomes;
+    private $_outcomes = [];
 
     /**
-     * @var EventActionDetail[]|null
+     * @var EventActionDetail[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionDetail>")
      * @Serializer\XmlList(inline=true, entry="EventActionDetail")
      */
-    private $_eventActionDetails;
+    private $_eventActionDetails = [];
 
     /**
-     * @var Sport[]|null
+     * @var Sport[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Sport>")
      * @Serializer\XmlList(inline=true, entry="Sport")
      */
-    private $_sports;
+    private $_sports = [];
 
     /**
-     * @var EventActionDetailStatus[]|null
+     * @var EventActionDetailStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionDetailStatus>")
      * @Serializer\XmlList(inline=true, entry="EventActionDetailStatus")
      */
-    private $_eventActionDetailStatuses;
+    private $_eventActionDetailStatuses = [];
 
     /**
-     * @var EventParticipantInfo[]|null
+     * @var EventParticipantInfo[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfo>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantInfo")
      */
-    private $_eventParticipantInfos;
+    private $_eventParticipantInfos = [];
 
     /**
-     * @var EntityType[]|null
+     * @var EntityType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EntityType>")
      * @Serializer\XmlList(inline=true, entry="EntityType")
      */
-    private $_entityTypes;
+    private $_entityTypes = [];
 
     /**
-     * @var ParticipantRole[]|null
+     * @var ParticipantRole[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantRole>")
      * @Serializer\XmlList(inline=true, entry="ParticipantRole")
      */
-    private $_participantRoles;
+    private $_participantRoles = [];
 
     /**
-     * @var Currency[]|null
+     * @var Currency[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Currency>")
      * @Serializer\XmlList(inline=true, entry="Currency")
      */
-    private $_currencies;
+    private $_currencies = [];
 
     /**
-     * @var EventParticipantInfoStatus[]|null
+     * @var EventParticipantInfoStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoStatus>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantInfoStatus")
      */
-    private $_eventParticipantInfoStatuses;
+    private $_eventParticipantInfoStatuses = [];
 
     /**
-     * @var EventParticipantRelation[]|null
+     * @var EventParticipantRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantRelation>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantRelation")
      */
-    private $_eventParticipantRelations;
+    private $_eventParticipantRelations = [];
 
     /**
-     * @var EventPartDefaultUsage[]|null
+     * @var EventPartDefaultUsage[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventPartDefaultUsage>")
      * @Serializer\XmlList(inline=true, entry="EventPartDefaultUsage")
      */
-    private $_eventPartDefaultUsages;
+    private $_eventPartDefaultUsages = [];
 
     /**
-     * @var ParticipantRelation[]|null
+     * @var ParticipantRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantRelation>")
      * @Serializer\XmlList(inline=true, entry="ParticipantRelation")
      */
-    private $_participantRelations;
+    private $_participantRelations = [];
 
     /**
-     * @var EventInfoType[]|null
+     * @var EventInfoType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfoType>")
      * @Serializer\XmlList(inline=true, entry="EventInfoType")
      */
-    private $_eventInfoTypes;
+    private $_eventInfoTypes = [];
 
     /**
-     * @var EventActionType[]|null
+     * @var EventInfoTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfoTypeUsage>")
+     * @Serializer\XmlList(inline=true, entry="EventInfoTypeUsage")
+     */
+    private $_eventInfoTypeUsages = [];
+
+    /**
+     * @var EventActionType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionType>")
      * @Serializer\XmlList(inline=true, entry="EventActionType")
      */
-    private $_eventActionTypes;
+    private $_eventActionTypes = [];
 
     /**
-     * @var EventStatus[]|null
+     * @var EventActionTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventActionTypeUsage>")
+     * @Serializer\XmlList(inline=true, entry="EventActionTypeUsage")
+     */
+    private $_eventActionTypeUsages = [];
+
+    /**
+     * @var EventStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventStatus>")
      * @Serializer\XmlList(inline=true, entry="EventStatus")
      */
-    private $_eventStatuses;
+    private $_eventStatuses = [];
 
     /**
-     * @var LocationType[]|null
+     * @var LocationType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\LocationType>")
      * @Serializer\XmlList(inline=true, entry="LocationType")
      */
-    private $_locationTypes;
+    private $_locationTypes = [];
 
     /**
-     * @var BettingTypeUsage[]|null
+     * @var BettingTypeUsage[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\BettingTypeUsage>")
      * @Serializer\XmlList(inline=true, entry="BettingTypeUsage")
      */
-    private $_bettingTypeUsages;
+    private $_bettingTypeUsages = [];
 
     /**
-     * @var ProviderOutcomeRelation[]|null
+     * @var ProviderOutcomeRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ProviderOutcomeRelation>")
      * @Serializer\XmlList(inline=true, entry="ProviderOutcomeRelation")
      */
-    private $_providerOutcomeRelations;
+    private $_providerOutcomeRelations = [];
 
     /**
-     * @var EventInfoStatus[]|null
+     * @var EventInfoStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventInfoStatus>")
      * @Serializer\XmlList(inline=true, entry="EventInfoStatus")
      */
-    private $_eventInfoStatuses;
+    private $_eventInfoStatuses = [];
 
     /**
-     * @var MarketOutcomeRelation[]|null
+     * @var MarketOutcomeRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\MarketOutcomeRelation>")
      * @Serializer\XmlList(inline=true, entry="MarketOutcomeRelation")
      */
-    private $_marketOutcomeRelations;
+    private $_marketOutcomeRelations = [];
 
     /**
-     * @var ParticipantRelationType[]|null
+     * @var ParticipantRelationType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantRelationType>")
      * @Serializer\XmlList(inline=true, entry="ParticipantRelationType")
      */
-    private $_participantRelationTypes;
+    private $_participantRelationTypes = [];
 
     /**
-     * @var ParticipantType[]|null
+     * @var ParticipantType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantType>")
      * @Serializer\XmlList(inline=true, entry="ParticipantType")
      */
-    private $_participantTypes;
+    private $_participantTypes = [];
 
     /**
-     * @var Market[]|null
+     * @var Market[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Market>")
      * @Serializer\XmlList(inline=true, entry="Market")
      */
-    private $_markets;
+    private $_markets = [];
 
     /**
-     * @var Location[]|null
+     * @var Location[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Location>")
      * @Serializer\XmlList(inline=true, entry="Location")
      */
-    private $_locations;
+    private $_locations = [];
 
     /**
-     * @var ScoringUnit[]|null
+     * @var ScoringUnit[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ScoringUnit>")
      * @Serializer\XmlList(inline=true, entry="ScoringUnit")
      */
-    private $_scoringUnits;
+    private $_scoringUnits = [];
 
     /**
-     * @var BettingType[]|null
+     * @var BettingType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\BettingType>")
      * @Serializer\XmlList(inline=true, entry="BettingType")
      */
-    private $_bettingTypes;
+    private $_bettingTypes = [];
 
     /**
-     * @var LocationRelationType[]|null
+     * @var LocationRelationType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\LocationRelationType>")
      * @Serializer\XmlList(inline=true, entry="LocationRelationType")
      */
-    private $_locationRelationTypes;
+    private $_locationRelationTypes = [];
 
     /**
-     * @var Participant[]|null
+     * @var Participant[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\Participant>")
      * @Serializer\XmlList(inline=true, entry="Participant")
      */
-    private $_participants;
+    private $_participants = [];
 
     /**
-     * @var EventParticipantInfoDetailStatus[]|null
+     * @var EventParticipantInfoDetailStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoDetailStatus>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantInfoDetailStatus")
      */
-    private $_eventParticipantInfoDetailStatuses;
+    private $_eventParticipantInfoDetailStatuses = [];
 
     /**
-     * @var BettingOfferStatus[]|null
+     * @var BettingOfferStatus[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\BettingOfferStatus>")
      * @Serializer\XmlList(inline=true, entry="BettingOfferStatus")
      */
-    private $_bettingOfferStatuses;
+    private $_bettingOfferStatuses = [];
 
     /**
-     * @var ParticipantUsage[]|null
+     * @var ParticipantUsage[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ParticipantUsage>")
      * @Serializer\XmlList(inline=true, entry="ParticipantUsage")
      */
-    private $_participantUsages;
+    private $_participantUsages = [];
 
     /**
-     * @var EventParticipantInfoType[]|null
+     * @var EventParticipantInfoType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoType>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantInfoType")
      */
-    private $_eventParticipantInfoTypes;
+    private $_eventParticipantInfoTypes = [];
 
     /**
-     * @var ProviderEventRelation[]|null
+     * @var EventParticipantInfoTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoTypeUsage>")
+     * @Serializer\XmlList(inline=true, entry="EventParticipantInfoTypeUsage")
+     */
+    private $_eventParticipantInfoTypeUsages = [];
+
+    /**
+     * @var ProviderEventRelation[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\ProviderEventRelation>")
      * @Serializer\XmlList(inline=true, entry="ProviderEventRelation")
      */
-    private $_providerEventRelations;
+    private $_providerEventRelations = [];
 
     /**
-     * @var EventParticipantInfoDetailType[]|null
+     * @var EventParticipantInfoDetailType[]
      *
      * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoDetailType>")
      * @Serializer\XmlList(inline=true, entry="EventParticipantInfoDetailType")
      */
-    private $_eventParticipantInfoDetailTypes;
+    private $_eventParticipantInfoDetailTypes = [];
 
     /**
-     * @return EventActionDetailType[]|null
+     * @var EventParticipantInfoDetailTypeUsage[]
+     *
+     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\EventParticipantInfoDetailTypeUsage>")
+     * @Serializer\XmlList(inline=true, entry="EventParticipantInfoDetailTypeUsage")
      */
-    public function getEventActionDetailTypes(): ?array
+    private $_eventParticipantInfoDetailTypeUsages = [];
+
+    /**
+     * @return EventActionDetailType[]
+     */
+    public function getEventActionDetailTypes(): array
     {
         return $this->_eventActionDetailTypes;
     }
 
     /**
-     * @return Source[]|null
+     * @return Source[]
      */
-    public function getSources(): ?array
+    public function getSources(): array
     {
         return $this->_sources;
     }
 
     /**
-     * @return EventPart[]|null
+     * @return EventPart[]
      */
-    public function getEventParts(): ?array
+    public function getEventParts(): array
     {
         return $this->_eventParts;
     }
 
     /**
-     * @return OutcomeType[]|null
+     * @return OutcomeType[]
      */
-    public function getOutcomeTypes(): ?array
+    public function getOutcomeTypes(): array
     {
         return $this->_outcomeTypes;
     }
 
     /**
-     * @return EventInfo[]|null
+     * @return EventInfo[]
      */
-    public function getEventInfos(): ?array
+    public function getEventInfos(): array
     {
         return $this->_eventInfos;
     }
 
     /**
-     * @return EventActionStatus[]|null
+     * @return EventActionStatus[]
      */
-    public function getEventActionStatuses(): ?array
+    public function getEventActionStatuses(): array
     {
         return $this->_eventActionStatuses;
     }
 
     /**
-     * @return EventParticipantInfoDetail[]|null
+     * @return EventParticipantInfoDetail[]
      */
-    public function getEventParticipantInfoDetails(): ?array
+    public function getEventParticipantInfoDetails(): array
     {
         return $this->_eventParticipantInfoDetails;
     }
 
     /**
-     * @return LocationRelation[]|null
+     * @return LocationRelation[]
      */
-    public function getLocationRelations(): ?array
+    public function getLocationRelations(): array
     {
         return $this->_locationRelations;
     }
 
     /**
-     * @return EventCategory[]|null
+     * @return EventCategory[]
      */
-    public function getEventCategories(): ?array
+    public function getEventCategories(): array
     {
         return $this->_eventCategories;
     }
 
     /**
-     * @return StreamingProviderEventRelation[]|null
+     * @return StreamingProviderEventRelation[]
      */
-    public function getStreamingProviderEventRelations(): ?array
+    public function getStreamingProviderEventRelations(): array
     {
         return $this->_streamingProviderEventRelations;
     }
 
     /**
-     * @return EntityProperty[]|null
+     * @return EntityProperty[]
      */
-    public function getEntityProperties(): ?array
+    public function getEntityProperties(): array
     {
         return $this->_entityProperties;
     }
 
     /**
-     * @return Translation[]|null
+     * @return Translation[]
      */
-    public function getTranslations(): ?array
+    public function getTranslations(): array
     {
         return $this->_translations;
     }
 
     /**
-     * @return Language[]|null
+     * @return Language[]
      */
-    public function getLanguages(): ?array
+    public function getLanguages(): array
     {
         return $this->_languages;
     }
 
     /**
-     * @return OutcomeStatus[]|null
+     * @return OutcomeStatus[]
      */
-    public function getOutcomeStatuses(): ?array
+    public function getOutcomeStatuses(): array
     {
         return $this->_outcomeStatuses;
     }
 
     /**
-     * @return EventTemplate[]|null
+     * @return EventTemplate[]
      */
-    public function getEventTemplates(): ?array
+    public function getEventTemplates(): array
     {
         return $this->_eventTemplates;
     }
 
     /**
-     * @return EntityPropertyType[]|null
+     * @return EntityPropertyType[]
      */
-    public function getEntityPropertyTypes(): ?array
+    public function getEntityPropertyTypes(): array
     {
         return $this->_entityPropertyTypes;
     }
 
     /**
-     * @return BettingOffer[]|null
+     * @return BettingOffer[]
      */
-    public function getBettingOffers(): ?array
+    public function getBettingOffers(): array
     {
         return $this->_bettingOffers;
     }
 
     /**
-     * @return OutcomeTypeUsage[]|null
+     * @return OutcomeTypeUsage[]
      */
-    public function getOutcomeTypeUsages(): ?array
+    public function getOutcomeTypeUsages(): array
     {
         return $this->_outcomeTypeUsages;
     }
 
     /**
-     * @return EventAction[]|null
+     * @return EventAction[]
      */
-    public function getEventActions(): ?array
+    public function getEventActions(): array
     {
         return $this->_eventActions;
     }
 
     /**
-     * @return EventType[]|null
+     * @return EventType[]
      */
-    public function getEventTypes(): ?array
+    public function getEventTypes(): array
     {
         return $this->_eventTypes;
     }
 
     /**
-     * @return Provider[]|null
+     * @return Provider[]
      */
-    public function getProviders(): ?array
+    public function getProviders(): array
     {
         return $this->_providers;
     }
 
     /**
-     * @return Event[]|null
+     * @return Event[]
      */
-    public function getEvents(): ?array
+    public function getEvents(): array
     {
         return $this->_events;
     }
 
     /**
-     * @return ProviderEntityMapping[]|null
+     * @return ProviderEntityMapping[]
      */
-    public function getProviderEntityMappings(): ?array
+    public function getProviderEntityMappings(): array
     {
         return $this->_providerEntityMappings;
     }
 
     /**
-     * @return StreamingProvider[]|null
+     * @return StreamingProvider[]
      */
-    public function getStreamingProviders(): ?array
+    public function getStreamingProviders(): array
     {
         return $this->_streamingProviders;
     }
 
     /**
-     * @return OutcomeTypeBettingTypeRelation[]|null
+     * @return OutcomeTypeBettingTypeRelation[]
      */
-    public function getOutcomeTypeBettingTypeRelations(): ?array
+    public function getOutcomeTypeBettingTypeRelations(): array
     {
         return $this->_outcomeTypeBettingTypeRelations;
     }
 
     /**
-     * @return Outcome[]|null
+     * @return Outcome[]
      */
-    public function getOutcomes(): ?array
+    public function getOutcomes(): array
     {
         return $this->_outcomes;
     }
 
     /**
-     * @return EventActionDetail[]|null
+     * @return EventActionDetail[]
      */
-    public function getEventActionDetails(): ?array
+    public function getEventActionDetails(): array
     {
         return $this->_eventActionDetails;
     }
 
     /**
-     * @return Sport[]|null
+     * @return Sport[]
      */
-    public function getSports(): ?array
+    public function getSports(): array
     {
         return $this->_sports;
     }
 
     /**
-     * @return EventActionDetailStatus[]|null
+     * @return EventActionDetailStatus[]
      */
-    public function getEventActionDetailStatuses(): ?array
+    public function getEventActionDetailStatuses(): array
     {
         return $this->_eventActionDetailStatuses;
     }
 
     /**
-     * @return EventParticipantInfo[]|null
+     * @return EventParticipantInfo[]
      */
-    public function getEventParticipantInfos(): ?array
+    public function getEventParticipantInfos(): array
     {
         return $this->_eventParticipantInfos;
     }
 
     /**
-     * @return EntityType[]|null
+     * @return EntityType[]
      */
-    public function getEntityTypes(): ?array
+    public function getEntityTypes(): array
     {
         return $this->_entityTypes;
     }
 
     /**
-     * @return ParticipantRole[]|null
+     * @return ParticipantRole[]
      */
-    public function getParticipantRoles(): ?array
+    public function getParticipantRoles(): array
     {
         return $this->_participantRoles;
     }
 
     /**
-     * @return Currency[]|null
+     * @return Currency[]
      */
-    public function getCurrencies(): ?array
+    public function getCurrencies(): array
     {
         return $this->_currencies;
     }
 
     /**
-     * @return EventParticipantInfoStatus[]|null
+     * @return EventParticipantInfoStatus[]
      */
-    public function getEventParticipantInfoStatuses(): ?array
+    public function getEventParticipantInfoStatuses(): array
     {
         return $this->_eventParticipantInfoStatuses;
     }
 
     /**
-     * @return EventParticipantRelation[]|null
+     * @return EventParticipantRelation[]
      */
-    public function getEventParticipantRelations(): ?array
+    public function getEventParticipantRelations(): array
     {
         return $this->_eventParticipantRelations;
     }
 
     /**
-     * @return EventPartDefaultUsage[]|null
+     * @return EventPartDefaultUsage[]
      */
-    public function getEventPartDefaultUsages(): ?array
+    public function getEventPartDefaultUsages(): array
     {
         return $this->_eventPartDefaultUsages;
     }
 
     /**
-     * @return ParticipantRelation[]|null
+     * @return ParticipantRelation[]
      */
-    public function getParticipantRelations(): ?array
+    public function getParticipantRelations(): array
     {
         return $this->_participantRelations;
     }
 
     /**
-     * @return EventInfoType[]|null
+     * @return EventInfoType[]
      */
-    public function getEventInfoTypes(): ?array
+    public function getEventInfoTypes(): array
     {
         return $this->_eventInfoTypes;
     }
 
     /**
-     * @return EventActionType[]|null
+     * @return EventActionType[]
      */
-    public function getEventActionTypes(): ?array
+    public function getEventActionTypes(): array
     {
         return $this->_eventActionTypes;
     }
 
     /**
-     * @return EventStatus[]|null
+     * @return EventStatus[]
      */
-    public function getEventStatuses(): ?array
+    public function getEventStatuses(): array
     {
         return $this->_eventStatuses;
     }
 
     /**
-     * @return LocationType[]|null
+     * @return LocationType[]
      */
-    public function getLocationTypes(): ?array
+    public function getLocationTypes(): array
     {
         return $this->_locationTypes;
     }
 
     /**
-     * @return BettingTypeUsage[]|null
+     * @return BettingTypeUsage[]
      */
-    public function getBettingTypeUsages(): ?array
+    public function getBettingTypeUsages(): array
     {
         return $this->_bettingTypeUsages;
     }
 
     /**
-     * @return EventInfoStatus[]|null
+     * @return EventInfoStatus[]
      */
-    public function getEventInfoStatuses(): ?array
+    public function getEventInfoStatuses(): array
     {
         return $this->_eventInfoStatuses;
     }
 
     /**
-     * @return MarketOutcomeRelation[]|null
+     * @return MarketOutcomeRelation[]
      */
-    public function getMarketOutcomeRelations(): ?array
+    public function getMarketOutcomeRelations(): array
     {
         return $this->_marketOutcomeRelations;
     }
 
     /**
-     * @return ParticipantRelationType[]|null
+     * @return ParticipantRelationType[]
      */
-    public function getParticipantRelationTypes(): ?array
+    public function getParticipantRelationTypes(): array
     {
         return $this->_participantRelationTypes;
     }
 
     /**
-     * @return ParticipantType[]|null
+     * @return ParticipantType[]
      */
-    public function getParticipantTypes(): ?array
+    public function getParticipantTypes(): array
     {
         return $this->_participantTypes;
     }
 
     /**
-     * @return Market[]|null
+     * @return Market[]
      */
-    public function getMarkets(): ?array
+    public function getMarkets(): array
     {
         return $this->_markets;
     }
 
     /**
-     * @return Location[]|null
+     * @return Location[]
      */
-    public function getLocations(): ?array
+    public function getLocations(): array
     {
         return $this->_locations;
     }
 
     /**
-     * @return ScoringUnit[]|null
+     * @return ScoringUnit[]
      */
-    public function getScoringUnits(): ?array
+    public function getScoringUnits(): array
     {
         return $this->_scoringUnits;
     }
 
     /**
-     * @return BettingType[]|null
+     * @return BettingType[]
      */
-    public function getBettingTypes(): ?array
+    public function getBettingTypes(): array
     {
         return $this->_bettingTypes;
     }
 
     /**
-     * @return LocationRelationType[]|null
+     * @return LocationRelationType[]
      */
-    public function getLocationRelationTypes(): ?array
+    public function getLocationRelationTypes(): array
     {
         return $this->_locationRelationTypes;
     }
 
     /**
-     * @return Participant[]|null
+     * @return Participant[]
      */
-    public function getParticipants(): ?array
+    public function getParticipants(): array
     {
         return $this->_participants;
     }
 
     /**
-     * @return EventParticipantInfoDetailStatus[]|null
+     * @return EventParticipantInfoDetailStatus[]
      */
-    public function getEventParticipantInfoDetailStatuses(): ?array
+    public function getEventParticipantInfoDetailStatuses(): array
     {
         return $this->_eventParticipantInfoDetailStatuses;
     }
 
     /**
-     * @return BettingOfferStatus[]|null
+     * @return BettingOfferStatus[]
      */
-    public function getBettingOfferStatuses(): ?array
+    public function getBettingOfferStatuses(): array
     {
         return $this->_bettingOfferStatuses;
     }
 
     /**
-     * @return ParticipantUsage[]|null
+     * @return ParticipantUsage[]
      */
-    public function getParticipantUsages(): ?array
+    public function getParticipantUsages(): array
     {
         return $this->_participantUsages;
     }
 
     /**
-     * @return EventParticipantInfoType[]|null
+     * @return EventParticipantInfoType[]
      */
-    public function getEventParticipantInfoTypes(): ?array
+    public function getEventParticipantInfoTypes(): array
     {
         return $this->_eventParticipantInfoTypes;
     }
 
     /**
-     * @return ProviderEventRelation[]|null
+     * @return ProviderEventRelation[]
      */
-    public function getProviderEventRelations(): ?array
+    public function getProviderEventRelations(): array
     {
         return $this->_providerEventRelations;
     }
 
     /**
-     * @return EventParticipantInfoDetailType[]|null
+     * @return EventParticipantInfoDetailType[]
      */
-    public function getEventParticipantInfoDetailTypes(): ?array
+    public function getEventParticipantInfoDetailTypes(): array
     {
         return $this->_eventParticipantInfoDetailTypes;
     }
 
     /**
-     * @return ProviderOutcomeRelation[]|null
+     * @return ProviderOutcomeRelation[]
      */
-    public function getProviderOutcomeRelations(): ?array
+    public function getProviderOutcomeRelations(): array
     {
         return $this->_providerOutcomeRelations;
+    }
+
+    public function addEntity(array $entity): void
+    {
+        $entityClass = $entity['entityClass'];
+
+        if ($entityClass === 'BettingOffer') $this ->_bettingOffers[] = BettingOffer::wrap($entity);
+        else if ($entityClass === 'BettingOfferStatus') $this->_bettingOfferStatuses[] = BettingOfferStatus::wrap($entity);
+        else if ($entityClass === 'BettingType') $this->_bettingTypes[] = BettingType::wrap($entity);
+        else if ($entityClass === 'BettingTypeUsage') $this->_bettingTypeUsages[] = BettingTypeUsage::wrap($entity);
+        else if ($entityClass === 'Currency') $this->_currencies[] = Currency::wrap($entity);
+        else if ($entityClass === 'EntityProperty') $this->_entityProperties[] = EntityProperty::wrap($entity);
+        else if ($entityClass === 'EntityPropertyType') $this->_entityPropertyTypes[] = EntityPropertyType::wrap($entity);
+        else if ($entityClass === 'EntityType') $this->_entityTypes[] = EntityType::wrap($entity);
+        else if ($entityClass === 'Event') $this->_events[] = Event::wrap($entity);
+        else if ($entityClass === 'EventAction') $this->_eventActions[] = EventAction::wrap($entity);
+        else if ($entityClass === 'EventActionDetail') $this->_eventActionDetails[] = EventActionDetail::wrap($entity);
+        else if ($entityClass === 'EventActionDetailStatus') $this->_eventActionDetailStatuses[] = EventActionDetailStatus::wrap($entity);
+        else if ($entityClass === 'EventActionDetailType') $this->_eventActionDetailTypes[] = EventActionDetailType::wrap($entity);
+        else if ($entityClass === 'EventActionDetailTypeUsage') $this->_eventActionDetailTypeUsages[] = EventActionDetailTypeUsage::wrap($entity);
+        else if ($entityClass === 'EventActionStatus') $this->_eventActionStatuses[] = EventActionStatus::wrap($entity);
+        else if ($entityClass === 'EventActionType') $this->_eventActionTypes[] = EventActionType::wrap($entity);
+        else if ($entityClass === 'EventActionTypeUsage') $this->_eventActionTypeUsages[] = EventActionTypeUsage::wrap($entity);
+        else if ($entityClass === 'EventCategory') $this->_eventCategories[] = EventCategory::wrap($entity);
+        else if ($entityClass === 'EventInfo') $this->_eventInfos[] = EventInfo::wrap($entity);
+        else if ($entityClass === 'EventInfoStatus') $this->_eventInfoStatuses[] = EventInfoStatus::wrap($entity);
+        else if ($entityClass === 'EventInfoType') $this->_eventInfoTypes[] = EventInfoType::wrap($entity);
+        else if ($entityClass === 'EventInfoTypeUsage') $this->_eventInfoTypeUsages[] = EventInfoTypeUsage::wrap($entity);
+        else if ($entityClass === 'EventPart') $this->_eventParts[] = EventPart::wrap($entity);
+        else if ($entityClass === 'EventPartDefaultUsage') $this->_eventPartDefaultUsages[] = EventPartDefaultUsage::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfo') $this->_eventParticipantInfos[] = EventParticipantInfo::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoDetail') $this->_eventParticipantInfoDetails[] = EventParticipantInfoDetail::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoDetailStatus') $this->_eventParticipantInfoDetailStatuses[] = EventParticipantInfoDetailStatus::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoDetailType') $this->_eventParticipantInfoDetailTypes[] = EventParticipantInfoDetailType::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoDetailTypeUsage') $this->_eventParticipantInfoDetailTypeUsages[] = EventParticipantInfoDetailTypeUsage::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoStatus') $this->_eventParticipantInfoStatuses[] = EventParticipantInfoStatus::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoType') $this->_eventParticipantInfoTypes[] = EventParticipantInfoType::wrap($entity);
+        else if ($entityClass === 'EventParticipantInfoTypeUsage') $this->_eventParticipantInfoTypeUsages[] = EventParticipantInfoTypeUsage::wrap($entity);
+        else if ($entityClass === 'EventParticipantRelation') $this->_eventParticipantRelations[] = EventParticipantRelation::wrap($entity);
+        else if ($entityClass === 'EventStatus') $this->_eventStatuses[] = EventStatus::wrap($entity);
+        else if ($entityClass === 'EventTemplate') $this->_eventTemplates[] = EventTemplate::wrap($entity);
+        else if ($entityClass === 'EventType') $this->_eventTypes[] = EventType::wrap($entity);
+        else if ($entityClass === 'Language') $this->_languages[] = Language::wrap($entity);
+        else if ($entityClass === 'Location') $this->_locations[] = Location::wrap($entity);
+        else if ($entityClass === 'LocationRelation') $this->_locationRelations[] = LocationRelation::wrap($entity);
+        else if ($entityClass === 'LocationRelationType') $this->_locationRelationTypes[] = LocationRelationType::wrap($entity);
+        else if ($entityClass === 'LocationType') $this->_locationTypes[] = LocationType::wrap($entity);
+        else if ($entityClass === 'Market') $this->_markets[] = Market::wrap($entity);
+        else if ($entityClass === 'MarketOutcomeRelation') $this->_marketOutcomeRelations[] = MarketOutcomeRelation::wrap($entity);
+        else if ($entityClass === 'Outcome') $this->_outcomes[] = Outcome::wrap($entity);
+        else if ($entityClass === 'OutcomeStatus') $this->_outcomeStatuses[] = OutcomeStatus::wrap($entity);
+        else if ($entityClass === 'OutcomeType') $this->_outcomeTypes[] = OutcomeType::wrap($entity);
+        else if ($entityClass === 'OutcomeTypeBettingTypeRelation') $this->_outcomeTypeBettingTypeRelations[] = OutcomeTypeBettingTypeRelation::wrap($entity);
+        else if ($entityClass === 'OutcomeTypeUsage') $this->_outcomeTypeUsages[] = OutcomeTypeUsage::wrap($entity);
+        else if ($entityClass === 'Participant') $this->_participants[] = Participant::wrap($entity);
+        else if ($entityClass === 'ParticipantRelation') $this->_participantRelations[] = ParticipantRelation::wrap($entity);
+        else if ($entityClass === 'ParticipantRelationType') $this->_participantRelationTypes[] = ParticipantRelationType::wrap($entity);
+        else if ($entityClass === 'ParticipantRole') $this->_participantRoles[] = ParticipantRole::wrap($entity);
+        else if ($entityClass === 'ParticipantType') $this->_participantTypes[] = ParticipantType::wrap($entity);
+        else if ($entityClass === 'ParticipantUsage') $this->_participantUsages[] = ParticipantUsage::wrap($entity);
+        else if ($entityClass === 'Provider') $this->_providers[] = Provider::wrap($entity);
+        else if ($entityClass === 'ProviderEntityMapping') $this->_providerEntityMappings[] = ProviderEntityMapping::wrap($entity);
+        else if ($entityClass === 'ProviderEventRelation') $this->_providerEventRelations[] = ProviderEventRelation::wrap($entity);
+        else if ($entityClass === 'ProviderOutcomeRelation') $this->_providerOutcomeRelations[] = ProviderOutcomeRelation::wrap($entity);
+        else if ($entityClass === 'ScoringUnit') $this->_scoringUnits[] = ScoringUnit::wrap($entity);
+        else if ($entityClass === 'Source') $this->_sources[] = Source::wrap($entity);
+        else if ($entityClass === 'Sport') $this->_sports[] = Sport::wrap($entity);
+        else if ($entityClass === 'StreamingProvider') $this->_streamingProviders[] = StreamingProvider::wrap($entity);
+        else if ($entityClass === 'StreamingProviderEventRelation') $this->_streamingProviderEventRelations[] = StreamingProviderEventRelation::wrap($entity);
+        else if ($entityClass === 'Translation') $this->_translations[] = Translation::wrap($entity);
+        else throw new \Exception("Unknown entity class: $entityClass");
     }
 
     /**

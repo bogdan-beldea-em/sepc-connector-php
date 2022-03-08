@@ -3,351 +3,203 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
+use OM\OddsMatrix\SEPC\Connector\Util\DateTimeUtil;
 
 /**
  * Class Event
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="Event")
  */
 class Event implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
-    /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("hasLiveStatus")
-    * @Serializer\XmlAttribute()
-    */
-    private $_hasLiveStatus;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("statusId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_statusId;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("currentPartId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_currentPartId;
-
-    /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("isComplete")
-    * @Serializer\XmlAttribute()
-    */
-    private $_isComplete;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("typeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_typeId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("sportId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_sportId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("parentId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_parentId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("parentPartId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_parentPartId;
-
-    /**
-    * @var \DateTime|null
-    *
-    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
-    * @Serializer\SerializedName("startTime")
-    * @Serializer\XmlAttribute()
-    */
-    private $_startTime;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("deleteTimeOffset")
-    * @Serializer\XmlAttribute()
-    */
-    private $_deleteTimeOffset;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("rootPartId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_rootPartId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("templateId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_templateId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("categoryId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_categoryId;
-
-    /**
-    * @var \DateTime|null
-    *
-    * @Serializer\Type("DateTime<'Y-m-d H:i:s.v'>")
-    * @Serializer\SerializedName("endTime")
-    * @Serializer\XmlAttribute()
-    */
-    private $_endTime;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("venueId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_venueId;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("url")
-    * @Serializer\XmlAttribute()
-    */
-    private $_url;
+    protected $_wrapped_obj;
     
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("note")
-    * @Serializer\XmlAttribute()
-    */
-    private $_note;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("popularity")
-    * @Serializer\XmlAttribute()
-    */
-    private $_popularity;
+     * @param array $wrapped_obj
+     * @return Event
+     */
+    public static function wrap(array $wrapped_obj): Event
+    {
+        return new Event($wrapped_obj);
+    }
+
 
     /**
      * @return bool|null
      */
     public function isHasLiveStatus(): ?bool
     {
-        return $this->_hasLiveStatus;
+        return $this->_wrapped_obj['hasLiveStatus'];
     }
+
 
     /**
      * @return int|null
      */
     public function getStatusId(): ?int
     {
-        return $this->_statusId;
+        return $this->_wrapped_obj['statusId'];
     }
+
 
     /**
      * @return string|null
      */
     public function getCurrentPartId(): ?string
     {
-        return $this->_currentPartId;
+        return $this->_wrapped_obj['currentPartId'];
     }
+
 
     /**
      * @return bool|null
      */
     public function isComplete(): ?bool
     {
-        return $this->_isComplete;
+        return $this->_wrapped_obj['isComplete'];
     }
+
 
     /**
      * @return int|null
      */
     public function getTypeId(): ?int
     {
-        return $this->_typeId;
+        return $this->_wrapped_obj['typeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getSportId(): ?int
     {
-        return $this->_sportId;
+        return $this->_wrapped_obj['sportId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getParentId(): ?int
     {
-        return $this->_parentId;
+        return $this->_wrapped_obj['parentId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getParentPartId(): ?int
     {
-        return $this->_parentPartId;
+        return $this->_wrapped_obj['parentPartId'];
     }
+
 
     /**
      * @return \DateTime|null
      */
     public function getStartTime(): ?\DateTime
     {
-        return $this->_startTime;
+        return DateTimeUtil::stringToDateTime($this->_wrapped_obj['startTime']);
     }
 
-    /**
-     * @return int|null
-     */
-    public function getDeleteTimeOffset(): ?int
-    {
-        return $this->_deleteTimeOffset;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getRootPartId(): ?int
-    {
-        return $this->_rootPartId;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getTemplateId(): ?int
-    {
-        return $this->_templateId;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getCategoryId(): ?int
-    {
-        return $this->_categoryId;
-    }
 
     /**
      * @return \DateTime|null
      */
     public function getEndTime(): ?\DateTime
     {
-        return $this->_endTime;
+        return DateTimeUtil::stringToDateTime($this->_wrapped_obj['endTime']);
     }
+
+
+    /**
+     * @return int|null
+     */
+    public function getDeleteTimeOffset(): ?int
+    {
+        return $this->_wrapped_obj['deleteTimeOffset'];
+    }
+
+
+    /**
+     * @return int|null
+     */
+    public function getRootPartId(): ?int
+    {
+        return $this->_wrapped_obj['rootPartId'];
+    }
+
+
+    /**
+     * @return int|null
+     */
+    public function getTemplateId(): ?int
+    {
+        return $this->_wrapped_obj['templateId'];
+    }
+
+
+    /**
+     * @return int|null
+     */
+    public function getCategoryId(): ?int
+    {
+        return $this->_wrapped_obj['categoryId'];
+    }
+
 
     /**
      * @return int|null
      */
     public function getVenueId(): ?int
     {
-        return $this->_venueId;
+        return $this->_wrapped_obj['venueId'];
     }
+
 
     /**
      * @return string|null
      */
     public function getUrl(): ?string
     {
-        return $this->_url;
+        return $this->_wrapped_obj['url'];
     }
+
 
     /**
      * @return int|null
      */
     public function getPopularity(): ?int
     {
-        return $this->_popularity;
+        return $this->_wrapped_obj['popularity'];
     }
+
 
     /**
      * @return string|null
      */
     public function getNote(): ?string
     {
-        return $this->_note;
+        return $this->_wrapped_obj['note'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("Event"))
-            ->addProperty("hasLiveStatus", $this->_hasLiveStatus)
-            ->addProperty("statusId", $this->_statusId)
-            ->addProperty("currentPartId", $this->_currentPartId)
-            ->addProperty("isComplete", $this->_isComplete)
-            ->addProperty("typeId", $this->_typeId)
-            ->addProperty("sportId", $this->_sportId)
-            ->addProperty("parentId", $this->_parentId)
-            ->addProperty("parentPartId", $this->_parentPartId)
-            ->addProperty("startTime", ToStringUtil::transformDate($this->_startTime))
-            ->addProperty("deleteTimeOffset", $this->_deleteTimeOffset)
-            ->addProperty("rootPartId", $this->_rootPartId)
-            ->addProperty("templateId", $this->_templateId)
-            ->addProperty("categoryId", $this->_categoryId)
-            ->addProperty("endTime", ToStringUtil::transformDate($this->_endTime))
-            ->addProperty("venueId", $this->_venueId)
-            ->addProperty("url", $this->_url)
-            ->addProperty("note", $this->_note)
-            ->addProperty("popularity", $this->_popularity)
-            ;
-
+        return json_encode($this->_wrapped_obj);
     }
 }

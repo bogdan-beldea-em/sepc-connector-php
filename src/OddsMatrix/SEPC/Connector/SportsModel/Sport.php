@@ -3,47 +3,48 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class Sport
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="Sport")
  */
 class Sport implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("parentId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_parentId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return Sport
+     */
+    public static function wrap(array $wrapped_obj): Sport
+    {
+        return new Sport($wrapped_obj);
+    }
+
 
     /**
      * @return int|null
      */
     public function getParentId(): ?int
     {
-        return $this->_parentId;
+        return $this->_wrapped_obj['parentId'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("Sport"))
-            ->addProperty("name", $this->_name)
-            ->addProperty("version", $this->_version)
-            ->addProperty("id", $this->_id)
-            ->addProperty("parentId", $this->_parentId)
-            ->addProperty("description", $this->_description)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

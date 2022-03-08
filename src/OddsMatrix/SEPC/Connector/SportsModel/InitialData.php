@@ -49,6 +49,30 @@ class InitialData
      */
     private $_entities;
 
+    public function __construct(array $array = null)
+    {
+        if (is_null($array)) {
+            return;
+        }
+
+        $this->_entities = new EntitiesContainer();
+
+        if (!is_null($array['entities'])) {
+            foreach ($array['entities'] as $entity) {
+                $this->_entities->addEntity($entity);
+            }
+        }
+
+        $this->_dumpComplete = $array['dumpComplete'];
+        $this->_batchId = $array['batchId'];
+        $this->_batchesLeft = $array['batchesLeft'];
+    }
+
+    public static function wrap($wrapped_obj): InitialData
+    {
+        return new InitialData($wrapped_obj);
+    }
+
     /**
      * @return int|null
      */

@@ -3,239 +3,147 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class BettingOffer
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="BettingOffer")
  */
 class BettingOffer implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait, UpdateTimeTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var float|null
-    *
-    * @Serializer\Type("float")
-    * @Serializer\SerializedName("odds")
-    * @Serializer\XmlAttribute()
-    */
-    private $_odds;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("statusId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_statusId;
+     * @param array $wrapped_obj
+     * @return BettingOffer
+     */
+    public static function wrap(array $wrapped_obj): BettingOffer
+    {
+        return new BettingOffer($wrapped_obj);
+    }
 
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("providerId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_providerId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("sourceId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_sourceId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("outcomeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_outcomeId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("bettingTypeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_bettingTypeId;
-
-    /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("isLive")
-    * @Serializer\XmlAttribute()
-    */
-    private $_isLive;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("multiplicity")
-    * @Serializer\XmlAttribute()
-    */
-    private $_multiplicity;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("couponKey")
-    * @Serializer\XmlAttribute()
-    */
-    private $_couponKey;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("slotNum")
-    * @Serializer\XmlAttribute()
-    */
-    private $_slotNum;
-
-    /**
-    * @var float|null
-    *
-    * @Serializer\Type("float")
-    * @Serializer\SerializedName("volume")
-    * @Serializer\XmlAttribute()
-    */
-    private $_volume;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("volumeCurrencyId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_volumeCurrencyId;
 
     /**
      * @return float|null
      */
     public function getOdds(): ?float
     {
-        return $this->_odds;
+        return $this->_wrapped_obj['odds'];
     }
+
 
     /**
      * @return int|null
      */
     public function getStatusId(): ?int
     {
-        return $this->_statusId;
+        return $this->_wrapped_obj['statusId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getProviderId(): ?int
     {
-        return $this->_providerId;
+        return $this->_wrapped_obj['providerId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getSourceId(): ?int
     {
-        return $this->_sourceId;
+        return $this->_wrapped_obj['sourceId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getOutcomeId(): ?int
     {
-        return $this->_outcomeId;
+        return $this->_wrapped_obj['outcomeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getBettingTypeId(): ?int
     {
-        return $this->_bettingTypeId;
+        return $this->_wrapped_obj['bettingTypeId'];
     }
+
 
     /**
      * @return bool|null
      */
     public function isLive(): ?bool
     {
-        return $this->_isLive;
+        return $this->_wrapped_obj['isLive'];
     }
+
 
     /**
      * @return int|null
      */
     public function getMultiplicity(): ?int
     {
-        return $this->_multiplicity;
+        return $this->_wrapped_obj['multiplicity'];
     }
+
 
     /**
      * @return string|null
      */
     public function getCouponKey(): ?string
     {
-        return $this->_couponKey;
+        return $this->_wrapped_obj['couponKey'];
     }
+
 
     /**
      * @return int|null
      */
     public function getSlotNum(): ?int
     {
-        return $this->_slotNum;
+        return $this->_wrapped_obj['slotNum'];
     }
+
 
     /**
      * @return float|null
      */
     public function getVolume(): ?float
     {
-        return $this->_volume;
+        return $this->_wrapped_obj['volume'];
     }
+
 
     /**
      * @return string|null
      */
     public function getVolumeCurrencyId(): ?string
     {
-        return $this->_volumeCurrencyId;
+        return $this->_wrapped_obj['volumeCurrencyId'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("BettingOffer"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ->addProperty("type", $this->_type)
-            ->addProperty("odds", $this->_odds)
-            ->addProperty("statusId", $this->_statusId)
-            ->addProperty("providerId", $this->_providerId)
-            ->addProperty("sourceId", $this->_sourceId)
-            ->addProperty("outcomeId", $this->_outcomeId)
-            ->addProperty("bettingTypeId", $this->_bettingTypeId)
-            ->addProperty("isLive", $this->_isLive)
-            ->addProperty("multiplicity", $this->_multiplicity);
+        return json_encode($this->_wrapped_obj);
     }
 }

@@ -60,6 +60,11 @@ class SEPCPushBridge
     private $_profilingLogsEnabled;
 
     /**
+     * @var bool
+     */
+    private $_pushBridgeVerboseLogsEnabled;
+
+    /**
      * SEPCPushBridge constructor.
      * @param $_socket
      * @param LoggerInterface|null $logger
@@ -71,6 +76,7 @@ class SEPCPushBridge
         $this->_lastByteReceivedTimestamp = microtime(true);
         $this->_decodedSocketInputDirectoryPath = getenv("DECODED_SOCKET_DIRECTORY_PATH");
         $this->_profilingLogsEnabled = strlen(getenv("SEPC_CONNECTOR_PROFILING_LOGS")) > 0;
+        $this->_pushBridgeVerboseLogsEnabled = strlen(getenv("SEPC_PUSH_BRIDGE_VERBOSE_LOGS_ENABLED")) > 0;
 
         try {
             $this->_serializer = SDQLSerializerProvider::getSerializer();
@@ -85,7 +91,8 @@ class SEPCPushBridge
      */
     public function sendData(SDQLRequest $object): void
     {
-        $dataToSend = $this->_serializer->serialize($object, 'json');
+//        $dataToSend = $this->_serializer->serialize($object, 'json');
+        $dataToSend = json_encode($object->toArray());
         $dataToSend = preg_replace("/[\n]|[\r]/", "", $dataToSend);
         LogUtil::logI($this->_logger, "Prepare to send data: $dataToSend");
 
@@ -138,13 +145,13 @@ class SEPCPushBridge
 
         $contentLengthString = '';
         while (preg_match("/[0-9]/", $rawData)) {
-            LogUtil::logD($this->_logger, "Received content_length info: $rawData");
+            if ($this->_pushBridgeVerboseLogsEnabled) LogUtil::logD($this->_logger, "Received content_length info: $rawData");
             $contentLengthString .= $rawData;
             $rawData = $this->socketRead($this->_socket, 1);
             $this->assertSocketData($rawData);
         }
         $contentLength = (int)$contentLengthString;
-        LogUtil::logD($this->_logger, "Actual content length: $contentLength");
+        LogUtil::logD($this->_logger, "Content length of serialized batch to be received: $contentLength");
 
         $content = '';
         while (strlen($content) < $contentLength) {
@@ -169,7 +176,7 @@ class SEPCPushBridge
 
             $content .= $socket_read;
             $receivedDataLength = strlen($socket_read);
-            LogUtil::logD($this->_logger, "Received chunk of size " . $receivedDataLength);
+            if ($this->_pushBridgeVerboseLogsEnabled) LogUtil::logD($this->_logger, "Received chunk of size " . $receivedDataLength);
         }
 
         if ($this->_profilingLogsEnabled) {
@@ -204,7 +211,8 @@ class SEPCPushBridge
 
             $deserialize = null;
             try {
-                $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'json');
+//                $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'json');
+                $deserialize = SDQLResponse::wrap(json_decode($response, true, 512, JSON_THROW_ON_ERROR));
             } catch (\Exception $e) {
                 LogUtil::logE($this->_logger, "[SEPCPushBridge] Deserialization error for \n $response \n " . $e);
             }

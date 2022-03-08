@@ -3,46 +3,48 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class BettingOfferStatus
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="BettingOfferStatus")
  */
 class BettingOfferStatus implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("isAvailable")
-    * @Serializer\XmlAttribute()
-    */
-    private $_isAvailable;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return BettingOfferStatus
+     */
+    public static function wrap(array $wrapped_obj): BettingOfferStatus
+    {
+        return new BettingOfferStatus($wrapped_obj);
+    }
+
 
     /**
      * @return bool|null
      */
     public function isAvailable(): ?bool
     {
-        return $this->_isAvailable;
+        return $this->_wrapped_obj['isAvailable'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("BettingOfferStatus"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ->addProperty("name", $this->_name)
-            ->addProperty("description", $this->_description)
-            ->addProperty("isAvailable", $this->_isAvailable);
+        return json_encode($this->_wrapped_obj);
     }
 }

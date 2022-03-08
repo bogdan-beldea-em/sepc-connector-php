@@ -2,9 +2,9 @@
   "name": "oddsmatrix/sepc-connector",
   "description": "SEPC Connector implementation for PHP",
   "type": "library",
-  "version": "0.1.33-dev",
+  "version": "dev-0.2.0",
   "require": {
-    "php": "^7.2",
+    "php": "^7.3",
     "jms/serializer": "^3.14",
     "ext-zlib": "*",
     "ext-simplexml": "*",

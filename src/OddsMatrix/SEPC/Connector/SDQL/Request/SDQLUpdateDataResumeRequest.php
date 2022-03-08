@@ -50,6 +50,19 @@ class SDQLUpdateDataResumeRequest
     private $_lastBatchUuid;
 
     /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'subscriptionId' => $this->_subscriptionId,
+            'subscriptionSpecificationName' => $this->_subscriptionSpecificationName,
+            'subscriptionChecksum' => $this->_subscriptionChecksum,
+            'lastBatchUuid' => $this->_lastBatchUuid,
+        ];
+    }
+
+    /**
      * SDQLUpdateDataResumeRequest constructor.
      * @param string|null $_subscriptionId
      * @param string|null $_subscriptionSpecificationName

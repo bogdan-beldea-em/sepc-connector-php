@@ -3,65 +3,57 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class EventCategory
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="EventCategory")
  */
 class EventCategory implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("sportId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_sportId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("note")
-    * @Serializer\XmlAttribute()
-    */
-    private $_note;
+     * @param array $wrapped_obj
+     * @return EventCategory
+     */
+    public static function wrap(array $wrapped_obj): EventCategory
+    {
+        return new EventCategory($wrapped_obj);
+    }
+
 
     /**
      * @return int|null
      */
     public function getSportId(): ?int
     {
-        return $this->_sportId;
+        return $this->_wrapped_obj['sportId'];
     }
+
 
     /**
      * @return string|null
      */
     public function getNote(): ?string
     {
-        return $this->_note;
+        return $this->_wrapped_obj['note'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("EventCategory"))
-            ->addProperty("name", $this->_name)
-            ->addProperty("note", $this->_note)
-            ->addProperty("version", $this->_version)
-            ->addProperty("id", $this->_id)
-            ->addProperty("sportId", $this->_sportId)
-            ;
-
+        return json_encode($this->_wrapped_obj);
     }
 }

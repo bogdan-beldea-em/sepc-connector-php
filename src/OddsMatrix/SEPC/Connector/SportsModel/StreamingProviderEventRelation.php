@@ -3,118 +3,84 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class StreamingProviderEventRelation
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="StreamingProviderEventRelation")
  */
 class StreamingProviderEventRelation implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("streamingProviderId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_streamingProviderId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventId;
+     * @param array $wrapped_obj
+     * @return StreamingProviderEventRelation
+     */
+    public static function wrap(array $wrapped_obj): StreamingProviderEventRelation
+    {
+        return new StreamingProviderEventRelation($wrapped_obj);
+    }
 
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("channel")
-    * @Serializer\XmlAttribute()
-    */
-    private $_channel;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("language")
-    * @Serializer\XmlAttribute()
-    */
-    private $_language;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("note")
-    * @Serializer\XmlAttribute()
-    */
-    private $_note;
 
     /**
      * @return int|null
      */
     public function getStreamingProviderId(): ?int
     {
-        return $this->_streamingProviderId;
+        return $this->_wrapped_obj['streamingProviderId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getEventId(): ?int
     {
-        return $this->_eventId;
+        return $this->_wrapped_obj['eventId'];
     }
+
 
     /**
      * @return string|null
      */
     public function getChannel(): ?string
     {
-        return $this->_channel;
+        return $this->_wrapped_obj['channel'];
     }
+
 
     /**
      * @return string|null
      */
     public function getLanguage(): ?string
     {
-        return $this->_language;
+        return $this->_wrapped_obj['language'];
     }
+
 
     /**
      * @return string|null
      */
     public function getNote(): ?string
     {
-        return $this->_note;
+        return $this->_wrapped_obj['note'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("StreamingProviderEventRelation"))
-            ->addProperty("channel", $this->_channel)
-            ->addProperty("streamingProviderId", $this->_streamingProviderId)
-            ->addProperty("language", $this->_language)
-            ->addProperty("version", $this->_version)
-            ->addProperty("eventId", $this->_eventId)
-            ->addProperty("type", $this->_type)
-            ->addProperty("id", $this->_id)
-            ->addProperty("note", $this->_note)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

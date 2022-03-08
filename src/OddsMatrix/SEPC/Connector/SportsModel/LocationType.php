@@ -3,64 +3,57 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class LocationType
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="LocationType")
  */
 class LocationType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("hasCode")
-    * @Serializer\XmlAttribute()
-    */
-    private $_hasCode;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("codeDescription")
-    * @Serializer\XmlAttribute()
-    */
-    private $_codeDescription;
+     * @param array $wrapped_obj
+     * @return LocationType
+     */
+    public static function wrap(array $wrapped_obj): LocationType
+    {
+        return new LocationType($wrapped_obj);
+    }
+
 
     /**
      * @return bool|null
      */
     public function isHasCode(): ?bool
     {
-        return $this->_hasCode;
+        return $this->_wrapped_obj['hasCode'];
     }
+
 
     /**
      * @return string|null
      */
     public function getCodeDescription(): ?string
     {
-        return $this->_codeDescription;
+        return $this->_wrapped_obj['codeDescription'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("LocationType"))
-            ->addProperty("hasCode", $this->_hasCode)
-            ->addProperty("name", $this->_name)
-            ->addProperty("id", $this->_id)
-            ->addProperty("codeDescription", $this->_codeDescription)
-            ->addProperty("version", $this->_version)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

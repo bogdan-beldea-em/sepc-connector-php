@@ -3,101 +3,75 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringUtil;
-
 /**
  * Class ProviderOutcomeRelation
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="ProviderOutcomeRelation")
  */
 class ProviderOutcomeRelation implements Stringable
 {
     use IdentifiableModelTrait, UpdateTimeTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("statusId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_statusId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("providerId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_providerId;
+     * @param array $wrapped_obj
+     * @return ProviderOutcomeRelation
+     */
+    public static function wrap(array $wrapped_obj): ProviderOutcomeRelation
+    {
+        return new ProviderOutcomeRelation($wrapped_obj);
+    }
 
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("outcomeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_outcomeId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("qualityRank")
-    * @Serializer\XmlAttribute()
-    */
-    private $_qualityRank;
 
     /**
      * @return int|null
      */
     public function getStatusId(): ?int
     {
-        return $this->_statusId;
+        return $this->_wrapped_obj['statusId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getProviderId(): ?int
     {
-        return $this->_providerId;
+        return $this->_wrapped_obj['providerId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getOutcomeId(): ?int
     {
-        return $this->_outcomeId;
+        return $this->_wrapped_obj['outcomeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getQualityRank(): ?int
     {
-        return $this->_qualityRank;
+        return $this->_wrapped_obj['qualityRank'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("ProviderOutcomeRelation"))
-            ->addProperty("lastChangedTime", ToStringUtil::transformDate($this->_lastChangedTime))
-            ->addProperty("qualityRank", $this->_qualityRank)
-            ->addProperty("id", $this->_id)
-            ->addProperty("statusId", $this->_statusId)
-            ->addProperty("providerId", $this->_providerId)
-            ->addProperty("outcomeId", $this->_outcomeId)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

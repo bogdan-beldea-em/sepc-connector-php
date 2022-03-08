@@ -1,44 +1,43 @@
 <?php
 
-
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 /**
- * Class OutcomeTypeUsage
+ * Class EventActionTypeUsage
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  */
-class OutcomeTypeUsage implements Stringable
+class EventActionTypeUsage implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
-    protected $_wrapped_obj;
-    
     /**
-     * @param array $wrapped_obj
+     * @var array
      */
-    private function __construct(array $wrapped_obj)
-    {
+    private $_wrapped_obj;
+
+    /**
+     * @param $wrapped_obj
+     */
+    private function __construct($wrapped_obj) {
         $this->_wrapped_obj = $wrapped_obj;
     }
 
     /**
-     * @param array $wrapped_obj
-     * @return OutcomeTypeUsage
+     * @param $wrapped_obj
+     * @return EventActionTypeUsage
      */
-    public static function wrap(array $wrapped_obj): OutcomeTypeUsage
+    public static function wrap($wrapped_obj): EventActionTypeUsage
     {
-        return new OutcomeTypeUsage($wrapped_obj);
+        return new EventActionTypeUsage($wrapped_obj);
     }
-
 
     /**
      * @return int|null
      */
-    public function getOutcomeTypeId(): ?int
+    public function getEventActionTypeId(): ?int
     {
-        return $this->_wrapped_obj['outcomeTypeId'];
+        return $this->_wrapped_obj['eventActionTypeId'];
     }
-
 
     /**
      * @return int|null
@@ -48,7 +47,6 @@ class OutcomeTypeUsage implements Stringable
         return $this->_wrapped_obj['eventTypeId'];
     }
 
-
     /**
      * @return int|null
      */
@@ -56,7 +54,6 @@ class OutcomeTypeUsage implements Stringable
     {
         return $this->_wrapped_obj['eventPartId'];
     }
-
 
     /**
      * @return int|null
@@ -66,18 +63,8 @@ class OutcomeTypeUsage implements Stringable
         return $this->_wrapped_obj['sportId'];
     }
 
-
     /**
-     * @return int|null
-     */
-    public function getScoringUnitId(): ?int
-    {
-        return $this->_wrapped_obj['scoringUnitId'];
-    }
-
-
-    /**
-     * @return string
+     * @return false|string
      */
     public function __toString(): string
     {

@@ -68,6 +68,26 @@ class SDQLRequest
     private $_resumeRequest;
 
     /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        if (!is_null($this->_subscribeRequest)) {
+            return ['SubscribeRequest' => $this->_subscribeRequest->toArray()];
+        }
+
+        if (!is_null($this->_pingResponse)) {
+            return ['PingResponse' => $this->_pingResponse->toArray()];
+        }
+
+        if (!is_null($this->_resumeRequest)) {
+            return ['UpdateDataResumeRequest' => $this->_resumeRequest->toArray()];
+        }
+
+        return [];
+    }
+
+    /**
      * @param SDQLSubscribeRequest|null $subscribeRequest
      * @return SDQLRequest
      */

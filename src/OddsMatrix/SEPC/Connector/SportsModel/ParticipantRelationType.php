@@ -3,64 +3,57 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class ParticipantRelationType
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="ParticipantRelationType")
  */
 class ParticipantRelationType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("hasParamParticipantRole")
-    * @Serializer\XmlAttribute()
-    */
-    private $_hasParamParticipantRole;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramParticipantRoleIdDescription")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramParticipantRoleIdDescription;
+     * @param array $wrapped_obj
+     * @return ParticipantRelationType
+     */
+    public static function wrap(array $wrapped_obj): ParticipantRelationType
+    {
+        return new ParticipantRelationType($wrapped_obj);
+    }
+
 
     /**
      * @return bool|null
      */
     public function isHasParamParticipantRole(): ?bool
     {
-        return $this->_hasParamParticipantRole;
+        return $this->_wrapped_obj['hasParamParticipantRole'];
     }
+
 
     /**
      * @return string|null
      */
     public function getParamParticipantRoleIdDescription(): ?string
     {
-        return $this->_paramParticipantRoleIdDescription;
+        return $this->_wrapped_obj['paramParticipantRoleIdDescription'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("ParticipantRelationType"))
-            ->addProperty("name", $this->_name)
-            ->addProperty("version", $this->_version)
-            ->addProperty("id", $this->_id)
-            ->addProperty("hasParamParticipantRole", $this->_hasParamParticipantRole)
-            ->addProperty("paramParticipantRoleIdDescription", $this->_paramParticipantRoleIdDescription)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

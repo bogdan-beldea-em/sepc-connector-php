@@ -3,155 +3,102 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class EventParticipantInfoDetail
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="EventParticipantInfoDetail")
  */
 class EventParticipantInfoDetail implements Stringable
 {
     use TypedTrait, IdentifiableModelTrait, VersionedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("typeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_typeId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventParticipantInfoId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventParticipantInfoId;
+     * @param array $wrapped_obj
+     * @return EventParticipantInfoDetail
+     */
+    public static function wrap(array $wrapped_obj): EventParticipantInfoDetail
+    {
+        return new EventParticipantInfoDetail($wrapped_obj);
+    }
 
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("statusId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_statusId;
-
-    /**
-    * @var bool|null
-    *
-    * @Serializer\Type("bool")
-    * @Serializer\SerializedName("paramBoolean1")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramBoolean1;
-
-    /**
-    * @var float|null
-    *
-    * @Serializer\Type("float")
-    * @Serializer\SerializedName("paramFloat1")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramFloat1;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("paramParticipantId1")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramParticipantId1;
-
-    /**
-    * @var string|null
-    *
-    * @Serializer\Type("string")
-    * @Serializer\SerializedName("paramString1")
-    * @Serializer\XmlAttribute()
-    */
-    private $_paramString1;
 
     /**
      * @return int|null
      */
     public function getTypeId(): ?int
     {
-        return $this->_typeId;
+        return $this->_wrapped_obj['typeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getEventParticipantInfoId(): ?int
     {
-        return $this->_eventParticipantInfoId;
+        return $this->_wrapped_obj['eventParticipantInfoId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getStatusId(): ?int
     {
-        return $this->_statusId;
+        return $this->_wrapped_obj['statusId'];
     }
+
 
     /**
      * @return bool|null
      */
     public function isParamBoolean1(): ?bool
     {
-        return $this->_paramBoolean1;
+        return $this->_wrapped_obj['paramBoolean1'];
     }
+
 
     /**
      * @return float|null
      */
     public function getParamFloat1(): ?float
     {
-        return $this->_paramFloat1;
+        return $this->_wrapped_obj['paramFloat1'];
     }
+
 
     /**
      * @return int|null
      */
     public function getParamParticipantId1(): ?int
     {
-        return $this->_paramParticipantId1;
+        return $this->_wrapped_obj['paramParticipantId1'];
     }
+
 
     /**
      * @return string|null
      */
     public function getParamString1(): ?string
     {
-        return $this->_paramString1;
+        return $this->_wrapped_obj['paramString1'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("EventParticipantInfoDetail"))
-            ->addProperty("statusId", $this->_statusId)
-            ->addProperty("version", $this->_version)
-            ->addProperty("paramBoolean1", $this->_paramBoolean1)
-            ->addProperty("paramParticipantId1", $this->_paramParticipantId1)
-            ->addProperty("paramString1", $this->_paramString1)
-            ->addProperty("type", $this->_type)
-            ->addProperty("typeId", $this->_typeId)
-            ->addProperty("id", $this->_id)
-            ->addProperty("eventParticipantInfoId", $this->_eventParticipantInfoId)
-            ->addProperty("paramFloat1", $this->_paramFloat1)
-            ;
-
+        return json_encode($this->_wrapped_obj);
     }
 }

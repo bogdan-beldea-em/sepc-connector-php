@@ -3,98 +3,75 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class BettingTypeUsage
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="BettingTypeUsage")
  */
 class BettingTypeUsage implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
+    protected $_wrapped_obj;
+    
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("bettingTypeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_bettingTypeId;
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
 
     /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventTypeId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventTypeId;
+     * @param array $wrapped_obj
+     * @return BettingTypeUsage
+     */
+    public static function wrap(array $wrapped_obj): BettingTypeUsage
+    {
+        return new BettingTypeUsage($wrapped_obj);
+    }
 
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("sportId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_sportId;
-
-    /**
-    * @var int|null
-    *
-    * @Serializer\Type("int")
-    * @Serializer\SerializedName("eventPartId")
-    * @Serializer\XmlAttribute()
-    */
-    private $_eventPartId;
 
     /**
      * @return int|null
      */
     public function getBettingTypeId(): ?int
     {
-        return $this->_bettingTypeId;
+        return $this->_wrapped_obj['bettingTypeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getEventTypeId(): ?int
     {
-        return $this->_eventTypeId;
+        return $this->_wrapped_obj['eventTypeId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getSportId(): ?int
     {
-        return $this->_sportId;
+        return $this->_wrapped_obj['sportId'];
     }
+
 
     /**
      * @return int|null
      */
     public function getEventPartId(): ?int
     {
-        return $this->_eventPartId;
+        return $this->_wrapped_obj['eventPartId'];
     }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("BettingTypeUsage"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("version", $this->_version)
-            ->addProperty("bettingTypeId", $this->_bettingTypeId)
-            ->addProperty("eventTypeId", $this->_eventTypeId)
-            ->addProperty("sportId", $this->_sportId)
-            ->addProperty("eventPartId", $this->_eventPartId);
+        return json_encode($this->_wrapped_obj);
     }
 }

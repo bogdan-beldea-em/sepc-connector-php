@@ -23,6 +23,14 @@ class SDQLPingResponse
     private $_id;
 
     /**
+     * @return null[]|string[]
+     */
+    public function toArray(): array
+    {
+        return ['id' => $this->_id];
+    }
+
+    /**
      * SDQLPingResponse constructor.
      * @param string $_id
      */

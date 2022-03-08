@@ -3,29 +3,39 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class ScoringUnit
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="ScoringUnit")
  */
 class ScoringUnit implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
+
+    protected $_wrapped_obj;
+    
+    /**
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return ScoringUnit
+     */
+    public static function wrap(array $wrapped_obj): ScoringUnit
+    {
+        return new ScoringUnit($wrapped_obj);
+    }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("ScoringUnit"))
-            ->addProperty("id", $this->_id)
-            ->addProperty("name", $this->_name)
-            ->addProperty("version", $this->_version)
-            ->addProperty("description", $this->_description)
-            ;
+        return json_encode($this->_wrapped_obj);
     }
 }

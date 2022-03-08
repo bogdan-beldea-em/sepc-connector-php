@@ -81,6 +81,46 @@ class SDQLResponse
     private $_pingRequest;
 
     /**
+     * @param array|null $array
+     */
+    public function __construct(array $array = null)
+    {
+        if (is_null($array)) {
+            return;
+        }
+
+        if (array_key_exists( 'UpdateData', $array)) {
+            $updateData = UpdateData::wrap($array['UpdateData']);
+            $this->_dataUpdates = [$updateData];
+        }
+
+        if (array_key_exists('InitialData', $array)) {
+            $this->_initialData = InitialData::wrap($array['InitialData']);
+        }
+
+        if (array_key_exists('PingRequest', $array)) {
+            $this->_pingRequest = SDQLPingRequest::wrap($array['PingRequest']);
+        }
+
+        if (array_key_exists('error', $array)) {
+            $this->_error = SDQLError::wrap($array['error']);
+        }
+
+        if (array_key_exists('SubscribeResponse', $array)) {
+            $this->_subscribeResponse = SDQLSubscribeResponse::wrap($array['SubscribeResponse']);
+        }
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return SDQLResponse
+     */
+    public static function wrap(array $wrapped_obj): SDQLResponse
+    {
+        return new SDQLResponse($wrapped_obj);
+    }
+
+    /**
      * @return SDQLSubscribeResponse
      */
     public function getSubscribeResponse(): ?SDQLSubscribeResponse

@@ -1,18 +1,20 @@
 <?php
 
-
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
 /**
- * Class EventPartDefaultUsage
+ * Class EventParticipantInfoTypeUsage
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
  */
-class EventPartDefaultUsage implements Stringable
+class EventParticipantInfoTypeUsage implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait;
 
-    protected $_wrapped_obj;
-    
+    /**
+     * @var array
+     */
+    private $_wrapped_obj;
+
     /**
      * @param array $wrapped_obj
      */
@@ -23,22 +25,20 @@ class EventPartDefaultUsage implements Stringable
 
     /**
      * @param array $wrapped_obj
-     * @return EventPartDefaultUsage
+     * @return EventParticipantInfoTypeUsage
      */
-    public static function wrap(array $wrapped_obj): EventPartDefaultUsage
+    public static function wrap(array $wrapped_obj): EventParticipantInfoTypeUsage
     {
-        return new EventPartDefaultUsage($wrapped_obj);
+        return new EventParticipantInfoTypeUsage($wrapped_obj);
     }
-
 
     /**
      * @return int|null
      */
-    public function getParentEventId(): ?int
+    public function getEventParticipantInfoTypeId(): ?int
     {
-        return $this->_wrapped_obj['parentEventId'];
+        return $this->_wrapped_obj['eventParticipantInfoTypeId'];
     }
-
 
     /**
      * @return int|null
@@ -48,6 +48,13 @@ class EventPartDefaultUsage implements Stringable
         return $this->_wrapped_obj['eventTypeId'];
     }
 
+    /**
+     * @return int|null
+     */
+    public function getEventPartId(): ?int
+    {
+        return $this->_wrapped_obj['eventPartId'];
+    }
 
     /**
      * @return int|null
@@ -56,16 +63,6 @@ class EventPartDefaultUsage implements Stringable
     {
         return $this->_wrapped_obj['sportId'];
     }
-
-
-    /**
-     * @return int|null
-     */
-    public function getRootPartId(): ?int
-    {
-        return $this->_wrapped_obj['rootPartId'];
-    }
-
 
     /**
      * @return string

@@ -3,30 +3,39 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SportsModel;
 
-use JMS\Serializer\Annotation as Serializer;
-use OM\OddsMatrix\SEPC\Connector\Util\ToStringBuilder;
-
 /**
  * Class EventParticipantInfoType
  * @package OM\OddsMatrix\SEPC\Connector\SportsModel
- *
- * @Serializer\XmlRoot(name="EventParticipantInfoType")
  */
 class EventParticipantInfoType implements Stringable
 {
     use IdentifiableModelTrait, VersionedTrait, NamedTrait, DescribedTrait;
+
+    protected $_wrapped_obj;
+    
+    /**
+     * @param array $wrapped_obj
+     */
+    private function __construct(array $wrapped_obj)
+    {
+        $this->_wrapped_obj = $wrapped_obj;
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return EventParticipantInfoType
+     */
+    public static function wrap(array $wrapped_obj): EventParticipantInfoType
+    {
+        return new EventParticipantInfoType($wrapped_obj);
+    }
+
 
     /**
      * @return string
      */
     public function __toString(): string
     {
-        return (new ToStringBuilder("EventParticipantInfoType"))
-            ->addProperty("version", $this->_version)
-            ->addProperty("id", $this->_id)
-            ->addProperty("description", $this->_description)
-            ->addProperty("name", $this->_name)
-            ;
-
+        return json_encode($this->_wrapped_obj);
     }
 }
