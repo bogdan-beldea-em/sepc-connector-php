@@ -9,9 +9,6 @@ use OM\OddsMatrix\SEPC\Connector\Annotation\RequestType;
 /**
  * Class SDQLUnsubscribeRequest
  * @package OM\OddsMatrix\SEPC\Connector\SDQL\Request
- *
- * @RequestType(name="UnsubscribeRequest")
- * @Serializer\XmlRoot(name="UnsubscribeRequest")
  */
 class SDQLUnsubscribeRequest {
 
@@ -40,12 +37,12 @@ class SDQLUnsubscribeRequest {
 
     /**
      * SDQLUnsubscribeRequest constructor.
-     * @param string $_subscriptionSpecificationName
-     * @param string $_subscriptionId
+     * @param string $subscriptionSpecificationName
+     * @param string $subscriptionId
      */
-    public function __construct(string $_subscriptionSpecificationName, string $_subscriptionId)
+    public function __construct(string $subscriptionSpecificationName, string $subscriptionId)
     {
-        $this->_subscriptionSpecificationName = $_subscriptionSpecificationName;
-        $this->_subscriptionId = $_subscriptionId;
+        $this->_subscriptionSpecificationName = $subscriptionSpecificationName;
+        $this->_subscriptionId = $subscriptionId;
     }
 }

@@ -64,22 +64,24 @@ class SDQLUpdateDataResumeRequest
 
     /**
      * SDQLUpdateDataResumeRequest constructor.
-     * @param string|null $_subscriptionId
-     * @param string|null $_subscriptionSpecificationName
-     * @param string|null $_subscriptionChecksum
-     * @param string|null $_lastBatchUuid
+     * @param string|null $subscriptionId
+     * @param string|null $subscriptionSpecificationName
+     * @param string|null $subscriptionChecksum
+     * @param string|null $lastBatchUuid
      */
-    public function __construct(?string $_subscriptionId, ?string $_subscriptionSpecificationName, ?string $_subscriptionChecksum, ?string $_lastBatchUuid)
+    public function __construct(?string $subscriptionId, ?string $subscriptionSpecificationName, ?string $subscriptionChecksum, ?string $lastBatchUuid)
     {
-        $this->_subscriptionId = $_subscriptionId;
-        $this->_subscriptionSpecificationName = $_subscriptionSpecificationName;
-        $this->_subscriptionChecksum = $_subscriptionChecksum;
-        $this->_lastBatchUuid = $_lastBatchUuid;
+        $this->_subscriptionId = $subscriptionId;
+        $this->_subscriptionSpecificationName = $subscriptionSpecificationName;
+        $this->_subscriptionChecksum = $subscriptionChecksum;
+        $this->_lastBatchUuid = $lastBatchUuid;
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
-        // TODO: Implement __toString() method.
         return "SDQLUpdateDataResumeRequest[subId: " . $this->_subscriptionId . " checksum: " . $this->_subscriptionChecksum . " batchUUID: " . $this->_lastBatchUuid . "]";
     }
 }

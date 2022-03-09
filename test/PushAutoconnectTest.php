@@ -20,7 +20,7 @@ $connector = new SEPCPushConnector($credentials, $logger, $state);
 $logger->info("Connector instantiated");
 $connection = $connector->autoconnect($pushEndpoint, $pushPort);
 $logger->info("Connected");
-for ($i = 0; $i < 2500; $i++) {
+for ($i = 0; $i < 250000; $i++) {
     /** @var SDQLResponse|null $data */
     $data = $connection->getNextData();
     if (is_null($data)) {

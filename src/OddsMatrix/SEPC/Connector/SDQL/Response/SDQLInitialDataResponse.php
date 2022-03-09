@@ -9,19 +9,30 @@ use OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData;
 /**
  * Class SDQLInitialDataResponse
  * @package OM\OddsMatrix\SEPC\Connector\SDQL\Response
- *
- * @Serializer\XmlRoot(name="GetNextInitialDataResponse")
  */
 class SDQLInitialDataResponse
 {
     /**
      * @var InitialData|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData")
-     * @Serializer\SerializedName("InitialData")
-     * @Serializer\XmlElement()
      */
     private $_initialData;
+
+    /**
+     * @param array $wrapped_obj
+     */
+    public function __construct(array $wrapped_obj)
+    {
+        $this->_initialData = $wrapped_obj['InitialData'];
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return SDQLInitialDataResponse
+     */
+    public static function wrap(array $wrapped_obj): SDQLInitialDataResponse
+    {
+        return new SDQLInitialDataResponse($wrapped_obj);
+    }
 
     /**
      * @return InitialData|null

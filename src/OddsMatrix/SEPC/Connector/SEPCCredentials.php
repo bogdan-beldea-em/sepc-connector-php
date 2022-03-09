@@ -23,7 +23,7 @@ class SEPCCredentials
     /**
      * @return string
      */
-    public function getSubscriptionSpecificationName()
+    public function getSubscriptionSpecificationName(): string
     {
         return $this->_subscriptionSpecificationName;
     }

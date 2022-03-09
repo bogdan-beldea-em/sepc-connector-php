@@ -7,26 +7,16 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class SDQLSubscribeResponse
  * @package OM\OddsMatrix\SEPC\Connector\SDQL\Response
- *
- * @Serializer\XmlRoot(name="SubscribeResponse")
  */
 class SDQLSubscribeResponse
 {
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("subscriptionId")
-     * @Serializer\XmlAttribute()
      */
     private $_subscriptionId;
 
     /**
      * @var string
-     *
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("subscriptionChecksum")
-     * @Serializer\XmlAttribute()
      */
     private $_subscriptionChecksum;
 

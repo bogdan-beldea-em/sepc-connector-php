@@ -12,10 +12,10 @@ use JMS\Serializer\XmlDeserializationVisitor;
 class ParserUtil
 {
     /**
-     * @param string $valueAsString
+     * @param string|null $valueAsString
      * @return string|null
      */
-    public static function parseString(string $valueAsString): ?string
+    public static function parseString(?string $valueAsString): ?string
     {
         $stringValue = $valueAsString;
 
@@ -31,10 +31,10 @@ class ParserUtil
     }
 
     /**
-     * @param string $valueAsString
+     * @param string|null $valueAsString
      * @return float|null
      */
-    public static function parseFloat(string $valueAsString): ?float
+    public static function parseFloat(?string $valueAsString): ?float
     {
         $floatAsString = $valueAsString;
 
@@ -51,10 +51,10 @@ class ParserUtil
     }
 
     /**
-     * @param string $valueAsString
+     * @param string|null $valueAsString
      * @return int|null
      */
-    public static function parseInt(string $valueAsString): ?int
+    public static function parseInt(?string $valueAsString): ?int
     {
         $intAsString = $valueAsString;
 
@@ -71,10 +71,10 @@ class ParserUtil
     }
 
     /**
-     * @param string $valueAsString
+     * @param string|null $valueAsString
      * @return mixed|null
      */
-    public static function parseBool(string $valueAsString)
+    public static function parseBool(?string $valueAsString)
     {
         $boolAsString = $valueAsString;
 
@@ -91,14 +91,14 @@ class ParserUtil
     }
 
     /**
-     * @param string $valueAsString
+     * @param string|null $valueAsString
      * @return DateTime|null
      */
-    public static function parseDateTime(string $valueAsString): ?DateTime
+    public static function parseDateTime(?string $valueAsString): ?DateTime
     {
         $dateAsString = $valueAsString;
 
-        if (null == $dateAsString) {
+        if (is_null($dateAsString)) {
             return null;
         }
 

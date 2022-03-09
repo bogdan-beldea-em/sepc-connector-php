@@ -3,80 +3,52 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SDQL\Response;
 
-use JMS\Serializer\Annotation as Serializer;
 use OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData;
 use OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData;
 
 /**
  * Class SDQLResponse
  * @package OM\OddsMatrix\SEPC\Connector\SDQL\Response
- *
- * @Serializer\XmlRoot(name="sdql")
  */
 class SDQLResponse
 {
     /**
      * @var SDQLSubscribeResponse|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLSubscribeResponse")
-     * @Serializer\SerializedName("SubscribeResponse")
      */
     private $_subscribeResponse;
 
     /**
      * @var SDQLUnsubscribeResponse|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLUnsubscribeResponse")
-     * @Serializer\SerializedName("UnsubscribeResponse")
      */
     private $_unsubscribeResponse;
 
     /**
      * @var SDQLInitialDataResponse|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLInitialDataResponse")
-     * @Serializer\SerializedName("GetNextInitialDataResponse")
      */
     private $_initialDataResponse;
 
     /**
      * @var InitialData|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SportsModel\InitialData")
-     * @Serializer\SerializedName("InitialData")
-     * @Serializer\XmlElement()
      */
     private $_initialData;
 
     /**
      * @var UpdateData[]|null
-     *
-     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData>")
-     * @Serializer\XmlList(inline=true, entry="UpdateData")
      */
     private $_dataUpdates;
 
     /**
      * @var SDQLUpdateDataResponse|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLUpdateDataResponse")
-     * @Serializer\SerializedName("GetNextUpdateDataResponse")
      */
     private $_updateDataResponse;
 
     /**
      * @var SDQLError|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLError")
-     * @Serializer\SerializedName("error")
      */
     private $_error;
 
     /**
      * @var SDQLPingRequest|null
-     *
-     * @Serializer\Type("OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLPingRequest")
-     * @Serializer\SerializedName("PingRequest")
      */
     private $_pingRequest;
 
@@ -89,25 +61,37 @@ class SDQLResponse
             return;
         }
 
-        if (array_key_exists( 'UpdateData', $array)) {
-            $updateData = UpdateData::wrap($array['UpdateData']);
-            $this->_dataUpdates = [$updateData];
-        }
-
         if (array_key_exists('InitialData', $array)) {
             $this->_initialData = InitialData::wrap($array['InitialData']);
         }
 
-        if (array_key_exists('PingRequest', $array)) {
+        else if (array_key_exists( 'UpdateData', $array)) {
+            $updateData = UpdateData::wrap($array['UpdateData']);
+            $this->_dataUpdates = [$updateData];
+        }
+
+        else if (array_key_exists('PingRequest', $array)) {
             $this->_pingRequest = SDQLPingRequest::wrap($array['PingRequest']);
         }
 
-        if (array_key_exists('error', $array)) {
+        else if (array_key_exists('error', $array)) {
             $this->_error = SDQLError::wrap($array['error']);
         }
 
-        if (array_key_exists('SubscribeResponse', $array)) {
+        else if (array_key_exists('SubscribeResponse', $array)) {
             $this->_subscribeResponse = SDQLSubscribeResponse::wrap($array['SubscribeResponse']);
+        }
+
+        else if (array_key_exists('UnsubscribeResponse', $array)) {
+            $this->_unsubscribeResponse = SDQLUnsubscribeResponse::wrap($array['UnsubscribeResponse']);
+        }
+
+        else if (array_key_exists('GetNextInitialDataResponse', $array)) {
+            $this->_initialDataResponse = SDQLInitialDataResponse::wrap($array['GetNextInitialDataResponse']);
+        }
+
+        else if (array_key_exists('GetNextUpdateDataResponse', $array)) {
+            $this->_updateDataResponse = SDQLUpdateDataResponse::wrap($array['GetNextUpdateDataResponse']);
         }
     }
 

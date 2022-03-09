@@ -28,11 +28,6 @@ class SEPCPullConnection
     private $_queryParamSerializer;
 
     /**
-     * @var SerializerInterface
-     */
-    private $_xmlSerializer;
-
-    /**
      * @var SEPCConnectionStateInterface
      */
     private $_connectionState;
@@ -52,7 +47,6 @@ class SEPCPullConnection
         SEPCAnnotationLoader::load();
         $this->_connectionState = $_connectionState;
         $this->_queryParamSerializer = new QueryParamSerializer();
-        $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
         $this->_logger = $logger;
     }
 
@@ -66,10 +60,13 @@ class SEPCPullConnection
 
         LogUtil::logI($this->_logger, "Disconnect response: $responseData");
 
-        /** @var SDQLResponse $response */
-        $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+        try {
+            return SDQLResponse::wrap(json_decode($responseData, true, 512, JSON_THROW_ON_ERROR));
+        } catch (\JsonException $e) {
+            LogUtil::logE($this->_logger, "Deserialization exception");
+        }
 
-        return $response;
+        return null;
     }
 
     /**
@@ -96,7 +93,7 @@ class SEPCPullConnection
         /** @var SDQLResponse $response */
         $response = null;
         try {
-            $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+            $response = SDQLResponse::wrap(json_decode($responseData));
         } catch (\Exception $e) {
             LogUtil::logE($this->_logger, "deserialize error" . $e);
         }
@@ -139,7 +136,7 @@ class SEPCPullConnection
             LogUtil::logE($this->_logger, "[SEPCPullConnection] gzdecode error " . $e);
         }
         try {
-            return $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+            return SDQLResponse::wrap(json_decode($responseData));
         } catch (\Exception $e) {
             LogUtil::logE($this->_logger, "[SEPCPullConnection] error during deserialization \n $responseData \n " . $e);
         }

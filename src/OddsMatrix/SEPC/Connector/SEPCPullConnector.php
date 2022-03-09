@@ -11,7 +11,6 @@ use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\LogUtil;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
-use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
 use Psr\Log\LoggerInterface;
 
 class SEPCPullConnector

@@ -3,24 +3,35 @@
 
 namespace OM\OddsMatrix\SEPC\Connector\SDQL\Response;
 
-use JMS\Serializer\Annotation as Serializer;
 use OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData;
 
 /**
  * Class SDQLUpdateDataResponse
  * @package OM\OddsMatrix\SEPC\Connector\SDQL\Response
- *
- * @Serializer\XmlRoot(name="GetNextUpdateDataResponse")
  */
 class SDQLUpdateDataResponse
 {
     /**
      * @var UpdateData[]|null
-     *
-     * @Serializer\Type("array<OM\OddsMatrix\SEPC\Connector\SportsModel\UpdateData>")
-     * @Serializer\XmlList(inline=true, entry="UpdateData")
      */
     private $_dataUpdates;
+
+    /**
+     * @param array $wrapped_obj
+     */
+    public function __construct(array $wrapped_obj)
+    {
+        $this->_dataUpdates = [UpdateData::wrap($wrapped_obj['UpdateData'])];
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return SDQLUpdateDataResponse
+     */
+    public static function wrap(array $wrapped_obj): SDQLUpdateDataResponse
+    {
+        return new SDQLUpdateDataResponse($wrapped_obj);
+    }
 
     /**
      * @return UpdateData[]|null

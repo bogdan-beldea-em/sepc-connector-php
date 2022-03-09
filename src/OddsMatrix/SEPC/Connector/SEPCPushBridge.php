@@ -6,6 +6,7 @@ namespace OM\OddsMatrix\SEPC\Connector;
 
 use JMS\Serializer\Exception\XmlErrorException;
 use JMS\Serializer\SerializerInterface;
+use OM\OddsMatrix\SEPC\Connector\Enum\EnvVars;
 use OM\OddsMatrix\SEPC\Connector\Exception\ConnectionException;
 use OM\OddsMatrix\SEPC\Connector\Exception\SocketException;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLRequest;
@@ -28,11 +29,6 @@ class SEPCPushBridge
      * @var resource
      */
     private $_socket;
-
-    /**
-     * @var SerializerInterface
-     */
-    private $_serializer;
 
     /**
      * @var LoggerInterface
@@ -65,6 +61,11 @@ class SEPCPushBridge
     private $_pushBridgeVerboseLogsEnabled;
 
     /**
+     * @var array|false|string
+     */
+    private $_rawSocketFilePath;
+
+    /**
      * SEPCPushBridge constructor.
      * @param $_socket
      * @param LoggerInterface|null $logger
@@ -74,15 +75,10 @@ class SEPCPushBridge
         $this->_logger = $logger;
         $this->_socket = $_socket;
         $this->_lastByteReceivedTimestamp = microtime(true);
-        $this->_decodedSocketInputDirectoryPath = getenv("DECODED_SOCKET_DIRECTORY_PATH");
-        $this->_profilingLogsEnabled = strlen(getenv("SEPC_CONNECTOR_PROFILING_LOGS")) > 0;
-        $this->_pushBridgeVerboseLogsEnabled = strlen(getenv("SEPC_PUSH_BRIDGE_VERBOSE_LOGS_ENABLED")) > 0;
-
-        try {
-            $this->_serializer = SDQLSerializerProvider::getSerializer();
-        } catch (\ReflectionException $e) {
-            LogUtil::logC($this->_logger, "Could not instantiate XML serializer: $e");
-        }
+        $this->_decodedSocketInputDirectoryPath = getenv(EnvVars::DECODED_SOCKET_DIRECTORY_PATH);
+        $this->_profilingLogsEnabled = strlen(getenv(EnvVars::CONNECTOR_PROFILING_LOGS)) > 0;
+        $this->_pushBridgeVerboseLogsEnabled = strlen(getenv(EnvVars::PUSH_BRIDGE_VERBOSE_LOGS_ENABLED)) > 0;
+        $this->_rawSocketFilePath = getenv(EnvVars::RAW_SOCKET_OUTPUT_FILE);
     }
 
     /**
@@ -91,7 +87,6 @@ class SEPCPushBridge
      */
     public function sendData(SDQLRequest $object): void
     {
-//        $dataToSend = $this->_serializer->serialize($object, 'json');
         $dataToSend = json_encode($object->toArray());
         $dataToSend = preg_replace("/[\n]|[\r]/", "", $dataToSend);
         LogUtil::logI($this->_logger, "Prepare to send data: $dataToSend");
@@ -211,7 +206,6 @@ class SEPCPushBridge
 
             $deserialize = null;
             try {
-//                $deserialize = $this->_serializer->deserialize($response, SDQLResponse::class, 'json');
                 $deserialize = SDQLResponse::wrap(json_decode($response, true, 512, JSON_THROW_ON_ERROR));
             } catch (\Exception $e) {
                 LogUtil::logE($this->_logger, "[SEPCPushBridge] Deserialization error for \n $response \n " . $e);
@@ -255,9 +249,9 @@ class SEPCPushBridge
         $data = socket_read($socket, $length);
 
         if (false !== $data) {
-            $rawSocketFilePath = getenv("RAW_SOCKET_OUTPUT_FILE");
-            if (strlen($rawSocketFilePath) > 0) {
-                $handle = fopen($rawSocketFilePath, "a");
+
+            if (strlen($this->_rawSocketFilePath) > 0) {
+                $handle = fopen($this->_rawSocketFilePath, "a");
                 fwrite($handle, $data);
                 fflush($handle);
 
