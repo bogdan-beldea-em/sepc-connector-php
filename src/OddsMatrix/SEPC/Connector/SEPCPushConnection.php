@@ -123,7 +123,7 @@ class SEPCPushConnection
     public function reconnect(): void
     {
         $this->createSocketConnection($this->_connectionState->getHost(), $this->_connectionState->getPort());
-        $this->_logger->info("Creating new socket connection...");
+        LogUtil::logI($this->_logger, "Creating new socket connection...");
         $this->_bridge = new SEPCPushBridge($this->_socket, $this->_logger);
         $resumeRequest = (new SDQLRequest())->setResumeRequest(
             new SDQLUpdateDataResumeRequest(
@@ -133,7 +133,7 @@ class SEPCPushConnection
                 $this->_connectionState->getLastBatchUuid()
             )
         );
-        $this->_logger->debug("Sending resume request: ${resumeRequest}");
+        LogUtil::logD($this->_logger, "Sending resume request: ${resumeRequest}");
         $this->_bridge->sendData($resumeRequest);
     }
 

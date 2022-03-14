@@ -5,14 +5,12 @@ namespace OM\OddsMatrix\SEPC\Connector;
 
 
 use JMS\Serializer\Exception\XmlErrorException;
-use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\Enum\EnvVars;
 use OM\OddsMatrix\SEPC\Connector\Exception\ConnectionException;
 use OM\OddsMatrix\SEPC\Connector\Exception\SocketException;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\LogUtil;
-use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
 use Psr\Log\LoggerInterface;
 
 class SEPCPushBridge
@@ -234,7 +232,7 @@ class SEPCPushBridge
             $errorMessage = socket_strerror($errorCode);
 
             $socketException = new SocketException($errorMessage, $errorCode);
-            $this->_logger->error("[SEPCPushBridge] $socketException");
+            LogUtil::logE($this->_logger, "[SEPCPushBridge] $socketException");
 
             throw $socketException;
         }
@@ -257,7 +255,7 @@ class SEPCPushBridge
 
                 fseek($handle, 0, SEEK_END);
                 $position = ftell($handle);
-                $this->_logger->info("RAW_SOCKET_OUTPUT_FILE seek position: $position");
+                LogUtil::logI($this->_logger, "RAW_SOCKET_OUTPUT_FILE seek position: $position");
 
                 fclose($handle);
             }

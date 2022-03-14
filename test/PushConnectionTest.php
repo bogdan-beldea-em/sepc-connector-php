@@ -11,7 +11,6 @@ $subscriptionSpecificationName = EnvVarProvider::getSubscriptionSpecificationNam
 $pushEndpoint = EnvVarProvider::getPushEndpoint();
 $pushPort = EnvVarProvider::getPushPort();
 
-$serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 $logger = new StdoutLogger();
 $connection = new \OM\OddsMatrix\SEPC\Connector\SEPCPushConnection(
     new \OM\OddsMatrix\SEPC\Connector\SEPCCredentials($subscriptionSpecificationName),

@@ -3,8 +3,6 @@
 namespace OM\OddsMatrix\SEPC\Connector;
 
 
-use JMS\Serializer\Naming\CamelCaseNamingStrategy;
-use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\Enum\Routes;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLSubscribeRequest;
@@ -28,7 +26,7 @@ class SEPCPullConnector
     /**
      * @var SerializerInterface
      */
-    private $_xmlSerializer;
+//    private $_xmlSerializer;
 
     /**
      * @var SEPCConnectionStateInterface
@@ -58,7 +56,7 @@ class SEPCPullConnector
         $this->_credentials = $_credentials;
         $this->_logger = $logger;
         $this->_queryParamSerializer = new QueryParamSerializer();
-        $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
+//        $this->_xmlSerializer = SDQLSerializerProvider::getSerializer();
 
         if (null != $connectionState) {
             $this->_connection = new SEPCPullConnection($this->_connectionState, $this->_logger);
@@ -84,7 +82,8 @@ class SEPCPullConnector
         /** @var SDQLResponse $response */
         $response = null;
         try {
-            $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
+            $response = SDQLResponse::wrap(json_decode($responseData, true, 512, JSON_THROW_ON_ERROR));
+//            $response = $this->_xmlSerializer->deserialize($responseData, SDQLResponse::class, 'xml');
         } catch (\Exception $e) {
             LogUtil::logE($this->_logger, "[SEPCPullConnector] Deserialization error on connect \n $responseData \n" . $e);
         }

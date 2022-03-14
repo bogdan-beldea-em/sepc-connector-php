@@ -4,7 +4,6 @@
 namespace OM\OddsMatrix\SEPC\Connector;
 
 
-use JMS\Serializer\SerializerInterface;
 use OM\OddsMatrix\SEPC\Connector\Enum\Routes;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLGetNextInitialDataRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLGetNextUpdateDataRequest;
@@ -12,7 +11,6 @@ use OM\OddsMatrix\SEPC\Connector\SDQL\Request\SDQLUnsubscribeRequest;
 use OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse;
 use OM\OddsMatrix\SEPC\Connector\Util\LogUtil;
 use OM\OddsMatrix\SEPC\Connector\Util\QueryParamSerializer;
-use OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider;
 use OM\OddsMatrix\SEPC\Connector\Util\SEPCAnnotationLoader;
 use Psr\Log\LoggerInterface;
 

@@ -18,8 +18,7 @@ $connector->connect($pushEndpoint,$pushPort);
 
 $serializeDataToDirIfEnvVarAvailable = function (int $index, \OM\OddsMatrix\SEPC\Connector\SDQL\Response\SDQLResponse $SDQLResponse) use ($outputDataDir, $logger) {
     if (!is_null($outputDataDir)) {
-        $serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
-        $serializedData = $serializer->serialize($SDQLResponse, 'xml');
+        $serializedData = json_encode($SDQLResponse);
         $outputFileName = $outputDataDir . "/$index.xml";
         $return = file_put_contents($outputFileName, $serializedData);
         if (false === $return) {
@@ -29,7 +28,7 @@ $serializeDataToDirIfEnvVarAvailable = function (int $index, \OM\OddsMatrix\SEPC
 };
 
 $i = 0;
-while ($i < 200000) {
+while ($i < 2000) {
     try {
         $data = $connector->getNextData();
 
@@ -43,7 +42,7 @@ while ($i < 200000) {
 
         if (is_null($updates)) {
             $logger->info("No updates available on data");
-            sleep(1);
+//            sleep(1);
             continue;
         }
 
@@ -55,11 +54,6 @@ while ($i < 200000) {
         }
 
         $updatesCount = count($updates);
-
-        if (0 >= $updatesCount) {
-            sleep(1);
-            continue;
-        }
 
         $serializeDataToDirIfEnvVarAvailable($i, $data);
         $i++;
@@ -93,7 +87,7 @@ while ($i < $nextStep) {
 
         if (is_null($updates)) {
             $logger->info("No updates available on data");
-            sleep(1);
+//            sleep(1);
             continue;
         }
 
@@ -105,11 +99,6 @@ while ($i < $nextStep) {
         }
 
         $updatesCount = count($updates);
-
-        if (0 >= $updatesCount) {
-            sleep(1);
-            continue;
-        }
 
         $lastBatchUuid = $updates[$updatesCount - 1]->getBatchUuid();
         $state->setLastBatchUuid($lastBatchUuid);

@@ -5,7 +5,6 @@ use OM\OddsMatrix\SEPC\Connector\SEPCConnectionStateInterface;
 
 require_once __DIR__ . "/../src/autoload_manual.php";
 
-$serializer = \OM\OddsMatrix\SEPC\Connector\Util\SDQLSerializerProvider::getSerializer();
 
 $subscriptionSpecificationName = EnvVarProvider::getSubscriptionSpecificationName();
 $connectionStatePath = EnvVarProvider::getConnectionStatePath();
@@ -16,7 +15,7 @@ $pullPort = EnvVarProvider::getPullPort();
 $connectionState = null;
 try {
     $connectionStateData = file_get_contents($connectionStatePath);
-    $connectionState = $serializer->deserialize($connectionStateData, PersistableConnectionState::class, 'xml');
+    $connectionState = PersistableConnectionState::wrap(json_decode($connectionStateData));
 } catch (Exception $e) {
 
 }
@@ -56,4 +55,4 @@ if (is_int($count)) {
 
 $connectionState->setCount($count);
 
-file_put_contents($connectionStatePath, $serializer->serialize($connectionState, 'xml'));
+file_put_contents($connectionStatePath, json_encode($connectionState->toArray()));

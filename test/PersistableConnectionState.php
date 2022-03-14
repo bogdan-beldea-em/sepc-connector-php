@@ -94,6 +94,53 @@ class PersistableConnectionState implements SEPCConnectionStateInterface
     private $_resumable = false;
 
     /**
+     * @param array|null $wrapped_obj
+     */
+    public function __construct(?array $wrapped_obj = null)
+    {
+        if (is_null($wrapped_obj)) {
+            return;
+        }
+
+        $this->_subscriptionId = $wrapped_obj['subscriptionId'];
+        $this->_subscriptionSpecificationName = $wrapped_obj['subscriptionSpecificationName'];
+        $this->_host = $wrapped_obj['host'];
+        $this->_port = $wrapped_obj['port'];
+        $this->_initialDataDumpComplete = $wrapped_obj['initialDataDumpComplete'];
+        $this->_count = $wrapped_obj['count'];
+        $this->_lastBatchUuid = $wrapped_obj['lastBatchUuid'];
+        $this->_subscriptionChecksum = $wrapped_obj['subscriptionChecksum'];
+        $this->_resumable = $wrapped_obj['resumable'];
+    }
+
+    /**
+     * @param array $wrapped_obj
+     * @return PersistableConnectionState
+     */
+    public static function wrap(array $wrapped_obj): PersistableConnectionState
+    {
+        return new PersistableConnectionState($wrapped_obj);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'subscriptionId' => $this->_subscriptionId,
+            'subscriptionSpecificationName' => $this->_subscriptionSpecificationName,
+            'host' => $this->_host,
+            'port' => $this->_port,
+            'initialDataDumpComplete' => $this->_initialDataDumpComplete,
+            'count' => $this->_count,
+            'lastBatchUuid' => $this->_lastBatchUuid,
+            'subscriptionChecksum' => $this->_subscriptionChecksum,
+            'resumable' => $this->_resumable
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getSubscriptionId(): string
