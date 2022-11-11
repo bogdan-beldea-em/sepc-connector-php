@@ -996,7 +996,7 @@ trait EntitiesTrait
     {
         $entityClass = $entity['entityClass'];
 
-        if ($entityClass === 'BettingOffer') $this ->_bettingOffers[] = BettingOffer::wrap($entity);
+        if ($entityClass === 'BettingOffer') $this->_bettingOffers[] = BettingOffer::wrap($entity);
         else if ($entityClass === 'BettingOfferStatus') $this->_bettingOfferStatuses[] = BettingOfferStatus::wrap($entity);
         else if ($entityClass === 'BettingType') $this->_bettingTypes[] = BettingType::wrap($entity);
         else if ($entityClass === 'BettingTypeUsage') $this->_bettingTypeUsages[] = BettingTypeUsage::wrap($entity);
